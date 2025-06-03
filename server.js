@@ -1,215 +1,287 @@
 const express = require('express');
 const cors = require('cors');
-const https = require('https');
+const fetch = require('node-fetch');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
+// Configurazione CORS per permettere richieste da Claude.ai e altri domini
+app.use(cors({
+  origin: '*', // Permette tutte le origini
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+// Middleware per gestire preflight OPTIONS
+app.options('*', cors());
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 
-// Variabili Shopify da Railway
+// Variabili Shopify (da environment variables)
 const SHOPIFY_ACCESS_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN;
 const SHOPIFY_STORE_URL = process.env.SHOPIFY_STORE_URL;
 const SHOPIFY_API_VERSION = process.env.SHOPIFY_API_VERSION || '2023-10';
 
-// Root endpoint
-app.get('/', (req, res) => {
-  res.json({
-    status: 'online',
-    service: 'LOFT.73 Name Generator API',
-    version: '2.0.0',
-    shopify_connected: !!SHOPIFY_ACCESS_TOKEN
-  });
-});
+// Mapping stagioni
+const SEASON_MAPPING = {
+  'PE 25': '25E',
+  'AI 25': '25I', 
+  'PE 24': '24E',
+  'AI 24': '24I',
+  'PE 26': '26E',
+  'AI 26': '26I'
+};
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({
-    status: 'OK',
-    shopify_configured: !!SHOPIFY_ACCESS_TOKEN,
-    store_url: SHOPIFY_STORE_URL
-  });
-});
-
-// Funzione helper per chiamate Shopify
-function callShopifyAPI(endpoint, method = 'GET') {
-  return new Promise((resolve, reject) => {
-    const options = {
-      hostname: SHOPIFY_STORE_URL,
-      path: `/admin/api/${SHOPIFY_API_VERSION}${endpoint}`,
-      method: method,
-      headers: {
-        'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
-        'Content-Type': 'application/json'
-      }
-    };
-
-    const req = https.request(options, (res) => {
-      let data = '';
-      
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      
-      res.on('end', () => {
-        try {
-          const jsonData = JSON.parse(data);
-          if (res.statusCode >= 200 && res.statusCode < 300) {
-            resolve(jsonData);
-          } else {
-            reject(new Error(`Shopify API error: ${JSON.stringify(jsonData)}`));
-          }
-        } catch (e) {
-          reject(new Error(`Failed to parse Shopify response: ${e.message}`));
-        }
-      });
-    });
-
-    req.on('error', (e) => {
-      reject(new Error(`Request failed: ${e.message}`));
-    });
-
-    req.end();
-  });
-}
-
-// RECUPERA PRODOTTI REALI DA SHOPIFY
-app.post('/api/shopify/products', async (req, res) => {
-  try {
-    const { season } = req.body;
-    console.log(`Recupero prodotti REALI da Shopify per stagione: ${season}`);
-    
-    // Chiamata API Shopify per recuperare TUTTI i prodotti
-    // Shopify limita a 250 prodotti per chiamata
-    const shopifyData = await callShopifyAPI('/products.json?limit=250');
-    
-    // Filtra i prodotti per stagione basandosi sui tag
-    const allProducts = shopifyData.products || [];
-    const seasonProducts = allProducts.filter(product => {
-      const tags = product.tags ? product.tags.toLowerCase() : '';
-      return tags.includes(season.toLowerCase());
-    });
-    
-    // Estrai solo i nomi (titoli) dei prodotti
-    const productNames = seasonProducts.map(p => p.title);
-    const uniqueNames = [...new Set(productNames)].sort();
-    
-    console.log(`Trovati ${uniqueNames.length} prodotti REALI per ${season}`);
-    
-    res.json({
-      success: true,
-      season: season,
-      count: uniqueNames.length,
-      names: uniqueNames,
-      source: 'Shopify API',
-      total_products_checked: allProducts.length
-    });
-    
-  } catch (error) {
-    console.error('Errore Shopify:', error.message);
-    
-    // Se Shopify non risponde, usa dati di fallback
-    const fallbackNames = {
-      'PE 25': ['Aurora', 'Luna', 'Stella'],
-      'AI 24': ['Brezza', 'Nebbia', 'Alba'],
-      'PE 24': ['Marina', 'Onda', 'Corallo']
-    };
-    
-    res.json({
-      success: false,
-      season: req.body.season,
-      count: fallbackNames[req.body.season]?.length || 0,
-      names: fallbackNames[req.body.season] || [],
-      error: error.message,
-      source: 'Fallback data (Shopify non disponibile)'
-    });
-  }
-});
-
-// Genera nomi evitando duplicati
-app.post('/api/generate-names', async (req, res) => {
-  try {
-    const { prompt, count = 10, existingNames = [] } = req.body;
-    console.log(`Generazione ${count} nomi, evitando ${existingNames.length} nomi esistenti`);
-    
-    // Pool di nomi italiani femminili
-    const allNames = [
-      'Aurora', 'Luna', 'Stella', 'Alba', 'Chiara', 'Serena', 'Marina', 'Viola',
-      'Rosa', 'Bianca', 'Elena', 'Sofia', 'Giulia', 'Emma', 'Giorgia', 'Marta',
-      'Iris', 'Flora', 'Diana', 'Silvia', 'Gemma', 'Perla', 'Asia', 'Eva',
-      'Brezza', 'Onda', 'Neve', 'Rugiada', 'Nebbia', 'Nuvola', 'Pioggia', 'Schiuma',
-      'Margherita', 'Gardenia', 'Camelia', 'Dalia', 'Orchidea', 'Magnolia', 'Mimosa',
-      'Lavanda', 'Verbena', 'Ortensia', 'Azalea', 'Begonia', 'Peonia', 'Fresia',
-      'Ambra', 'Giada', 'Corallo', 'Cristallo', 'Diamante', 'Rubino', 'Zaffiro',
-      'Smeraldo', 'Topazio', 'Ametista', 'Opale', 'Agata', 'Turchese', 'Acquamarina'
+// Funzione per estrarre il nome dal prodotto
+function extractProductName(product) {
+  const names = new Set();
+  
+  // 1. Estrai dal titolo
+  if (product.title) {
+    const patterns = [
+      /LOFT\.?73\s*[-–]\s*(?:PANTALONE|MAGLIA|GIACCA|GONNA|ABITO|CAMICIA|TOP|BLUSA)\s+(\w+)/i,
+      /(?:PANTALONE|MAGLIA|GIACCA|GONNA|ABITO|CAMICIA|TOP|BLUSA)\s+(\w+)/i,
+      /LOFT\.?73\s*[-–]\s*(\w+)$/i,
+      /^(\w+)\s*[-–]/i
     ];
     
-    // IMPORTANTE: Filtra via i nomi che già esistono su Shopify
-    const availableNames = allNames.filter(name => 
-      !existingNames.some(existing => 
-        existing.toLowerCase() === name.toLowerCase()
-      )
+    for (const pattern of patterns) {
+      const match = product.title.match(pattern);
+      if (match && match[1]) {
+        const name = match[1].trim();
+        if (name.length > 2 && !isCommonWord(name)) {
+          names.add(capitalizeFirst(name));
+        }
+      }
+    }
+  }
+  
+  // 2. Estrai dallo SKU
+  if (product.variants && product.variants.length > 0) {
+    product.variants.forEach(variant => {
+      if (variant.sku) {
+        const skuParts = variant.sku
+          .replace(/LOFT\.?73[-_]?/gi, '')
+          .replace(/HFD\d+[A-Z]*[-_]?/gi, '')
+          .split(/[-_]/);
+        
+        skuParts.forEach(part => {
+          if (part.length > 2 && 
+              isNaN(part) && 
+              !isCommonWord(part) &&
+              !/^\d+[A-Z]+$/.test(part)) {
+            names.add(capitalizeFirst(part));
+          }
+        });
+      }
+    });
+  }
+  
+  // 3. Estrai dai tag
+  if (product.tags) {
+    const tagArray = product.tags.split(',').map(tag => tag.trim());
+    tagArray.forEach(tag => {
+      if (tag.length > 2 && 
+          !isSeasonTag(tag) && 
+          !isCommonWord(tag) &&
+          isNaN(tag)) {
+        names.add(capitalizeFirst(tag));
+      }
+    });
+  }
+  
+  return Array.from(names);
+}
+
+// Helper functions
+function isCommonWord(word) {
+  const commonWords = [
+    'PANTALONE', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 'CAMICIA', 'TOP', 'BLUSA',
+    'LOFT', 'DONNA', 'UOMO', 'NERO', 'BIANCO', 'ROSSO', 'BLU', 'VERDE',
+    'FANGO', 'GRIGIO', 'BEIGE', 'MARRONE', 'TU', 'XS', 'S', 'M', 'L', 'XL', 'XXL'
+  ];
+  return commonWords.includes(word.toUpperCase());
+}
+
+function isSeasonTag(tag) {
+  return /^\d{2}[EI]$/i.test(tag) || 
+         /^(PE|AI)\s*\d{2}$/i.test(tag) ||
+         /^(PRIMAVERA|ESTATE|AUTUNNO|INVERNO)/i.test(tag);
+}
+
+function capitalizeFirst(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+// Routes
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'online', 
+    service: 'LOFT.73 Name Generator API',
+    version: '2.0.0',
+    shopify_connected: !!SHOPIFY_ACCESS_TOKEN && !!SHOPIFY_STORE_URL
+  });
+});
+
+app.get('/api/health', (req, res) => {
+  const healthCheck = {
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    shopify: {
+      configured: !!SHOPIFY_ACCESS_TOKEN && !!SHOPIFY_STORE_URL,
+      store: SHOPIFY_STORE_URL || 'not configured',
+      api_version: SHOPIFY_API_VERSION
+    }
+  };
+  res.json(healthCheck);
+});
+
+app.post('/api/shopify/products', async (req, res) => {
+  const { season } = req.body;
+  
+  if (!SHOPIFY_ACCESS_TOKEN || !SHOPIFY_STORE_URL) {
+    return res.status(500).json({ 
+      success: false, 
+      error: 'Shopify non configurato. Aggiungi le variabili ambiente su Railway.' 
+    });
+  }
+  
+  const shopifyTag = SEASON_MAPPING[season] || season;
+  
+  try {
+    const response = await fetch(
+      `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250`,
+      {
+        headers: {
+          'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+        }
+      }
     );
     
-    console.log(`${availableNames.length} nomi disponibili dopo aver filtrato i duplicati`);
+    if (!response.ok) {
+      throw new Error(`Shopify API error: ${response.status} ${response.statusText}`);
+    }
     
-    // Seleziona nomi casuali
-    const shuffled = availableNames.sort(() => 0.5 - Math.random());
-    const selectedNames = shuffled.slice(0, Math.min(count, availableNames.length));
+    const data = await response.json();
+    const allNames = new Set();
+    let productCount = 0;
     
-    res.json({
-      success: true,
-      names: selectedNames.map((name, i) => ({
-        id: Date.now() + i,
-        name: name
-      })),
-      total_available: availableNames.length,
-      duplicates_avoided: existingNames.length
+    if (data.products) {
+      data.products.forEach(product => {
+        if (product.tags && product.tags.includes(shopifyTag)) {
+          productCount++;
+          const extractedNames = extractProductName(product);
+          extractedNames.forEach(name => allNames.add(name));
+          
+          if (extractedNames.includes('Marina')) {
+            console.log(`✓ Trovato "Marina" in prodotto:`, {
+              title: product.title,
+              sku: product.variants?.[0]?.sku,
+              tags: product.tags,
+              extracted: extractedNames
+            });
+          }
+        }
+      });
+    }
+    
+    const namesArray = Array.from(allNames).sort();
+    
+    console.log(`✅ Trovati ${productCount} prodotti con tag "${shopifyTag}"`);
+    console.log(`✅ Estratti ${namesArray.length} nomi unici:`, namesArray);
+    
+    res.json({ 
+      success: true, 
+      names: namesArray,
+      count: productCount,
+      shopify_tag: shopifyTag
     });
     
   } catch (error) {
-    console.error('Errore generazione:', error);
-    res.status(500).json({
-      success: false,
-      error: error.message
+    console.error('❌ Errore Shopify:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
     });
   }
 });
 
-// Verifica nome singolo su Shopify
-app.post('/api/check-name', async (req, res) => {
-  try {
-    const { name } = req.body;
+app.post('/api/generate-names', async (req, res) => {
+  const { count = 20, existingNames = [] } = req.body;
+  
+  // Pool di nomi italiani
+  const namePool = [
+    'Aurora', 'Luna', 'Stella', 'Alba', 'Chiara', 'Serena', 'Marina', 'Viola',
+    'Rosa', 'Giada', 'Perla', 'Ambra', 'Iris', 'Flora', 'Dalia', 'Gemma',
+    'Nuvola', 'Brezza', 'Aria', 'Terra', 'Sole', 'Onda', 'Luce', 'Neve',
+    'Fiamma', 'Acqua', 'Vento', 'Sabbia', 'Roccia', 'Foglia', 'Fiore', 'Ramo',
+    'Cristallo', 'Diamante', 'Rubino', 'Zaffiro', 'Smeraldo', 'Opale', 'Corallo', 'Turchese',
+    'Miriam', 'Sara', 'Rebecca', 'Noemi', 'Rachele', 'Lea', 'Ester', 'Giuditta',
+    'Asia', 'Africa', 'Europa', 'America', 'Oceania', 'India', 'Cina', 'Grecia',
+    'Primavera', 'Estate', 'Autunno', 'Inverno', 'Mattina', 'Sera', 'Notte', 'Giorno',
+    'Melodia', 'Armonia', 'Sinfonia', 'Canzone', 'Musica', 'Danza', 'Ritmo', 'Suono',
+    'Poesia', 'Prosa', 'Verso', 'Rima', 'Strofa', 'Sonetto', 'Ballata', 'Lirica',
+    'Pennello', 'Colore', 'Tela', 'Dipinto', 'Scultura', 'Arte', 'Disegno', 'Forma',
+    'Profumo', 'Essenza', 'Fragranza', 'Aroma', 'Bouquet', 'Petalo', 'Polline', 'Nettare',
+    'Venezia', 'Firenze', 'Roma', 'Milano', 'Napoli', 'Torino', 'Verona', 'Siena',
+    'Amore', 'Pace', 'Gioia', 'Speranza', 'Fede', 'Grazia', 'Gloria', 'Vittoria',
+    'Sogno', 'Fantasia', 'Magia', 'Incanto', 'Mistero', 'Enigma', 'Favola', 'Leggenda',
+    'Dea', 'Musa', 'Ninfa', 'Sirena', 'Fata', 'Regina', 'Principessa', 'Duchessa',
+    'Orchidea', 'Gardenia', 'Camelia', 'Magnolia', 'Azalea', 'Begonia', 'Peonia', 'Glicine',
+    'Farfalla', 'Libellula', 'Ape', 'Coccinella', 'Lucciola', 'Rondine', 'Colomba', 'Fenice',
+    'Margherita', 'Gelsomino', 'Lavanda', 'Mimosa', 'Narciso', 'Papavero', 'Tulipano', 'Zinnia'
+  ];
+  
+  // Filtra nomi già esistenti e genera lista unica
+  const availableNames = namePool.filter(name => 
+    !existingNames.some(existing => existing.toLowerCase() === name.toLowerCase())
+  );
+  
+  // Genera nomi unici
+  const generatedNames = [];
+  const usedNames = new Set();
+  
+  for (let i = 0; i < count && i < availableNames.length; i++) {
+    let randomIndex = Math.floor(Math.random() * availableNames.length);
+    let selectedName = availableNames[randomIndex];
     
-    // Cerca su Shopify se esiste un prodotto con questo nome
-    const searchUrl = `/products.json?title=${encodeURIComponent(name)}`;
-    const shopifyData = await callShopifyAPI(searchUrl);
+    // Assicurati che non ci siano duplicati nella stessa generazione
+    while (usedNames.has(selectedName.toLowerCase()) && generatedNames.length < availableNames.length) {
+      randomIndex = Math.floor(Math.random() * availableNames.length);
+      selectedName = availableNames[randomIndex];
+    }
     
-    const exists = shopifyData.products && shopifyData.products.length > 0;
-    
-    res.json({
-      success: true,
-      exists,
-      name,
-      source: 'Shopify API'
-    });
-    
-  } catch (error) {
-    console.error('Errore verifica nome:', error);
-    res.json({
-      success: false,
-      exists: false,
-      error: error.message,
-      source: 'Error'
-    });
+    if (!usedNames.has(selectedName.toLowerCase())) {
+      usedNames.add(selectedName.toLowerCase());
+      generatedNames.push({
+        id: Date.now() + i,
+        name: selectedName
+      });
+    }
   }
+  
+  res.json({
+    success: true,
+    names: generatedNames,
+    total: generatedNames.length
+  });
+});
+
+app.post('/api/check-name', async (req, res) => {
+  const { name, season } = req.body;
+  
+  // Implementazione futura per verificare singolo nome
+  res.json({
+    success: true,
+    exists: false,
+    message: 'Funzionalità in sviluppo'
+  });
 });
 
 // Start server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Server LOFT.73 attivo su porta ${PORT}`);
-  console.log(`🛍️ Shopify Store: ${SHOPIFY_STORE_URL}`);
-  console.log(`🔑 Token configurato: ${SHOPIFY_ACCESS_TOKEN ? 'Sì' : 'No'}`);
+app.listen(PORT, () => {
+  console.log(`🚀 LOFT.73 Name Generator API running on port ${PORT}`);
+  console.log(`📦 Shopify connected: ${!!SHOPIFY_ACCESS_TOKEN && !!SHOPIFY_STORE_URL}`);
 });
