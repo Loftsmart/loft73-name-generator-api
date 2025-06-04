@@ -62,39 +62,106 @@ const SEASON_MAPPING = {
     'AI 26': '26I'
 };
 
-// Funzione per estrarre il nome dal titolo prodotto
+// Funzione MIGLIORATA per estrarre il nome dal titolo prodotto
 function extractProductName(product) {
     if (!product.title) return null;
     
-    let title = product.title;
+    let title = product.title.toUpperCase(); // Lavora in uppercase per semplicità
     
-    // Rimuovi prefissi comuni di TUTTI i brand
-    title = title.replace(/^LOFT\.?73\s*[-–]\s*/i, '');
-    title = title.replace(/^LOFT\s*[-–]\s*/i, '');
-    title = title.replace(/^ANGELA\s+DAVIS\s*[-–]\s*/i, '');
-    title = title.replace(/^ANTONY\s+MORATO\s*[-–]\s*/i, '');
-    
-    // Pattern per estrarre il nome - funziona per tutti i brand
-    const patterns = [
-        // PANTALONE MARINA -> Marina (per qualsiasi brand)
-        /(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|T-SHIRT|SHIRT|JEANS|DRESS)\s+([A-Z][a-z]+)/i,
-        // Dopo trattino: "BRAND - NOME" -> Nome
-        /[-–]\s*([A-Z][a-z]+)/,
-        // Prima parola maiuscola significativa
-        /\b([A-Z][a-z]{2,})\b/
+    // Lista di parole da escludere (aggettivi, articoli, preposizioni)
+    const excludeWords = [
+        'CON', 'THE', 'AND', 'FOR', 'WITH', 'DI', 'DA', 'IN', 'SU', 'PER', 'TRA', 'FRA',
+        'IL', 'LA', 'LO', 'I', 'LE', 'GLI', 'UN', 'UNA', 'UNO', 'DEGLI', 'DELLE',
+        'AL', 'ALLA', 'ALLO', 'AI', 'ALLE', 'DAL', 'DALLA', 'DALLO', 'DAI', 'DALLE',
+        'NEL', 'NELLA', 'NELLO', 'NEI', 'NELLE', 'SUL', 'SULLA', 'SULLO', 'SUI', 'SULLE'
     ];
     
-    for (const pattern of patterns) {
-        const match = title.match(pattern);
-        if (match && match[1]) {
-            const name = match[1];
-            // Verifica che non sia un codice o una parola comune
-            if (!/\d/.test(name) && 
-                name.length >= 3 && 
-                name.length <= 20 &&
-                !['CON', 'THE', 'AND', 'FOR', 'WITH'].includes(name.toUpperCase())) {
-                // Capitalizza correttamente
-                return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    // Rimuovi codici prodotto comuni (numeri, SKU)
+    title = title.replace(/\b[A-Z0-9]{5,}\b/g, ''); // Codici alfanumerici lunghi
+    title = title.replace(/\b\d{3,}\b/g, ''); // Numeri lunghi
+    title = title.replace(/\bART\.?\s*\d+/g, ''); // ART.123
+    title = title.replace(/\bREF\.?\s*[A-Z0-9]+/g, ''); // REF.ABC123
+    
+    // Pattern specifici per LOFT.73 e altri brand
+    const brandPatterns = [
+        // LOFT.73 patterns
+        /LOFT\.?73\s*[-–]\s*(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO)\s+([A-Z]+)(?:\s|$)/,
+        /LOFT\.?73\s*[-–]\s*([A-Z]+)(?:\s|$)/,
+        
+        // Pattern generico per tutti i brand
+        /(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO)\s+([A-Z]+)(?:\s|$)/,
+        
+        // Dopo trattino
+        /[-–]\s*([A-Z]+)(?:\s|$)/,
+        
+        // Nome isolato (una sola parola maiuscola significativa)
+        /\b([A-Z]{3,20})\b/
+    ];
+    
+    // Prova tutti i pattern
+    for (const pattern of brandPatterns) {
+        const matches = title.matchAll(new RegExp(pattern, 'g'));
+        
+        for (const match of matches) {
+            if (match && match[1]) {
+                const name = match[1];
+                
+                // Verifica che sia un nome valido
+                if (name.length >= 3 && 
+                    name.length <= 20 &&
+                    !/^\d+$/.test(name) && // Non solo numeri
+                    !excludeWords.includes(name) && // Non parole escluse
+                    !/^[A-Z]{1,2}\d+/.test(name) && // Non codici tipo A1, BB2
+                    !/\d{2,}/.test(name)) { // Non contiene molti numeri
+                    
+                    // Se sembra un nome proprio italiano, capitalizza correttamente
+                    // Altrimenti mantieni come nome proprio
+                    const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+                    
+                    // Lista di nomi che sappiamo esistere per validazione
+                    const knownNames = ['RUBINO', 'MARINA', 'AURORA', 'LUNA', 'STELLA', 'ALBA', 'CHIARA', 
+                                       'SERENA', 'ELENA', 'SOFIA', 'GIULIA', 'ROSA', 'IRIS', 'VIOLA',
+                                       'PERLA', 'AMBRA', 'GIADA', 'ZAFFIRO', 'CORALLO', 'DIAMANTE'];
+                    
+                    // Se è un nome conosciuto, restituiscilo
+                    if (knownNames.includes(name)) {
+                        return properName;
+                    }
+                    
+                    // Altrimenti valida che sembri un nome italiano
+                    if (/^[A-Z][A-Z]*$/.test(name) && name.length >= 4) {
+                        return properName;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Ultima risorsa: cerca parole che sembrano nomi propri nel titolo originale
+    const words = product.title.split(/[\s\-–,\.]+/);
+    for (const word of words) {
+        const cleanWord = word.trim().toUpperCase();
+        // Se è una parola tutta maiuscola di lunghezza giusta e non è un codice
+        if (cleanWord.length >= 4 && 
+            cleanWord.length <= 15 && 
+            /^[A-Z]+$/.test(cleanWord) &&
+            !excludeWords.includes(cleanWord) &&
+            !/\d/.test(cleanWord)) {
+            
+            // Lista estesa di nomi possibili
+            const possibleNames = ['RUBINO', 'MARINA', 'AURORA', 'LUNA', 'STELLA', 'ALBA', 
+                                  'CHIARA', 'SERENA', 'ELENA', 'SOFIA', 'GIULIA', 'MARTINA',
+                                  'GIORGIA', 'SARA', 'EMMA', 'GRETA', 'MARTA', 'ANNA',
+                                  'FRANCESCA', 'VALENTINA', 'ALESSIA', 'VIOLA', 'BIANCA',
+                                  'GINEVRA', 'BEATRICE', 'REBECCA', 'GAIA', 'ARIANNA',
+                                  'CAMILLA', 'ELISA', 'ALICE', 'CARLOTTA', 'MATILDE',
+                                  'VITTORIA', 'NOEMI', 'NICOLE', 'ROSA', 'IRIS', 'DALIA',
+                                  'ORCHIDEA', 'MIMOSA', 'GARDENIA', 'CAMELIA', 'AZALEA',
+                                  'MAGNOLIA', 'PEONIA', 'LAVANDA', 'PERLA', 'AMBRA', 'GIADA',
+                                  'OPALE', 'ZAFFIRO', 'CORALLO', 'CRISTALLO', 'DIAMANTE'];
+            
+            if (possibleNames.includes(cleanWord)) {
+                return cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase();
             }
         }
     }
@@ -219,11 +286,21 @@ app.post('/api/shopify/products', async (req, res) => {
         // Estrai nomi da TUTTI i brand
         const names = new Set();
         const brandCount = {};
+        const debugExamples = [];
         
         products.forEach(product => {
             const extractedName = extractProductName(product);
             if (extractedName && extractedName.length > 1) {
                 names.add(extractedName);
+                
+                // Salva esempi per debug (specialmente RUBINO)
+                if (debugExamples.length < 50 || extractedName.toUpperCase() === 'RUBINO') {
+                    debugExamples.push({
+                        title: product.title,
+                        extracted: extractedName,
+                        brand: product.vendor
+                    });
+                }
                 
                 // Conta per brand (per debug)
                 const brand = product.vendor || 'Unknown';
@@ -236,10 +313,20 @@ app.post('/api/shopify/products', async (req, res) => {
         console.log(`📊 Estratti ${uniqueNames.length} nomi unici da ${products.length} prodotti`);
         console.log('🏷️ Prodotti per brand:', brandCount);
         
-        // Log alcuni esempi per debug
-        if (uniqueNames.length > 0) {
-            console.log('Esempi nomi estratti:', uniqueNames.slice(0, 10).join(', '));
+        // Log specifico per RUBINO
+        if (uniqueNames.includes('Rubino')) {
+            console.log('⚠️ TROVATO RUBINO nei prodotti esistenti!');
+            const rubinoExample = debugExamples.find(ex => ex.extracted === 'Rubino');
+            if (rubinoExample) {
+                console.log('📍 Esempio prodotto RUBINO:', rubinoExample);
+            }
         }
+        
+        // Log alcuni esempi per debug
+        console.log('\n📝 Primi 10 esempi di estrazione:');
+        debugExamples.slice(0, 10).forEach(ex => {
+            console.log(`  "${ex.title}" → "${ex.extracted}" (${ex.brand})`);
+        });
         
         res.json({
             success: true,
@@ -276,15 +363,30 @@ app.post('/api/generate-names', async (req, res) => {
     
     try {
         // Converti tutti i nomi esistenti in lowercase per confronto
-        const existingLower = existingNames.map(n => n.toLowerCase());
+        const existingLower = existingNames.map(n => n.toLowerCase().trim());
+        
+        // Log per debug
+        if (existingLower.includes('rubino')) {
+            console.log('⚠️ RUBINO è presente nei nomi esistenti da escludere!');
+        }
         
         // Filtra il pool escludendo i nomi esistenti (case-insensitive)
         const availableNames = namePool.filter(name => 
-            !existingLower.includes(name.toLowerCase())
+            !existingLower.includes(name.toLowerCase().trim())
         );
         
         console.log(`🎲 Pool disponibile: ${availableNames.length} nomi`);
         console.log(`🚫 Esclusi dal pool: ${namePool.length - availableNames.length} duplicati`);
+        
+        // Verifica specificamente alcuni nomi
+        const checkNames = ['Rubino', 'Marina', 'Aurora'];
+        checkNames.forEach(name => {
+            if (existingLower.includes(name.toLowerCase())) {
+                console.log(`   ❌ ${name} escluso (già esistente)`);
+            } else if (availableNames.includes(name)) {
+                console.log(`   ✅ ${name} disponibile nel pool`);
+            }
+        });
         
         // Genera nomi casuali dal pool filtrato
         const generatedNames = [];
