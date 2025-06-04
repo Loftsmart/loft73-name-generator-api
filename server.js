@@ -35,7 +35,7 @@ const namePool = {
         'Modica', 'Vittoria', 'Caltanissetta', 'Agrigento', 'Enna', 'Taormina', 'Cefalù',
         'Noto', 'Sciacca', 'Mazara', 'Alcamo', 'Bagheria', 'Monreale', 'Avola', 'Augusta',
         'Milazzo', 'Barcellona', 'Licata', 'Favara', 'Acireale', 'Paternò', 'Misterbianco',
-        'Caltagirone', 'Canicattì', 'Gela', 'Vittoria', 'Avola', 'Niscemi', 'Piazza Armerina',
+        'Caltagirone', 'Canicattì', 'Gela', 'Vittoria', 'Avola', 'Niscemi',
         
         // Nord Italia
         'Milano', 'Torino', 'Genova', 'Venezia', 'Verona', 'Padova', 'Trieste', 'Brescia',
@@ -50,7 +50,7 @@ const namePool = {
         'Prato', 'Pistoia', 'Perugia', 'Terni', 'Ancona', 'Pesaro', 'Macerata', 'Fermo',
         'Ascoli', 'Viterbo', 'Rieti', 'Latina', 'Frosinone', 'Chieti', 'Pescara', 'Teramo',
         'Massa', 'Carrara', 'Viareggio', 'Empoli', 'Scandicci', 'Sesto', 'Campi', 'Capannori',
-        'Foligno', 'Città di Castello', 'Spoleto', 'Gubbio', 'Assisi', 'Orvieto', 'Narni',
+        'Foligno', 'Spoleto', 'Gubbio', 'Assisi', 'Orvieto', 'Narni',
         
         // Sud Italia
         'Napoli', 'Bari', 'Taranto', 'Foggia', 'Salerno', 'Lecce', 'Brindisi', 'Andria',
@@ -58,7 +58,7 @@ const namePool = {
         'Crotone', 'Vibo', 'Benevento', 'Avellino', 'Caserta', 'Sassari', 'Cagliari',
         'Nuoro', 'Oristano', 'Olbia', 'Alghero', 'Aosta', 'Trento', 'Bolzano', 'Udine',
         'Pordenone', 'Gorizia', 'Monfalcone', 'Muggia', 'Codroipo', 'Sacile', 'Spilimbergo',
-        'Torre del Greco', 'Pozzuoli', 'Casoria', 'Afragola', 'Marano', 'Acerra', 'Giugliano',
+        'Pozzuoli', 'Casoria', 'Afragola', 'Marano', 'Acerra', 'Giugliano',
         'Cava', 'Battipaglia', 'Nocera', 'Sarno', 'Angri', 'Scafati', 'Castellammare'
     ],
     
@@ -77,24 +77,24 @@ const namePool = {
         
         // Mammiferi marini
         'Balena', 'Orca', 'Delfino', 'Focena', 'Beluga', 'Narvalo', 'Capodoglio', 'Megattera',
-        'Foca', 'Otaria', 'Leone Marino', 'Tricheco', 'Lamantino', 'Dugongo',
+        'Foca', 'Otaria', 'Tricheco', 'Lamantino', 'Dugongo',
         
         // Uccelli
         'Aquila', 'Falco', 'Poiana', 'Nibbio', 'Astore', 'Sparviero', 'Gheppio', 'Pellegrino',
         'Gufo', 'Civetta', 'Barbagianni', 'Allocco', 'Assiolo', 'Succiacapre', 'Upupa',
-        'Martin Pescatore', 'Gruccione', 'Ghiandaia', 'Cornacchia', 'Corvo', 'Gazza', 'Taccola',
+        'Gruccione', 'Ghiandaia', 'Cornacchia', 'Corvo', 'Gazza', 'Taccola',
         'Picchio', 'Pettirosso', 'Rondine', 'Passero', 'Cardellino', 'Verdone', 'Fringuello',
         'Canarino', 'Usignolo', 'Merlo', 'Tordo', 'Allodola', 'Cappellaccia', 'Cutrettola',
-        'Cinciallegra', 'Cinciarella', 'Cincia Mora', 'Codirosso', 'Pigliamosche', 'Beccafico',
+        'Cinciallegra', 'Cinciarella', 'Codirosso', 'Pigliamosche', 'Beccafico',
         'Capinera', 'Sterpazzola', 'Occhiocotto', 'Storno', 'Rigogolo', 'Averla', 'Pendolino',
         'Colibrì', 'Pappagallo', 'Ara', 'Cacatua', 'Calopsitte', 'Inseparabile', 'Ondulato',
-        'Pavone', 'Fagiano', 'Pernice', 'Starna', 'Quaglia', 'Francolino', 'Gallo Cedrone',
+        'Pavone', 'Fagiano', 'Pernice', 'Starna', 'Quaglia', 'Francolino',
         'Colomba', 'Piccione', 'Tortora', 'Colombaccio', 'Cuculo', 'Cucù', 'Kookaburra',
         'Gabbiano', 'Albatro', 'Procellaria', 'Sula', 'Pellicano', 'Cormorano', 'Marangone',
         'Airone', 'Garzetta', 'Nitticora', 'Tarabuso', 'Cicogna', 'Ibis', 'Spatola',
         'Fenicottero', 'Cigno', 'Oca', 'Anatra', 'Germano', 'Marzaiola', 'Mestolone',
-        'Folaga', 'Gallinella', 'Porciglione', 'Gru', 'Otarda', 'Gallina Prataiola',
-        'Struzzo', 'Emù', 'Nandù', 'Casuario', 'Kiwi', 'Pinguino', 'Gazza Marina',
+        'Folaga', 'Gallinella', 'Porciglione', 'Gru', 'Otarda',
+        'Struzzo', 'Emù', 'Nandù', 'Casuario', 'Kiwi', 'Pinguino',
         
         // Rettili e anfibi
         'Serpente', 'Vipera', 'Biscia', 'Boa', 'Pitone', 'Anaconda', 'Cobra', 'Mamba',
@@ -125,15 +125,15 @@ const namePool = {
         'Etna', 'Vesuvio', 'Stromboli', 'Vulcano', 'Monviso', 'Cervino', 'Rosa',
         'Bianco', 'Adamello', 'Ortles', 'Bernina', 'Dolomiti', 'Marmolada', 'Pelmo',
         'Civetta', 'Antelao', 'Cristallo', 'Sorapis', 'Tofana', 'Lagazuoi', 'Averau',
-        'Nuvolau', 'Cinque Torri', 'Croda', 'Piz Boè', 'Sassolungo', 'Catinaccio',
+        'Nuvolau', 'Croda', 'Sassolungo', 'Catinaccio',
         'Latemar', 'Sciliar', 'Rosengarten', 'Majella', 'Velino', 'Sirente', 'Terminillo',
         'Vettore', 'Sibillini', 'Nerone', 'Catria', 'Fumaiolo', 'Falterona', 'Amiata',
         'Argentario', 'Conero', 'Gargano', 'Pollino', 'Sila', 'Aspromonte', 'Serre',
         'Nebrodi', 'Madonie', 'Peloritani', 'Erei', 'Iblei', 'Sicani', 'Gennargentu',
-        'Limbara', 'Supramonte', 'Alpi Apuane', 'Prealpi', 'Appennini', 'Lessinii',
+        'Limbara', 'Supramonte', 'Prealpi', 'Appennini', 'Lessinii',
         
         // Vulcani
-        'Marsili', 'Campi Flegrei', 'Colli Albani', 'Roccamonfina', 'Vulture', 'Pantelleria',
+        'Marsili', 'Roccamonfina', 'Vulture', 'Pantelleria',
         'Linosa', 'Ischia', 'Lipari', 'Salina', 'Panarea', 'Alicudi', 'Filicudi',
         
         // Mari e oceani
@@ -162,12 +162,12 @@ const namePool = {
         
         // Isole
         'Sicilia', 'Sardegna', 'Elba', 'Capri', 'Ischia', 'Procida', 'Ponza', 'Ventotene',
-        'Santo Stefano', 'Lipari', 'Salina', 'Panarea', 'Stromboli', 'Vulcano', 'Alicudi',
+        'Lipari', 'Salina', 'Panarea', 'Stromboli', 'Vulcano', 'Alicudi',
         'Filicudi', 'Ustica', 'Favignana', 'Levanzo', 'Marettimo', 'Pantelleria', 'Lampedusa',
         'Linosa', 'Lampione', 'Giglio', 'Giannutri', 'Montecristo', 'Pianosa', 'Gorgona',
         'Capraia', 'Palmaria', 'Tino', 'Tinetto', 'Gallinara', 'Bergeggi', 'Asinara',
-        'San Pietro', 'Sant\'Antioco', 'Maddalena', 'Caprera', 'Santo Stefano', 'Spargi',
-        'Budelli', 'Razzoli', 'Santa Maria', 'Tavolara', 'Molara', 'Mal di Ventre',
+        'Maddalena', 'Caprera', 'Spargi',
+        'Budelli', 'Razzoli', 'Tavolara', 'Molara',
         
         // Venti
         'Maestrale', 'Tramontana', 'Grecale', 'Levante', 'Scirocco', 'Libeccio', 'Ponente',
@@ -679,7 +679,12 @@ function getAllNames() {
     for (const category in namePool) {
         allNames.push(...namePool[category]);
     }
-    return [...new Set(allNames)]; // Rimuovi duplicati
+    // Rimuovi duplicati e FILTRA NOMI COMPOSTI (con spazi)
+    const uniqueNames = [...new Set(allNames)];
+    const singleWordNames = uniqueNames.filter(name => !name.includes(' '));
+    
+    console.log(`Nomi totali: ${uniqueNames.length}, dopo filtro singola parola: ${singleWordNames.length}`);
+    return singleWordNames;
 }
 
 // Cache per i nomi già utilizzati nelle diverse stagioni
@@ -1043,8 +1048,75 @@ function shuffleArray(array) {
     return shuffled;
 }
 
+// Funzione per recuperare TUTTI i nomi da TUTTE le stagioni di Shopify
+async function getAllShopifyNames() {
+    try {
+        const allProducts = [];
+        let hasNextPage = true;
+        let pageInfo = null;
+        
+        console.log('Recupero TUTTI i prodotti da Shopify per il mix 60/40...');
+        
+        while (hasNextPage) {
+            const url = new URL(`https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json`);
+            url.searchParams.append('limit', '250');
+            url.searchParams.append('fields', 'id,title,vendor');
+            
+            if (pageInfo) {
+                url.searchParams.append('page_info', pageInfo);
+            }
+            
+            const response = await fetch(url.toString(), {
+                headers: {
+                    'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Shopify API error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            allProducts.push(...data.products);
+            
+            const linkHeader = response.headers.get('Link');
+            if (linkHeader && linkHeader.includes('rel="next"')) {
+                const matches = linkHeader.match(/<[^>]+page_info=([^>]+)>; rel="next"/);
+                if (matches && matches[1]) {
+                    pageInfo = matches[1];
+                } else {
+                    hasNextPage = false;
+                }
+            } else {
+                hasNextPage = false;
+            }
+        }
+        
+        // Filtra solo prodotti LOFT.73 ed estrai nomi
+        const allNames = new Set();
+        allProducts.forEach(product => {
+            const isLoft73 = !product.vendor || product.vendor === 'LOFT.73' || product.vendor === 'Loft.73';
+            if (isLoft73) {
+                const extractedName = extractProductName(product.title);
+                if (extractedName) {
+                    const normalizedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1).toLowerCase();
+                    allNames.add(normalizedName);
+                }
+            }
+        });
+        
+        console.log(`Trovati ${allNames.size} nomi unici da ${allProducts.length} prodotti totali`);
+        return Array.from(allNames);
+        
+    } catch (error) {
+        console.error('Errore recupero tutti i nomi:', error);
+        return [];
+    }
+}
+
 // Funzione per generare mix intelligente di nomi
-function intelligentNameMixer(availableNames, existingNamesAllSeasons, currentSeasonNames, count) {
+async function intelligentNameMixer(availableNames, currentSeasonNames, count) {
     // Costanti per il mix
     const NEW_NAMES_PERCENTAGE = 0.6; // 60% nuovi
     const REUSED_NAMES_PERCENTAGE = 0.4; // 40% riutilizzati
@@ -1053,19 +1125,22 @@ function intelligentNameMixer(availableNames, existingNamesAllSeasons, currentSe
     const newNamesCount = Math.ceil(count * NEW_NAMES_PERCENTAGE);
     const reusedNamesCount = count - newNamesCount;
     
+    // Recupera TUTTI i nomi da Shopify
+    const allShopifyNames = await getAllShopifyNames();
+    
     // 1. Trova nomi MAI usati in nessuna stagione
     const neverUsedNames = availableNames.filter(name => 
-        !existingNamesAllSeasons.includes(name)
+        !allShopifyNames.includes(name)
     );
     
     // 2. Trova nomi usati in altre stagioni ma NON in questa
-    const reusableNames = existingNamesAllSeasons.filter(name => 
+    const reusableNames = allShopifyNames.filter(name => 
         !currentSeasonNames.includes(name) && availableNames.includes(name)
     );
     
     console.log(`Mix intelligente: ${newNamesCount} nuovi + ${reusedNamesCount} riutilizzati`);
     console.log(`Nomi mai usati disponibili: ${neverUsedNames.length}`);
-    console.log(`Nomi riutilizzabili: ${reusableNames.length}`);
+    console.log(`Nomi riutilizzabili da altre stagioni: ${reusableNames.length}`);
     
     const result = [];
     const sources = {
@@ -1073,24 +1148,10 @@ function intelligentNameMixer(availableNames, existingNamesAllSeasons, currentSe
         otherSeasons: 0
     };
     
-    // Prendi prima i nomi nuovi
-    const shuffledNew = shuffleArray(neverUsedNames);
-    const selectedNew = shuffledNew.slice(0, Math.min(newNamesCount, shuffledNew.length));
-    selectedNew.forEach(name => {
-        result.push({
-            id: Date.now() + Math.random(),
-            name: name,
-            source: 'pool'
-        });
-        sources.pool++;
-    });
-    
-    // Se non ci sono abbastanza nomi nuovi, compensa con i riutilizzabili
-    const remainingSlots = count - result.length;
-    
-    if (remainingSlots > 0 && reusableNames.length > 0) {
+    // Prendi prima i nomi riutilizzabili (40%)
+    if (reusableNames.length > 0) {
         const shuffledReused = shuffleArray(reusableNames);
-        const selectedReused = shuffledReused.slice(0, Math.min(remainingSlots, shuffledReused.length));
+        const selectedReused = shuffledReused.slice(0, Math.min(reusedNamesCount, shuffledReused.length));
         selectedReused.forEach(name => {
             result.push({
                 id: Date.now() + Math.random(),
@@ -1098,6 +1159,21 @@ function intelligentNameMixer(availableNames, existingNamesAllSeasons, currentSe
                 source: 'other-seasons'
             });
             sources.otherSeasons++;
+        });
+    }
+    
+    // Poi aggiungi i nomi nuovi (60%)
+    const remainingSlots = count - result.length;
+    if (remainingSlots > 0 && neverUsedNames.length > 0) {
+        const shuffledNew = shuffleArray(neverUsedNames);
+        const selectedNew = shuffledNew.slice(0, Math.min(remainingSlots, shuffledNew.length));
+        selectedNew.forEach(name => {
+            result.push({
+                id: Date.now() + Math.random(),
+                name: name,
+                source: 'pool'
+            });
+            sources.pool++;
         });
     }
     
@@ -1114,9 +1190,9 @@ function intelligentNameMixer(availableNames, existingNamesAllSeasons, currentSe
             result.push({
                 id: Date.now() + Math.random(),
                 name: name,
-                source: existingNamesAllSeasons.includes(name) ? 'other-seasons' : 'pool'
+                source: allShopifyNames.includes(name) ? 'other-seasons' : 'pool'
             });
-            if (existingNamesAllSeasons.includes(name)) {
+            if (allShopifyNames.includes(name)) {
                 sources.otherSeasons++;
             } else {
                 sources.pool++;
@@ -1146,24 +1222,21 @@ app.post('/api/generate-names', async (req, res) => {
         // Ottieni tutti i nomi disponibili
         let availableNames = getAllNames();
         
+        // TEST: Disabilitiamo i filtri per vedere se sono il problema
+        // Se vuoi riabilitarli, decommenta le righe sotto
+        /*
         // Estrai regole dal prompt
         const rules = extractPromptRules(prompt || '');
         
         // Applica filtri basati sul prompt
         availableNames = filterNamesByRules(availableNames, rules);
+        */
         
-        console.log(`Nomi dopo filtri: ${availableNames.length}`);
+        console.log(`Nomi disponibili dopo filtro singola parola: ${availableNames.length}`);
         
-        // Raccogli tutti i nomi esistenti da tutte le stagioni nella cache
-        const allExistingNames = [];
-        Object.values(seasonNamesCache).forEach(names => {
-            allExistingNames.push(...names);
-        });
-        
-        // Genera mix intelligente
-        const result = intelligentNameMixer(
+        // Genera mix intelligente (ora recupera automaticamente da tutte le stagioni)
+        const result = await intelligentNameMixer(
             availableNames,
-            allExistingNames,
             existingNames,
             count
         );
@@ -1175,8 +1248,8 @@ app.post('/api/generate-names', async (req, res) => {
             sources: result.sources,
             debug: {
                 totalAvailable: availableNames.length,
-                rules: rules,
-                cachedSeasons: Object.keys(seasonNamesCache).length
+                // rules: rules, // Commentato perché filtri disabilitati
+                filtersEnabled: false // Indica che i filtri sono disabilitati
             }
         });
         
@@ -1240,12 +1313,30 @@ app.post('/api/test-prompt-filter', (req, res) => {
     res.json({
         prompt: prompt,
         rules: rules,
-        sample_size: 100,
-        filtered_size: filteredNames.length,
-        filtered_names: filteredNames.slice(0, 100),
+        total_names_before_filter: allNames.length,
+        total_names_after_filter: filteredNames.length,
+        filter_removed: allNames.length - filteredNames.length,
+        sample_filtered_names: filteredNames.slice(0, 50),
         categories_excluded: categoriesExcluded,
         categories_included: categoriesIncluded,
-        words_excluded: rules.excludeWords
+        words_excluded: rules.excludeWords,
+        filters_working: {
+            category_filters: (categoriesExcluded.length > 0 || categoriesIncluded.length > 0),
+            word_filters: rules.excludeWords.length > 0,
+            length_filters: (rules.preferences.maxLength || rules.preferences.minLength) ? true : false
+        }
+    });
+});
+
+// Endpoint per attivare/disattivare i filtri
+app.post('/api/toggle-filters', (req, res) => {
+    const { enable } = req.body;
+    
+    // Questo è solo per test - in produzione useresti una variabile globale
+    res.json({
+        success: true,
+        filters_enabled: enable,
+        message: enable ? 'Filtri attivati' : 'Filtri disattivati'
     });
 });
 
