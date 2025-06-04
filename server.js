@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 
@@ -90,7 +89,6 @@ function extractProductName(product) {
     ];
     
     // Pattern UNIVERSALE: "QUALSIASI_BRAND - TIPO NOME"
-    // Funziona per LOFT.73, ANGELA DAVIS, ANTONY MORATO, etc.
     const universalPattern = new RegExp(
         `^[^-–]+[-–]\\s*(?:${productTypes.join('|')})\\s+([A-Z]+)(?:\\s|$|-|,|\\.|;)`, 
         'i'
@@ -99,47 +97,12 @@ function extractProductName(product) {
     const universalMatch = title.match(universalPattern);
     if (universalMatch && universalMatch[1]) {
         const name = universalMatch[1];
-        // Verifica che non sia un codice o una parola comune
         if (name.length >= 3 && name.length <= 20 && !/\d/.test(name)) {
             const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
             
             if (shouldDebug) {
                 console.log(`🎯 Universal Pattern: "${originalTitle}" → "${properName}"`);
-            // Log esempi raggruppati per brand
-        const brandExamples = {};
-        debugExamples.forEach(ex => {
-            const brand = ex.brand || 'Unknown';
-            if (!brandExamples[brand]) brandExamples[brand] = [];
-            if (brandExamples[brand].length < 3) { // Max 3 esempi per brand
-                brandExamples[brand].push(ex);
             }
-        });
-        
-        console.log(`\n📦 ESEMPI DI ESTRAZIONE PER BRAND:`);
-        Object.entries(brandExamples).forEach(([brand, examples]) => {
-            console.log(`\n   ${brand}:`);
-            examples.forEach(ex => {
-                console.log(`      "${ex.title}" → "${ex.extracted}"`);
-            });
-        });
-        
-        res.json({
-            success: true,
-            names: uniqueNames,
-            count: uniqueNames.length,
-            totalProducts: products.length,
-            shopify_tag: shopifyTag,
-            brandBreakdown: brandCount
-        });
-        
-    } catch (error) {
-        console.error('❌ Errore recupero prodotti:', error);
-        res.status(500).json({
-            success: false,
-            error: 'Errore durante il recupero dei prodotti: ' + error.message
-        });
-    }
-});
             
             return properName;
         }
@@ -169,7 +132,6 @@ function extractProductName(product) {
     const parts = title.split(/[-–]/);
     for (const part of parts) {
         const trimmedPart = part.trim();
-        // Cerca in ogni parte del titolo
         const partMatch = trimmedPart.match(new RegExp(`(?:${productTypes.join('|')})\\s+([A-Z]{3,20})(?:\\s|$)`, 'i'));
         if (partMatch && partMatch[1]) {
             const name = partMatch[1];
@@ -219,7 +181,7 @@ function extractProductName(product) {
     return null;
 }
 
-// Funzione CORRETTA per recuperare TUTTI i prodotti con paginazione
+// Funzione per recuperare TUTTI i prodotti con paginazione
 async function fetchAllShopifyProducts(season) {
     const allProducts = [];
     let sinceId = 0;
@@ -343,7 +305,7 @@ app.post('/api/shopify/products', async (req, res) => {
             if (extractedName && extractedName.length > 1) {
                 names.add(extractedName);
                 
-                // Salva esempi per debug (specialmente RUBINO, RUGIADA, CAMILLA, MARTA)
+                // Salva esempi per debug
                 const criticalNames = ['Rubino', 'Rugiada', 'Camilla', 'Marta', 'Marina'];
                 if (debugExamples.length < 50 || criticalNames.includes(extractedName)) {
                     debugExamples.push({
@@ -361,22 +323,51 @@ app.post('/api/shopify/products', async (req, res) => {
         
         const uniqueNames = Array.from(names).sort();
         
-        console.log(`📊 Estratti ${uniqueNames.length} nomi unici da ${products.length} prodotti`);
-        console.log('🏷️ Prodotti per brand:', brandCount);
+        // Log dettagliati per debug
+        console.log(`\n📊 REPORT ESTRAZIONE NOMI:`);
+        console.log(`   Totale prodotti analizzati: ${products.length}`);
+        console.log(`   Nomi unici estratti: ${uniqueNames.length}`);
+        console.log(`   Prodotti per brand:`, brandCount);
         
-        // Log specifico per RUBINO
-        if (uniqueNames.includes('Rubino')) {
-            console.log('⚠️ TROVATO RUBINO nei prodotti esistenti!');
-            const rubinoExample = debugExamples.find(ex => ex.extracted === 'Rubino');
-            if (rubinoExample) {
-                console.log('📍 Esempio prodotto RUBINO:', rubinoExample);
+        // Verifica nomi specifici
+        const checkNames = ['Rubino', 'Rugiada', 'Camilla', 'Marta', 'Marina'];
+        console.log(`\n🔍 VERIFICA NOMI CRITICI:`);
+        checkNames.forEach(name => {
+            if (uniqueNames.includes(name)) {
+                console.log(`   ✅ ${name} TROVATO nei prodotti`);
+                const example = debugExamples.find(ex => ex.extracted === name);
+                if (example) {
+                    console.log(`      Esempio: "${example.title}"`);
+                }
+            } else {
+                console.log(`   ❌ ${name} NON TROVATO`);
             }
+        });
+        
+        // Log primi esempi di estrazione
+        if (debugExamples.length > 0) {
+            console.log(`\n📝 ESEMPI DI ESTRAZIONE (primi 20):`);
+            debugExamples.slice(0, 20).forEach(ex => {
+                console.log(`   "${ex.title}" → "${ex.extracted}" (${ex.brand})`);
+            });
         }
         
-        // Log alcuni esempi per debug
-        console.log('\n📝 Primi 10 esempi di estrazione:');
-        debugExamples.slice(0, 10).forEach(ex => {
-            console.log(`  "${ex.title}" → "${ex.extracted}" (${ex.brand})`);
+        // Log esempi raggruppati per brand
+        const brandExamples = {};
+        debugExamples.forEach(ex => {
+            const brand = ex.brand || 'Unknown';
+            if (!brandExamples[brand]) brandExamples[brand] = [];
+            if (brandExamples[brand].length < 3) {
+                brandExamples[brand].push(ex);
+            }
+        });
+        
+        console.log(`\n📦 ESEMPI DI ESTRAZIONE PER BRAND:`);
+        Object.entries(brandExamples).forEach(([brand, examples]) => {
+            console.log(`\n   ${brand}:`);
+            examples.forEach(ex => {
+                console.log(`      "${ex.title}" → "${ex.extracted}"`);
+            });
         });
         
         res.json({
@@ -473,54 +464,7 @@ app.post('/api/generate-names', async (req, res) => {
     }
 });
 
-// Endpoint di test (opzionale ma utile)
-app.get('/api/test-names/:season', async (req, res) => {
-    const { season } = req.params;
-    
-    const shopifyTag = SEASON_MAPPING[season];
-    if (!shopifyTag) {
-        return res.status(400).json({ error: 'Invalid season' });
-    }
-    
-    try {
-        const products = await fetchAllShopifyProducts(shopifyTag);
-        const names = new Set();
-        const examples = [];
-        const brandBreakdown = {};
-        
-        products.forEach(product => {
-            const name = extractProductName(product);
-            if (name) {
-                names.add(name);
-                
-                // Conta per brand
-                const brand = product.vendor || 'Unknown';
-                brandBreakdown[brand] = (brandBreakdown[brand] || 0) + 1;
-                
-                if (examples.length < 20) {
-                    examples.push({
-                        brand: product.vendor,
-                        title: product.title,
-                        extracted: name
-                    });
-                }
-            }
-        });
-        
-        res.json({
-            totalProducts: products.length,
-            totalNames: names.size,
-            brandBreakdown: brandBreakdown,
-            names: Array.from(names).sort(),
-            productExamples: examples
-        });
-        
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Endpoint di test migliorato con più dettagli
+// Endpoint di test per verificare estrazione
 app.get('/api/test-extraction', async (req, res) => {
     try {
         // Esempi di titoli reali da testare - MULTI BRAND
@@ -580,6 +524,53 @@ app.get('/api/test-extraction', async (req, res) => {
             failed: results.filter(r => !r.success).length,
             byBrand,
             allResults: results
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Endpoint di test per verificare nomi per stagione
+app.get('/api/test-names/:season', async (req, res) => {
+    const { season } = req.params;
+    
+    const shopifyTag = SEASON_MAPPING[season];
+    if (!shopifyTag) {
+        return res.status(400).json({ error: 'Invalid season' });
+    }
+    
+    try {
+        const products = await fetchAllShopifyProducts(shopifyTag);
+        const names = new Set();
+        const examples = [];
+        const brandBreakdown = {};
+        
+        products.forEach(product => {
+            const name = extractProductName(product);
+            if (name) {
+                names.add(name);
+                
+                // Conta per brand
+                const brand = product.vendor || 'Unknown';
+                brandBreakdown[brand] = (brandBreakdown[brand] || 0) + 1;
+                
+                if (examples.length < 20) {
+                    examples.push({
+                        brand: product.vendor,
+                        title: product.title,
+                        extracted: name
+                    });
+                }
+            }
+        });
+        
+        res.json({
+            totalProducts: products.length,
+            totalNames: names.size,
+            brandBreakdown: brandBreakdown,
+            names: Array.from(names).sort(),
+            productExamples: examples
         });
         
     } catch (error) {
