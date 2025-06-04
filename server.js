@@ -495,195 +495,202 @@ const namePool = {
         // Pianeti e satelliti
         'Mercurio', 'Venere', 'Terra', 'Marte', 'Giove', 'Saturno', 'Urano', 'Nettuno',
         'Plutone', 'Cerere', 'Eris', 'Makemake', 'Haumea', 'Sedna', 'Quaoar', 'Orcus',
-        'Luna', 'Fobos', 'Deimos', 'Io', 'Europa', 'Ganimede', 'Callisto', 'Amaltea',
-        'Himalia', 'Elara', 'Pasifae', 'Sinope', 'Lisitea', 'Carme', 'Ananke', 'Leda',
-        'Tebe', 'Adrastea', 'Metis', 'Titano', 'Rea', 'Giapeto', 'Dione', 'Teti',
-        'Encelado', 'Mimas', 'Iperione', 'Febe', 'Giano', 'Epimeteo', 'Elena', 'Pandora',
-        'Prometeo', 'Atlante', 'Pan', 'Dafni', 'Miranda', 'Ariel', 'Umbriel', 'Titania',
-        'Oberon', 'Cordelia', 'Ofelia', 'Bianca', 'Cressida', 'Desdemona', 'Giulietta',
-        'Porzia', 'Rosalinda', 'Belinda', 'Puck', 'Tritone', 'Nereide', 'Naiade',
-        'Talassa', 'Despina', 'Galatea', 'Larissa', 'Proteo', 'Caronte', 'Notte', 'Idra'
+        'Luna', 'Fobos', 'Deimos', 'Io', 'Europa', 'Ganimede', 'Callisto', 'Titano',
+        'Encelado', 'Mimas', 'Rea', 'Giapeto', 'Dione', 'Teti', 'Miranda', 'Ariel',
+        'Umbriel', 'Oberon', 'Titania', 'Tritone', 'Nereide', 'Caronte', 'Notte', 'Idra'
     ],
     
     // MUSICA E STRUMENTI (200+)
     music: [
         // Strumenti a corda
-        'Arpa', 'Lira', 'Cetra', 'Salterio', 'Violino', 'Viola', 'Violoncello',
-        'Contrabbasso', 'Chitarra', 'Liuto', 'Mandolino', 'Mandola', 'Banjo', 'Ukulele',
-        'Balalaica', 'Bouzouki', 'Sitar', 'Sarod', 'Tambura', 'Koto', 'Guzheng', 'Pipa',
-        'Clavicembalo', 'Spinetta', 'Virginale', 'Clavicordo', 'Pianoforte', 'Fortepiano',
+        'Arpa', 'Lira', 'Cetra', 'Chitarra', 'Liuto', 'Mandolino', 'Banjo', 'Ukulele',
+        'Violino', 'Viola', 'Violoncello', 'Contrabbasso', 'Clavicembalo', 'Pianoforte',
+        'Spinetta', 'Virginale', 'Salterio', 'Dulcimer', 'Sitar', 'Balalaika', 'Bouzouki',
         
         // Strumenti a fiato
-        'Flauto', 'Ottavino', 'Piffero', 'Zufolo', 'Ocarina', 'Quena', 'Shakuhachi',
-        'Oboe', 'Corno Inglese', 'Clarinetto', 'Clarone', 'Saxofono', 'Fagotto',
-        'Controfagotto', 'Dulciana', 'Musette', 'Bombardino', 'Ciaramella', 'Launeddas',
-        'Tromba', 'Trombone', 'Corno', 'Flicorno', 'Cornetta', 'Buccina', 'Tuba',
-        'Helicon', 'Sousafono', 'Bombardino', 'Eufonio', 'Oficleide', 'Serpentone',
-        'Organo', 'Armonium', 'Fisarmonica', 'Bandoneon', 'Concertina', 'Melodica',
-        'Armonica', 'Kazoo', 'Didgeridoo', 'Alphorn', 'Shofar', 'Vuvuzela',
+        'Flauto', 'Ottavino', 'Oboe', 'Clarinetto', 'Fagotto', 'Sassofono', 'Tromba',
+        'Trombone', 'Corno', 'Tuba', 'Eufonio', 'Buccina', 'Cornetta', 'Flicorno',
+        'Ocarina', 'Zampogna', 'Cornamusa', 'Piffero', 'Bombarda', 'Dulciana', 'Musette',
         
         // Strumenti a percussione
-        'Tamburo', 'Grancassa', 'Rullante', 'Tom', 'Timpano', 'Bonghi', 'Congas',
-        'Djembe', 'Darbuka', 'Tabla', 'Taiko', 'Cajón', 'Tamburello', 'Pandeiro',
-        'Cembalo', 'Piatti', 'Gong', 'Tam-tam', 'Campane', 'Campanelli', 'Glockenspiel',
-        'Vibrafono', 'Xilofono', 'Marimba', 'Celesta', 'Carillon', 'Triangolo',
-        'Nacchere', 'Castagn
-        // CONTINUA DA PARTE 1...
-        'Nacchere', 'Castagnette', 'Maracas', 'Shaker', 'Guiro', 'Cabasa', 'Afuche',
-        'Raganella', 'Frusta', 'Woodblock', 'Temple Block', 'Clave', 'Cowbell',
-        'Agogo', 'Berimbau', 'Mbira', 'Kalimba', 'Hang', 'Tongue Drum', 'Steelpan',
+        'Tamburo', 'Timpano', 'Grancassa', 'Rullante', 'Tom', 'Bongo', 'Conga', 'Djembe',
+        'Xilofono', 'Marimba', 'Vibrafono', 'Glockenspiel', 'Campane', 'Campanelli',
+        'Piatti', 'Gong', 'Triangolo', 'Nacchere', 'Maracas', 'Sonagli', 'Tamburello',
         
         // Termini musicali
-        'Melodia', 'Armonia', 'Ritmo', 'Cadenza', 'Accordo', 'Scala', 'Tonalità',
-        'Modulazione', 'Trasposizione', 'Contrappunto', 'Fuga', 'Canone', 'Imitazione',
-        'Ostinato', 'Pedale', 'Bordone', 'Glissando', 'Portamento', 'Vibrato', 'Tremolo',
-        'Trillo', 'Mordente', 'Appoggiatura', 'Acciaccatura', 'Gruppetto', 'Arpeggio',
-        'Staccato', 'Legato', 'Portato', 'Martellato', 'Pizzicato', 'Spiccato',
-        'Crescendo', 'Diminuendo', 'Sforzando', 'Fortissimo', 'Pianissimo', 'Rubato',
-        'Accelerando', 'Ritardando', 'Rallentando', 'Allargando', 'Stringendo',
-        'Adagio', 'Andante', 'Moderato', 'Allegro', 'Presto', 'Vivace', 'Largo',
-        'Sinfonia', 'Concerto', 'Sonata', 'Suite', 'Partita', 'Toccata', 'Preludio',
-        'Fuga', 'Invenzione', 'Studio', 'Capriccio', 'Fantasia', 'Rapsodia', 'Ballata',
-        'Notturno', 'Serenata', 'Divertimento', 'Cassazione', 'Quartetto', 'Quintetto',
-        'Opera', 'Operetta', 'Cantata', 'Oratorio', 'Messa', 'Requiem', 'Stabat Mater',
-        'Te Deum', 'Magnificat', 'Gloria', 'Kyrie', 'Sanctus', 'Agnus Dei', 'Alleluia'
+        'Melodia', 'Armonia', 'Sinfonia', 'Concerto', 'Sonata', 'Cantata', 'Serenata',
+        'Notturno', 'Preludio', 'Fuga', 'Toccata', 'Fantasia', 'Rapsodia', 'Ballata',
+        'Romanza', 'Barcarola', 'Berceuse', 'Capriccio', 'Divertimento', 'Intermezzo',
+        'Minuetto', 'Gavotta', 'Sarabanda', 'Giga', 'Allemanda', 'Corrente', 'Bourrée',
+        'Pavana', 'Gagliarda', 'Tarantella', 'Mazurka', 'Polka', 'Valzer', 'Tango',
+        'Bolero', 'Habanera', 'Seguidilla', 'Fandango', 'Pasodoble', 'Flamenco',
+        
+        // Voci e registri
+        'Soprano', 'Mezzosoprano', 'Contralto', 'Tenore', 'Baritono', 'Basso', 'Falsetto',
+        'Castrato', 'Controtenore', 'Coloratura', 'Belcanto', 'Spinto', 'Lirico', 'Drammatico',
+        
+        // Generi musicali
+        'Opera', 'Operetta', 'Musical', 'Oratorio', 'Messa', 'Requiem', 'Madrigale',
+        'Mottetto', 'Canzone', 'Chanson', 'Lied', 'Aria', 'Cavatina', 'Recitativo',
+        'Blues', 'Jazz', 'Swing', 'Bebop', 'Rock', 'Pop', 'Soul', 'Funk', 'Reggae',
+        
+        // Compositori come nomi
+        'Vivaldi', 'Allegro', 'Andante', 'Adagio', 'Presto', 'Largo', 'Moderato',
+        'Vivace', 'Maestoso', 'Dolce', 'Forte', 'Piano', 'Crescendo', 'Diminuendo',
+        'Staccato', 'Legato', 'Rubato', 'Tremolo', 'Vibrato', 'Glissando', 'Portamento'
     ],
     
     // SPEZIE E AROMI (150+)
     spices: [
         // Spezie comuni
         'Pepe', 'Peperoncino', 'Paprika', 'Cannella', 'Chiodi di Garofano', 'Noce Moscata',
-        'Macis', 'Zenzero', 'Cardamomo', 'Vaniglia', 'Anice', 'Anice Stellato', 'Finocchio',
-        'Cumino', 'Coriandolo', 'Carvi', 'Nigella', 'Sesamo', 'Papavero', 'Senape',
-        'Rafano', 'Wasabi', 'Curcuma', 'Zafferano', 'Curry', 'Garam Masala', 'Tandoori',
-        'Berbere', 'Harissa', 'Ras el Hanout', 'Zaatar', 'Sumac', 'Tamarindo',
+        'Zenzero', 'Curcuma', 'Zafferano', 'Cardamomo', 'Coriandolo', 'Cumino', 'Anice',
+        'Finocchio', 'Aneto', 'Senape', 'Vaniglia', 'Macis', 'Carvi', 'Nigella', 'Sommacco',
         
         // Erbe aromatiche
-        'Basilico', 'Prezzemolo', 'Rosmarino', 'Salvia', 'Timo', 'Origano', 'Maggiorana',
-        'Menta', 'Mentuccia', 'Melissa', 'Dragoncello', 'Santoreggia', 'Issopo', 'Levistico',
-        'Cerfoglio', 'Erba Cipollina', 'Aneto', 'Finocchietto', 'Alloro', 'Mirto',
-        'Ginepro', 'Peperoncino', 'Aglio', 'Cipolla', 'Scalogno', 'Porro', 'Erba di San Pietro',
-        'Borragine', 'Rucola', 'Crescione', 'Acetosa', 'Pimpinella', 'Achillea',
-        'Artemisia', 'Assenzio', 'Ruta', 'Tanaceto', 'Calendula', 'Nasturzio', 'Viola',
+        'Basilico', 'Origano', 'Timo', 'Rosmarino', 'Salvia', 'Maggiorana', 'Menta',
+        'Prezzemolo', 'Erba Cipollina', 'Dragoncello', 'Santoreggia', 'Levistico',
+        'Melissa', 'Mentuccia', 'Nepitella', 'Issopo', 'Ruta', 'Tanaceto', 'Assenzio',
         
-        // Miscele e preparati
-        'Pesto', 'Chimichurri', 'Chermoula', 'Dukkah', 'Panch Phoron', 'Chinese Five Spice',
-        'Herbes de Provence', 'Fines Herbes', 'Bouquet Garni', 'Persillade', 'Gremolata',
-        'Soffritto', 'Mirepoix', 'Battuto', 'Trito', 'Salamoia', 'Marinata', 'Rub',
+        // Miscele di spezie
+        'Curry', 'Garam Masala', 'Ras el Hanout', 'Berbere', 'Harissa', 'Zaatar',
+        'Baharat', 'Dukkah', 'Shichimi', 'Furikake', 'Herbes de Provence', 'Bouquet Garni',
         
-        // Aromi esotici
-        'Galanga', 'Citronella', 'Combava', 'Pandan', 'Shiso', 'Yuzu', 'Sansho',
-        'Shichimi', 'Furikake', 'Gomashio', 'Umeboshi', 'Miso', 'Tahin', 'Harissa',
-        'Baharat', 'Advieh', 'Berbere', 'Dukka', 'Hawaij', 'Khmeli Suneli', 'Shatta',
-        'Zhug', 'Adjika', 'Tkemali', 'Svanuri Marili', 'Urfa Biber', 'Aleppo',
-        'Mahleb', 'Mastic', 'Asafoetida', 'Amchur', 'Anardana', 'Kokum', 'Kala Namak',
-        'Fenugreek', 'Ajwain', 'Kalonji', 'Mustard Oil', 'Ghee', 'Smen', 'Preserved Lemons'
+        // Aromi e essenze
+        'Ambra', 'Muschio', 'Incenso', 'Mirra', 'Benzoino', 'Storace', 'Labdano',
+        'Patchouli', 'Vetiver', 'Sandalo', 'Cedro', 'Oud', 'Neroli', 'Bergamotto',
+        'Gelsomino', 'Rosa', 'Lavanda', 'Geranio', 'Ylang Ylang', 'Tuberosa', 'Frangipani',
+        
+        // Resine e balsami
+        'Copale', 'Elemi', 'Mastice', 'Opoponaco', 'Galbano', 'Asafetida', 'Canfora',
+        'Eucalipto', 'Tea Tree', 'Cajeput', 'Nardo', 'Spiganardo', 'Calamo', 'Acoro',
+        
+        // Frutti aromatici
+        'Limone', 'Arancia', 'Mandarino', 'Pompelmo', 'Lime', 'Cedro', 'Chinotto',
+        'Kumquat', 'Yuzu', 'Combava', 'Citronella', 'Lemongrass', 'Galanga', 'Kaffir',
+        
+        // Radici e cortecce
+        'Liquirizia', 'Sassofrasso', 'Cassia', 'Rabarbaro', 'Ginseng', 'Angelica',
+        'Valeriana', 'Iris', 'Vetiver', 'Zedoaria', 'Galanga', 'Alpinia', 'Curcuma'
     ],
     
     // TESSUTI E MATERIALI (200+)
-    textiles: [
-        // Fibre naturali animali
-        'Seta', 'Lana', 'Cashmere', 'Mohair', 'Angora', 'Alpaca', 'Lama', 'Vigogna',
-        'Cammello', 'Yak', 'Qiviut', 'Bisso', 'Crine', 'Pelo', 'Piuma', 'Piumino',
-        
-        // Fibre naturali vegetali
-        'Cotone', 'Lino', 'Canapa', 'Juta', 'Ramie', 'Sisal', 'Cocco', 'Bambù',
-        'Eucalipto', 'Kapok', 'Abaca', 'Kenaf', 'Ortica', 'Ginestra', 'Rafia', 'Paglia',
+    fabrics: [
+        // Tessuti naturali
+        'Seta', 'Cotone', 'Lino', 'Lana', 'Cashmere', 'Mohair', 'Alpaca', 'Angora',
+        'Vicuña', 'Cammello', 'Canapa', 'Juta', 'Ramie', 'Bambù', 'Tencel', 'Modal',
         
         // Tessuti pregiati
-        'Velluto', 'Raso', 'Damasco', 'Broccato', 'Lampasso', 'Taffetà', 'Organza',
-        'Tulle', 'Chiffon', 'Georgette', 'Crespo', 'Crêpe de Chine', 'Charmeuse',
-        'Shantung', 'Dupioni', 'Twill', 'Gabardine', 'Serge', 'Flanella', 'Tweed',
-        'Cheviot', 'Melton', 'Loden', 'Bouclé', 'Mohair', 'Velour', 'Alcantara',
+        'Broccato', 'Damasco', 'Velluto', 'Raso', 'Taffetà', 'Organza', 'Tulle',
+        'Chiffon', 'Georgette', 'Crêpe', 'Charmeuse', 'Dupioni', 'Shantung', 'Jacquard',
         
         // Tessuti tecnici
-        'Jersey', 'Interlock', 'Rib', 'Piqué', 'Terry', 'Fleece', 'Softshell',
-        'Hardshell', 'Gore-Tex', 'Neoprene', 'Lycra', 'Spandex', 'Elastan', 'Kevlar',
-        'Nomex', 'Dyneema', 'Cordura', 'Ripstop', 'Tyvek', 'Coolmax', 'Thermolite',
+        'Denim', 'Canvas', 'Twill', 'Gabardine', 'Popeline', 'Oxford', 'Chambray',
+        'Percalle', 'Flanella', 'Tweed', 'Tartan', 'Principe di Galles', 'Pied de Poule',
         
-        // Tessuti tradizionali
-        'Mussola', 'Batista', 'Voile', 'Lawn', 'Cambric', 'Nainsook', 'Madras',
-        'Gingham', 'Chambray', 'Oxford', 'Popeline', 'Percalle', 'Calico', 'Chintz',
-        'Toile de Jouy', 'Cretonne', 'Canvas', 'Duck', 'Sailcloth', 'Ticking',
-        'Hessian', 'Burlap', 'Osnaburg', 'Monks Cloth', 'Homespun', 'Khadi',
+        // Pizzi e ricami
+        'Pizzo', 'Valenciennes', 'Chantilly', 'Alençon', 'Macramè', 'Sangallo',
+        'Ricamo', 'Appliqué', 'Paillettes', 'Perline', 'Strass', 'Borchie', 'Frange',
         
-        // Pizzi e merletti
-        'Pizzo', 'Merletto', 'Valenciennes', 'Chantilly', 'Alençon', 'Guipure',
-        'Macramé', 'Filet', 'Reticella', 'Punto in Aria', 'Burano', 'Pellestrina',
-        'Cantù', 'Tombolo', 'Chiacchierino', 'Frivolité', 'Crochet', 'Bobbin Lace',
-        'Needle Lace', 'Battenberg', 'Renaissance', 'Richelieu', 'Broderie Anglaise',
+        // Tessuti moderni
+        'Lycra', 'Spandex', 'Nylon', 'Poliestere', 'Acrilico', 'Viscosa', 'Rayon',
+        'Acetato', 'Triacetato', 'Lurex', 'Lamé', 'Neoprene', 'Alcantara', 'Microfibra',
         
-        // Ricami e decorazioni
-        'Ricamo', 'Trapunto', 'Appliqué', 'Patchwork', 'Quilting', 'Smocking',
-        'Fagoting', 'Drawn Thread', 'Hardanger', 'Blackwork', 'Redwork', 'Whitework',
-        'Goldwork', 'Stumpwork', 'Crewel', 'Jacobean', 'Suzani', 'Kantha', 'Sashiko',
-        'Kogin', 'Bargello', 'Needlepoint', 'Petit Point', 'Cross Stitch', 'Assisi',
+        // Pelli e pellicce
+        'Pelle', 'Camoscio', 'Nabuk', 'Vernice', 'Coccodrillo', 'Pitone', 'Struzzo',
+        'Cavallino', 'Vitello', 'Agnello', 'Montone', 'Renna', 'Cinghiale', 'Peccari',
         
-        // Tecniche di stampa
-        'Batik', 'Tie-Dye', 'Shibori', 'Ikat', 'Block Print', 'Screen Print',
-        'Digital Print', 'Discharge', 'Resist', 'Devore', 'Flocking', 'Foiling',
-        'Embossing', 'Burnout', 'Ombré', 'Dip Dye', 'Space Dye', 'Yarn Dye'
+        // Tessuti etnici
+        'Batik', 'Ikat', 'Shibori', 'Kilim', 'Paisley', 'Madras', 'Gingham', 'Vichy',
+        'Liberty', 'Toile de Jouy', 'Chintz', 'Calicò', 'Mussola', 'Voile', 'Batista',
+        
+        // Lavorazioni
+        'Plissé', 'Smock', 'Trapunto', 'Matelassé', 'Cloqué', 'Seersucker', 'Dobby',
+        'Fil Coupé', 'Dévoré', 'Floccato', 'Goffrato', 'Mercerizzato', 'Sanforizzato',
+        
+        // Finissaggi
+        'Lamé', 'Metallizzato', 'Iridescente', 'Cangiante', 'Opaco', 'Lucido', 'Satinato',
+        'Felpato', 'Spazzolato', 'Fiammato', 'Froissé', 'Stropicciato', 'Vintage', 'Slavato'
     ],
     
     // COLORI E SFUMATURE (250+)
     colors: [
         // Rossi
-        'Rosso', 'Carminio', 'Vermiglio', 'Scarlatto', 'Cremisi', 'Rubino', 'Granata',
-        'Borgogna', 'Amaranto', 'Magenta', 'Fucsia', 'Lampone', 'Fragola', 'Ciliegia',
-        'Pomodoro', 'Papavero', 'Corallo', 'Salmone', 'Aragosta', 'Terracotta',
-        'Mattone', 'Ruggine', 'Rame', 'Bordeaux', 'Vinaccia', 'Prugna', 'Melanzana',
+        'Rosso', 'Scarlatto', 'Cremisi', 'Vermiglio', 'Carminio', 'Granata', 'Bordeaux',
+        'Amaranto', 'Rubino', 'Corallo', 'Salmone', 'Pesca', 'Albicocca', 'Terracotta',
+        'Mattone', 'Ruggine', 'Rame', 'Marsala', 'Sangria', 'Ciliegia', 'Fragola',
+        'Lampone', 'Ribes', 'Melograno', 'Papavero', 'Geranio', 'Azalea', 'Fucsia',
         
         // Arancioni
-        'Arancione', 'Mandarino', 'Arancio', 'Albicocca', 'Pesca', 'Melone', 'Papaya',
-        'Zucca', 'Carota', 'Ambra', 'Ocra', 'Senape', 'Zafferano', 'Curcuma', 'Miele',
+        'Arancione', 'Mandarino', 'Aragosta', 'Zucca', 'Carota', 'Papaya', 'Melone',
+        'Albicocca', 'Pesca', 'Corallo', 'Salmone', 'Gambero', 'Tramonto', 'Ambra',
+        'Cognac', 'Whisky', 'Brandy', 'Caramello', 'Miele', 'Zafferano', 'Curcuma',
         
         // Gialli
-        'Giallo', 'Limone', 'Canarino', 'Girasole', 'Mais', 'Grano', 'Paglia', 'Sabbia',
-        'Crema', 'Vaniglia', 'Burro', 'Champagne', 'Oro', 'Ottone', 'Bronzo',
+        'Giallo', 'Limone', 'Canarino', 'Girasole', 'Mimosa', 'Ginestra', 'Senape',
+        'Ocra', 'Sabbia', 'Paglia', 'Vaniglia', 'Crema', 'Burro', 'Champagne', 'Oro',
+        'Ottone', 'Bronzo', 'Topazio', 'Ambra', 'Miele', 'Biondo', 'Paglierino', 'Dorato',
         
         // Verdi
-        'Verde', 'Smeraldo', 'Giada', 'Malachite', 'Oliva', 'Muschio', 'Salvia', 'Menta',
-        'Pistacchio', 'Lime', 'Chartreuse', 'Prato', 'Foglia', 'Foresta', 'Pino',
-        'Abete', 'Cipresso', 'Eucalipto', 'Felce', 'Alga', 'Acquamarina', 'Turchese',
+        'Verde', 'Smeraldo', 'Giada', 'Malachite', 'Prato', 'Menta', 'Salvia', 'Oliva',
+        'Militare', 'Bosco', 'Pino', 'Abete', 'Muschio', 'Felce', 'Edera', 'Alloro',
+        'Basilico', 'Lime', 'Pistacchio', 'Avocado', 'Kiwi', 'Mela', 'Chartreuse',
+        'Celadon', 'Veronese', 'Bottiglia', 'Petrolio', 'Acqua', 'Tiffany', 'Turchese',
         
         // Blu
-        'Blu', 'Azzurro', 'Celeste', 'Cielo', 'Mare', 'Oceano', 'Zaffiro', 'Cobalto',
-        'Lapislazzuli', 'Indaco', 'Denim', 'Navy', 'Notte', 'Mezzanotte', 'Inchiostro',
-        'Pavone', 'Petrolio', 'Ceruleo', 'Pervinca', 'Fiordaliso', 'Avio', 'Carta da Zucchero',
+        'Blu', 'Azzurro', 'Celeste', 'Cielo', 'Mare', 'Oceano', 'Cobalto', 'Zaffiro',
+        'Navy', 'Notte', 'Indaco', 'Denim', 'Jeans', 'Petrolio', 'Pavone', 'Pervinca',
+        'Fiordaliso', 'Lavanda', 'Avio', 'Polvere', 'Acciaio', 'Ardesia', 'Grigio Blu',
+        'Ciano', 'Acquamarina', 'Turchese', 'Carta da Zucchero', 'Klein', 'Elettrico',
         
         // Viola
-        'Viola', 'Porpora', 'Ametista', 'Lavanda', 'Lilla', 'Glicine', 'Malva', 'Melanzana',
-        'Prugna', 'Uva', 'Mirtillo', 'More', 'Violetta', 'Orchidea', 'Magenta',
+        'Viola', 'Violetto', 'Lilla', 'Glicine', 'Lavanda', 'Malva', 'Orchidea', 'Iris',
+        'Ametista', 'Prugna', 'Melanzana', 'Vinaccia', 'Borgogna', 'Magenta', 'Ciclamino',
+        'Erica', 'Pervinca', 'Indaco', 'Porpora', 'Cardinale', 'Vescovo', 'Regale',
         
         // Rosa
-        'Rosa', 'Rosa Antico', 'Rosa Pallido', 'Rosa Shocking', 'Fucsia', 'Confetto',
-        'Cipria', 'Pesca', 'Salmone', 'Corallo', 'Geranio', 'Azalea', 'Peonia',
+        'Rosa', 'Rosa Antico', 'Rosa Cipria', 'Rosa Confetto', 'Rosa Pallido', 'Shocking',
+        'Fucsia', 'Magenta', 'Corallo', 'Salmone', 'Pesca', 'Carne', 'Nudo', 'Blush',
+        'Malva', 'Orchidea', 'Ciclamino', 'Azalea', 'Peonia', 'Camelia', 'Ortensia',
         
         // Marroni
         'Marrone', 'Cioccolato', 'Cacao', 'Caffè', 'Espresso', 'Cappuccino', 'Nocciola',
-        'Castagna', 'Noce', 'Mogano', 'Ebano', 'Teak', 'Quercia', 'Faggio', 'Castagno',
-        'Terra di Siena', 'Terra d\'Ombra', 'Seppia', 'Tortora', 'Talpa', 'Topo',
+        'Castagna', 'Mogano', 'Ebano', 'Noce', 'Teak', 'Quercia', 'Faggio', 'Betulla',
+        'Terra', 'Siena', 'Ombra', 'Seppia', 'Tabacco', 'Cuoio', 'Cognac', 'Caramello',
+        'Cannella', 'Ruggine', 'Rame', 'Bronzo', 'Ottone', 'Ambra', 'Miele', 'Biscotto',
         
         // Grigi
-        'Grigio', 'Argento', 'Platino', 'Titanio', 'Acciaio', 'Ferro', 'Piombo', 'Ardesia',
-        'Antracite', 'Carbone', 'Cenere', 'Fumo', 'Nebbia', 'Perla', 'Ghiaccio',
+        'Grigio', 'Argento', 'Perla', 'Cenere', 'Fumo', 'Grafite', 'Antracite', 'Carbone',
+        'Piombo', 'Acciaio', 'Ferro', 'Cemento', 'Asfalto', 'Ardesia', 'Pietra', 'Roccia',
+        'Nebbia', 'Foschia', 'Bruma', 'Tempesta', 'Nuvola', 'Ombra', 'Penombra', 'Crepuscolo',
+        'Tortora', 'Talpa', 'Topo', 'Elefante', 'Colomba', 'Piccione', 'Ghiaccio', 'Opalino',
         
         // Bianchi e neri
-        'Bianco', 'Neve', 'Latte', 'Panna', 'Avorio', 'Osso', 'Gesso', 'Alabastro',
-        'Nero', 'Ebano', 'Onice', 'Ossidiana', 'Catrame', 'Pece', 'Corvino',
-        
-        // Metallici e iridescenti
-        'Oro', 'Argento', 'Bronzo', 'Rame', 'Ottone', 'Ferro', 'Acciaio', 'Titanio',
-        'Platino', 'Palladio', 'Rodio', 'Iridio', 'Madreperla', 'Opale', 'Aurora'
+        'Bianco', 'Neve', 'Latte', 'Panna', 'Avorio', 'Crema', 'Gesso', 'Calce', 'Perla',
+        'Madreperla', 'Opalino', 'Alabastro', 'Magnolia', 'Giglio', 'Candido', 'Puro',
+        'Nero', 'Ebano', 'Carbone', 'Inchiostro', 'Catrame', 'Pece', 'Ossidiana', 'Onice',
+        'Corvino', 'Notte', 'Mezzanotte', 'Abisso', 'Vuoto', 'Cosmo', 'Infinito', 'Mistero'
     ]
 };
 
-// Mapping stagioni UI -> Shopify tags
+// Funzione per ottenere tutti i nomi disponibili
+function getAllNames() {
+    const allNames = [];
+    for (const category in namePool) {
+        allNames.push(...namePool[category]);
+    }
+    return [...new Set(allNames)]; // Rimuovi duplicati
+}
+
+// Cache per i nomi già utilizzati nelle diverse stagioni
+let seasonNamesCache = {};
+
+// Mapping stagioni
 const SEASON_MAPPING = {
-    'PE 24': '24E',
-    'AI 24': '24I',
     'PE 25': '25E',
     'AI 25': '25I',
+    'PE 24': '24E',
+    'AI 24': '24I',
     'PE 26': '26E',
     'AI 26': '26I',
     'PE 27': '27E',
@@ -692,56 +699,83 @@ const SEASON_MAPPING = {
     'AI 28': '28I'
 };
 
-// Funzione per appiattire tutti i pool in un unico array
-function getAllPoolNames() {
-    const allNames = [];
+// Funzione per estrarre il nome dal titolo del prodotto
+function extractProductName(title) {
+    if (!title) return null;
     
-    // Aggiungi tutti i nomi da ogni categoria
-    Object.values(namePool).forEach(category => {
-        if (Array.isArray(category)) {
-            allNames.push(...category);
-        }
-    });
+    const allPossibleNames = getAllNames();
     
-    // Rimuovi duplicati
-    return [...new Set(allNames)];
-}
-
-// Funzione SEMPLIFICATA per estrarre il nome
-function extractProductName(product) {
-    if (!product.title) return null;
+    // Sort by length descending per matchare prima i nomi più lunghi
+    allPossibleNames.sort((a, b) => b.length - a.length);
     
-    const titleUpper = product.title.toUpperCase();
-    const allNames = getAllPoolNames();
-    
-    // Cerca ogni nome possibile nel titolo
-    for (const possibleName of allNames) {
-        // Usa word boundary per evitare match parziali
-        const regex = new RegExp(`\\b${possibleName.toUpperCase()}\\b`, 'i');
-        if (regex.test(titleUpper)) {
-            // Mantieni la capitalizzazione originale del nome
-            return possibleName.charAt(0).toUpperCase() + possibleName.slice(1).toLowerCase();
+    for (const name of allPossibleNames) {
+        // Crea pattern che matcha il nome come parola intera
+        const pattern = new RegExp(`\\b${name}\\b`, 'i');
+        const match = title.match(pattern);
+        
+        if (match) {
+            console.log(`✓ Trovato: "${name}" in "${title}"`);
+            return match[0];
         }
     }
     
+    console.log(`✗ Nessun nome trovato in: "${title}"`);
     return null;
 }
 
-// Funzione per recuperare TUTTI i prodotti con paginazione
-async function fetchAllShopifyProducts(season) {
-    const allProducts = [];
-    let sinceId = 0;
-    let hasMore = true;
+// Endpoint per verificare lo stato del servizio
+app.get('/', (req, res) => {
+    res.json({
+        status: 'online',
+        service: 'LOFT.73 Name Generator API',
+        version: '5.0.0',
+        endpoints: {
+            'GET /': 'Stato del servizio',
+            'POST /api/shopify/products': 'Recupera prodotti esistenti per stagione',
+            'POST /api/generate-names': 'Genera nuovi nomi con filtro intelligente',
+            'GET /api/name-categories': 'Mostra categorie disponibili',
+            'POST /api/test-prompt-filter': 'Testa il filtro prompt'
+        },
+        total_names_available: getAllNames().length
+    });
+});
+
+// Endpoint per recuperare i prodotti da Shopify
+app.post('/api/shopify/products', async (req, res) => {
+    const { season } = req.body;
     
-    console.log(`🔍 Recupero TUTTI i prodotti per stagione ${season}...`);
+    if (!season) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Season parameter is required' 
+        });
+    }
     
-    while (hasMore) {
-        try {
-            const url = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250&since_id=${sinceId}`;
+    const shopifyTag = SEASON_MAPPING[season];
+    if (!shopifyTag) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Invalid season. Valid seasons: ' + Object.keys(SEASON_MAPPING).join(', ')
+        });
+    }
+    
+    try {
+        const allProducts = [];
+        let hasNextPage = true;
+        let pageInfo = null;
+        
+        console.log(`Fetching products for season ${season} (tag: ${shopifyTag})...`);
+        
+        while (hasNextPage) {
+            const url = new URL(`https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json`);
+            url.searchParams.append('limit', '250');
+            url.searchParams.append('fields', 'id,title,tags,vendor');
             
-            console.log(`📡 Chiamata API: since_id=${sinceId}`);
+            if (pageInfo) {
+                url.searchParams.append('page_info', pageInfo);
+            }
             
-            const response = await fetch(url, {
+            const response = await fetch(url.toString(), {
                 headers: {
                     'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
                     'Content-Type': 'application/json'
@@ -753,260 +787,210 @@ async function fetchAllShopifyProducts(season) {
             }
             
             const data = await response.json();
+            allProducts.push(...data.products);
             
-            if (data.products && data.products.length > 0) {
-                allProducts.push(...data.products);
-                
-                const lastId = Math.max(...data.products.map(p => p.id));
-                sinceId = lastId;
-                
-                console.log(`📦 Recuperati ${data.products.length} prodotti (totale: ${allProducts.length})`);
-                
-                if (data.products.length < 250) {
-                    hasMore = false;
+            // Check for pagination
+            const linkHeader = response.headers.get('Link');
+            if (linkHeader && linkHeader.includes('rel="next"')) {
+                const matches = linkHeader.match(/<[^>]+page_info=([^>]+)>; rel="next"/);
+                if (matches && matches[1]) {
+                    pageInfo = matches[1];
+                } else {
+                    hasNextPage = false;
                 }
             } else {
-                hasMore = false;
+                hasNextPage = false;
             }
-            
-            if (hasMore) {
-                await new Promise(resolve => setTimeout(resolve, 250));
-            }
-            
-        } catch (error) {
-            console.error('❌ Errore paginazione:', error.message);
-            hasMore = false;
         }
-    }
-    
-    console.log(`📊 Totale prodotti recuperati: ${allProducts.length}`);
-    
-    // Filtra per stagione
-    const filteredProducts = allProducts.filter(product => 
-        product.tags && product.tags.includes(season)
-    );
-    
-    console.log(`✅ Prodotti filtrati per tag ${season}: ${filteredProducts.length}`);
-    
-    return filteredProducts;
-}
-
-// NUOVA FUNZIONE: Recupera nomi da altre stagioni
-async function fetchNamesFromOtherSeasons(currentSeason) {
-    console.log(`🔄 Recupero nomi da altre stagioni per riutilizzo...`);
-    
-    const allOtherNames = new Set();
-    const otherSeasons = Object.keys(SEASON_MAPPING).filter(s => s !== currentSeason);
-    
-    for (const season of otherSeasons) {
-        try {
-            const shopifyTag = SEASON_MAPPING[season];
-            const products = await fetchAllShopifyProducts(shopifyTag);
-            
-            products.forEach(product => {
-                const extractedName = extractProductName(product);
-                if (extractedName && extractedName.length > 1) {
-                    allOtherNames.add(extractedName);
+        
+        console.log(`Total products fetched: ${allProducts.length}`);
+        
+        // Filtra per stagione e brand
+        const filteredProducts = allProducts.filter(product => {
+            const hasTag = product.tags && product.tags.includes(shopifyTag);
+            const isLoft73 = !product.vendor || product.vendor === 'LOFT.73' || product.vendor === 'Loft.73';
+            return hasTag && isLoft73;
+        });
+        
+        console.log(`Products with tag ${shopifyTag} and LOFT.73 brand: ${filteredProducts.length}`);
+        
+        // Estrai i nomi unici
+        const uniqueNames = new Set();
+        const nameDetails = [];
+        
+        filteredProducts.forEach(product => {
+            const extractedName = extractProductName(product.title);
+            if (extractedName) {
+                const normalizedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1).toLowerCase();
+                if (!uniqueNames.has(normalizedName)) {
+                    uniqueNames.add(normalizedName);
+                    nameDetails.push({
+                        name: normalizedName,
+                        originalTitle: product.title,
+                        id: product.id
+                    });
                 }
-            });
-            
-            console.log(`   ✓ ${season}: ${products.length} prodotti analizzati`);
-            
-        } catch (error) {
-            console.error(`   ❌ Errore recupero ${season}:`, error.message);
-        }
+            }
+        });
+        
+        // Salva nella cache
+        seasonNamesCache[season] = Array.from(uniqueNames);
+        
+        // Analisi per brand
+        const brandBreakdown = {};
+        allProducts.forEach(product => {
+            if (product.tags && product.tags.includes(shopifyTag)) {
+                const brand = product.vendor || 'No Brand';
+                brandBreakdown[brand] = (brandBreakdown[brand] || 0) + 1;
+            }
+        });
+        
+        console.log(`Unique names found: ${uniqueNames.size}`);
+        console.log('Sample names:', Array.from(uniqueNames).slice(0, 10));
+        
+        res.json({
+            success: true,
+            names: Array.from(uniqueNames).sort(),
+            count: uniqueNames.size,
+            totalProducts: filteredProducts.length,
+            allProductsCount: allProducts.length,
+            shopify_tag: shopifyTag,
+            brandBreakdown: brandBreakdown,
+            debug: {
+                sampleProducts: filteredProducts.slice(0, 5).map(p => ({
+                    title: p.title,
+                    extractedName: extractProductName(p.title)
+                }))
+            }
+        });
+        
+    } catch (error) {
+        console.error('Shopify API Error:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message,
+            details: 'Failed to fetch products from Shopify'
+        });
     }
-    
-    const namesArray = Array.from(allOtherNames);
-    console.log(`✅ Totale nomi da altre stagioni: ${namesArray.length}`);
-    
-    return namesArray;
-}
+});
 
-// NUOVA FUNZIONE: Parser per analizzare il prompt e estrarre regole
-function parsePromptRules(prompt) {
+// Funzione per estrarre regole dal prompt
+function extractPromptRules(prompt) {
     const rules = {
-        exclude: [],      // Categorie da escludere
-        include: [],      // Categorie da includere (se specificate, usa SOLO queste)
-        excludeWords: [], // Parole specifiche da escludere
-        includeWords: [], // Parole specifiche da includere
-        preferences: {}   // Altre preferenze
+        exclude: [],
+        include: [],
+        excludeWords: [],
+        preferences: {}
     };
     
     const promptLower = prompt.toLowerCase();
     
-    // REGOLE DI ESCLUSIONE
-    // Colori
-    if (promptLower.includes('non') && promptLower.includes('color') ||
-        promptLower.includes('no color') ||
-        promptLower.includes('senza color') ||
-        promptLower.includes('evita color')) {
-        rules.exclude.push('colors');
-        console.log('📌 Regola trovata: Escludere colori');
-    }
+    // Pattern per esclusioni
+    const excludePatterns = [
+        /non usare? (\w+)/gi,
+        /evita (\w+)/gi,
+        /senza (\w+)/gi,
+        /no (\w+)/gi,
+        /esclud\w* (\w+)/gi,
+        /evitando (\w+)/gi
+    ];
     
-    // Animali
-    if (promptLower.includes('evita') && promptLower.includes('animal') ||
-        promptLower.includes('no animal') ||
-        promptLower.includes('senza animal')) {
-        rules.exclude.push('animals');
-        console.log('📌 Regola trovata: Escludere animali');
-    }
+    // Pattern per inclusioni esclusive
+    const includeOnlyPatterns = [
+        /solo (\w+)/gi,
+        /soltanto (\w+)/gi,
+        /esclusivamente (\w+)/gi,
+        /unicamente (\w+)/gi
+    ];
     
-    // Città
-    if (promptLower.includes('evita') && promptLower.includes('citt') ||
-        promptLower.includes('no citt') ||
-        promptLower.includes('senza citt')) {
-        rules.exclude.push('cities');
-        console.log('📌 Regola trovata: Escludere città');
-    }
+    // Mappa categorie
+    const categoryMap = {
+        'colori': 'colors',
+        'colore': 'colors',
+        'animali': 'animals',
+        'animale': 'animals',
+        'città': 'cities',
+        'citta': 'cities',
+        'fiori': 'flowers',
+        'fiore': 'flowers',
+        'piante': 'flowers',
+        'pietre': 'stones',
+        'pietra': 'stones',
+        'minerali': 'stones',
+        'natura': 'nature',
+        'naturali': 'nature',
+        'geografia': 'nature',
+        'concetti': 'concepts',
+        'astratti': 'concepts',
+        'femminili': 'femaleNames',
+        'mitologia': 'mythology',
+        'mitologici': 'mythology',
+        'astronomia': 'astronomy',
+        'stelle': 'astronomy',
+        'costellazioni': 'astronomy',
+        'musica': 'music',
+        'musicali': 'music',
+        'strumenti': 'music',
+        'spezie': 'spices',
+        'aromi': 'spices',
+        'tessuti': 'fabrics',
+        'tessuto': 'fabrics',
+        'materiali': 'fabrics'
+    };
     
-    // Pietre
-    if (promptLower.includes('evita') && promptLower.includes('pietr') ||
-        promptLower.includes('no pietr') ||
-        promptLower.includes('senza pietr')) {
-        rules.exclude.push('stones');
-        console.log('📌 Regola trovata: Escludere pietre');
-    }
+    // Estrai esclusioni
+    excludePatterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(prompt)) !== null) {
+            const word = match[1].toLowerCase();
+            if (categoryMap[word]) {
+                rules.exclude.push(categoryMap[word]);
+            }
+        }
+    });
     
-    // Mitologia
-    if (promptLower.includes('evita') && promptLower.includes('mitolog') ||
-        promptLower.includes('no mitolog') ||
-        promptLower.includes('senza mitolog')) {
-        rules.exclude.push('mythology');
-        console.log('📌 Regola trovata: Escludere mitologia');
-    }
+    // Estrai inclusioni esclusive
+    includeOnlyPatterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(prompt)) !== null) {
+            const word = match[1].toLowerCase();
+            if (categoryMap[word]) {
+                rules.include.push(categoryMap[word]);
+            }
+        }
+    });
     
-    // REGOLE DI INCLUSIONE ESCLUSIVA
-    // Solo animali
-    if (promptLower.includes('solo animal') || 
-        promptLower.includes('soltanto animal') ||
-        promptLower.includes('unicamente animal')) {
-        rules.include = ['animals'];
-        console.log('📌 Regola trovata: SOLO animali');
-    }
-    
-    // Solo città
-    if (promptLower.includes('solo citt') || 
-        promptLower.includes('soltanto citt') ||
-        promptLower.includes('unicamente citt')) {
-        rules.include = ['cities'];
-        console.log('📌 Regola trovata: SOLO città');
-    }
-    
-    // Solo fiori
-    if (promptLower.includes('solo fior') || 
-        promptLower.includes('soltanto fior') ||
-        promptLower.includes('unicamente fior')) {
-        rules.include = ['flowers'];
-        console.log('📌 Regola trovata: SOLO fiori');
-    }
-    
-    // Solo natura
-    if (promptLower.includes('solo natur') || 
-        promptLower.includes('soltanto natur') ||
-        promptLower.includes('elementi natural')) {
-        rules.include = ['nature'];
-        console.log('📌 Regola trovata: SOLO natura');
-    }
-    
-    // Solo nomi femminili
-    if (promptLower.includes('solo nomi femminil') || 
-        promptLower.includes('solo nomi di donna') ||
-        promptLower.includes('solo nomi propri')) {
-        rules.include = ['femaleNames'];
-        console.log('📌 Regola trovata: SOLO nomi femminili');
-    }
-    
-    // PAROLE SPECIFICHE DA ESCLUDERE
-    // Cerca pattern tipo "evita Rosa, Viola, Giallo"
-    const evitaMatch = promptLower.match(/evita[re]?\s+([^.]+)/);
-    if (evitaMatch) {
-        const words = evitaMatch[1].split(/[,;]/)
-            .map(w => w.trim())
-            .filter(w => w.length > 0);
+    // Estrai parole specifiche da escludere
+    const excludeWordsPattern = /evita ([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)*)/g;
+    let match;
+    while ((match = excludeWordsPattern.exec(prompt)) !== null) {
+        const words = match[1].split(',').map(w => w.trim().toLowerCase());
         rules.excludeWords.push(...words);
-        console.log('📌 Parole da evitare:', words);
     }
     
-    // Pattern "non usare X, Y, Z"
-    const nonUsareMatch = promptLower.match(/non\s+usar[e]?\s+([^.]+)/);
-    if (nonUsareMatch) {
-        const words = nonUsareMatch[1].split(/[,;]/)
-            .map(w => w.trim())
-            .filter(w => w.length > 0);
-        rules.excludeWords.push(...words);
-        console.log('📌 Non usare:', words);
-    }
-    
-    // PREFERENZE STILISTICHE
-    // Nomi corti
-    if (promptLower.includes('nomi corti') || 
-        promptLower.includes('nomi brevi') ||
-        promptLower.includes('massimo 6 lettere') ||
-        promptLower.includes('max 6 lettere')) {
+    // Preferenze stilistiche
+    if (promptLower.includes('corti') || promptLower.includes('brevi')) {
         rules.preferences.maxLength = 6;
-        console.log('📌 Preferenza: Nomi corti (max 6 lettere)');
     }
-    
-    // Nomi lunghi
-    if (promptLower.includes('nomi lunghi') || 
-        promptLower.includes('almeno 8 lettere') ||
-        promptLower.includes('minimo 8 lettere')) {
+    if (promptLower.includes('lunghi')) {
         rules.preferences.minLength = 8;
-        console.log('📌 Preferenza: Nomi lunghi (min 8 lettere)');
     }
-    
-    // Nomi femminili/eleganti
-    if (promptLower.includes('femminil') || 
-        promptLower.includes('elegant') ||
-        promptLower.includes('raffina') ||
-        promptLower.includes('delica')) {
+    if (promptLower.includes('femminili') || promptLower.includes('eleganti')) {
         rules.preferences.feminine = true;
-        console.log('📌 Preferenza: Nomi femminili/eleganti');
-    }
-    
-    // Nomi forti/decisi
-    if (promptLower.includes('fort') || 
-        promptLower.includes('decis') ||
-        promptLower.includes('potent') ||
-        promptLower.includes('energic')) {
-        rules.preferences.strong = true;
-        console.log('📌 Preferenza: Nomi forti/decisi');
-    }
-    
-    // Nomi moderni
-    if (promptLower.includes('modern') || 
-        promptLower.includes('contemporane') ||
-        promptLower.includes('attual') ||
-        promptLower.includes('trend')) {
-        rules.preferences.modern = true;
-        console.log('📌 Preferenza: Nomi moderni');
-    }
-    
-    // Nomi classici
-    if (promptLower.includes('classic') || 
-        promptLower.includes('tradizional') ||
-        promptLower.includes('vintage') ||
-        promptLower.includes('retrò')) {
-        rules.preferences.classic = true;
-        console.log('📌 Preferenza: Nomi classici');
     }
     
     return rules;
 }
 
-// NUOVA FUNZIONE: Filtra i nomi in base alle regole estratte dal prompt
-function filterNamesByRules(availableNames, rules, namePoolCategories) {
-    let filtered = [...availableNames];
+// Funzione per filtrare i nomi basandosi sulle regole
+function filterNamesByRules(names, rules) {
+    let filteredNames = [...names];
     
-    // Se ci sono categorie da includere ESCLUSIVAMENTE
+    // Se ci sono categorie da includere esclusivamente
     if (rules.include.length > 0) {
-        console.log(`🎯 Filtrando SOLO categorie: ${rules.include.join(', ')}`);
-        filtered = filtered.filter(name => {
-            // Trova in quale categoria appartiene il nome
-            for (const [category, names] of Object.entries(namePoolCategories)) {
-                if (names.includes(name) && rules.include.includes(category)) {
+        filteredNames = filteredNames.filter(name => {
+            for (const category of rules.include) {
+                if (namePool[category] && namePool[category].includes(name)) {
                     return true;
                 }
             }
@@ -1016,11 +1000,9 @@ function filterNamesByRules(availableNames, rules, namePoolCategories) {
     
     // Escludi categorie
     if (rules.exclude.length > 0) {
-        console.log(`❌ Escludendo categorie: ${rules.exclude.join(', ')}`);
-        filtered = filtered.filter(name => {
-            // Trova in quale categoria appartiene il nome
-            for (const [category, names] of Object.entries(namePoolCategories)) {
-                if (names.includes(name) && rules.exclude.includes(category)) {
+        filteredNames = filteredNames.filter(name => {
+            for (const category of rules.exclude) {
+                if (namePool[category] && namePool[category].includes(name)) {
                     return false;
                 }
             }
@@ -1030,352 +1012,196 @@ function filterNamesByRules(availableNames, rules, namePoolCategories) {
     
     // Escludi parole specifiche
     if (rules.excludeWords.length > 0) {
-        console.log(`❌ Escludendo parole specifiche: ${rules.excludeWords.join(', ')}`);
-        filtered = filtered.filter(name => {
-            const nameLower = name.toLowerCase();
-            return !rules.excludeWords.some(word => 
-                nameLower === word.toLowerCase() || 
-                nameLower.includes(word.toLowerCase())
-            );
-        });
+        filteredNames = filteredNames.filter(name => 
+            !rules.excludeWords.includes(name.toLowerCase())
+        );
     }
     
-    // Applica preferenze di lunghezza
+    // Applica preferenze
     if (rules.preferences.maxLength) {
-        filtered = filtered.filter(name => name.length <= rules.preferences.maxLength);
-        console.log(`📏 Filtrando nomi max ${rules.preferences.maxLength} lettere`);
+        filteredNames = filteredNames.filter(name => name.length <= rules.preferences.maxLength);
     }
-    
     if (rules.preferences.minLength) {
-        filtered = filtered.filter(name => name.length >= rules.preferences.minLength);
-        console.log(`📏 Filtrando nomi min ${rules.preferences.minLength} lettere`);
+        filteredNames = filteredNames.filter(name => name.length >= rules.preferences.minLength);
     }
-    
-    // Applica preferenze stilistiche
     if (rules.preferences.feminine) {
-        // Priorità a nomi che finiscono in 'a', 'ella', 'ina', etc.
-        filtered = filtered.filter(name => 
-            /[aei]$|ella$|ina$|etta$|issa$|essa$/.test(name.toLowerCase())
+        filteredNames = filteredNames.filter(name => 
+            name.endsWith('a') || name.endsWith('e') || name.endsWith('i')
         );
-        console.log(`💃 Filtrando nomi femminili`);
     }
     
-    if (rules.preferences.strong) {
-        // Priorità a nomi che NON finiscono in 'a', 'ina', etc.
-        filtered = filtered.filter(name => 
-            !/[a]$|ina$|ella$|etta$|uccia$/.test(name.toLowerCase())
-        );
-        console.log(`💪 Filtrando nomi forti/decisi`);
-    }
-    
-    console.log(`✅ Nomi dopo filtro: ${filtered.length}`);
-    
-    return filtered;
+    return filteredNames;
 }
 
-// NUOVA FUNZIONE: Mixer intelligente di nomi CON FILTRO PROMPT
-function intelligentNameMixer(count, existingLower, otherSeasonsNames, prompt) {
-    const generatedNames = [];
-    const usedNames = new Set(existingLower);
-    
-    // NUOVO: Analizza il prompt per estrarre regole
-    const rules = parsePromptRules(prompt);
-    
-    // Ottieni tutti i nomi dal pool
-    const allPoolNames = getAllPoolNames();
-    
-    // NUOVO: Filtra i nomi in base alle regole del prompt
-    let availableFromPool = allPoolNames.filter(name => 
-        !usedNames.has(name.toLowerCase())
-    );
-    
-    let availableFromOtherSeasons = otherSeasonsNames.filter(name => 
-        !usedNames.has(name.toLowerCase())
-    );
-    
-    // Applica i filtri basati sul prompt
-    availableFromPool = filterNamesByRules(availableFromPool, rules, namePool);
-    availableFromOtherSeasons = filterNamesByRules(availableFromOtherSeasons, rules, namePool);
-    
-    console.log(`📊 Nomi disponibili DOPO FILTRI:`);
-    console.log(`   - Dal pool nuovo: ${availableFromPool.length}`);
-    console.log(`   - Da altre stagioni: ${availableFromOtherSeasons.length}`);
-    
-    // Se dopo i filtri non ci sono abbastanza nomi, avvisa
-    const totalAvailable = availableFromPool.length + availableFromOtherSeasons.length;
-    if (totalAvailable < count) {
-        console.log(`⚠️ ATTENZIONE: Solo ${totalAvailable} nomi disponibili dopo i filtri!`);
-        console.log(`   Richiesti: ${count}`);
-        console.log(`   Verranno generati: ${totalAvailable}`);
+// Funzione per mescolare array (Fisher-Yates)
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
+    return shuffled;
+}
+
+// Funzione per generare mix intelligente di nomi
+function intelligentNameMixer(availableNames, existingNamesAllSeasons, currentSeasonNames, count) {
+    // Costanti per il mix
+    const NEW_NAMES_PERCENTAGE = 0.6; // 60% nuovi
+    const REUSED_NAMES_PERCENTAGE = 0.4; // 40% riutilizzati
     
-    // STRATEGIA DI MIX:
-    // 60% dal pool nuovo (per freschezza)
-    // 40% da altre stagioni (per riutilizzo testato)
-    const newNamesTarget = Math.ceil(count * 0.6);
-    const reusedNamesTarget = count - newNamesTarget;
+    // Calcola quanti nomi per ogni categoria
+    const newNamesCount = Math.ceil(count * NEW_NAMES_PERCENTAGE);
+    const reusedNamesCount = count - newNamesCount;
     
-    // Mescola gli array per randomizzare
-    const shuffledPool = [...availableFromPool].sort(() => Math.random() - 0.5);
-    const shuffledReused = [...availableFromOtherSeasons].sort(() => Math.random() - 0.5);
+    // 1. Trova nomi MAI usati in nessuna stagione
+    const neverUsedNames = availableNames.filter(name => 
+        !existingNamesAllSeasons.includes(name)
+    );
     
-    // Prendi nomi dal pool nuovo
-    let addedFromPool = 0;
-    for (const name of shuffledPool) {
-        if (generatedNames.length >= count) break;
-        if (addedFromPool >= newNamesTarget) break;
-        
-        generatedNames.push({
-            id: Date.now() + generatedNames.length,
+    // 2. Trova nomi usati in altre stagioni ma NON in questa
+    const reusableNames = existingNamesAllSeasons.filter(name => 
+        !currentSeasonNames.includes(name) && availableNames.includes(name)
+    );
+    
+    console.log(`Mix intelligente: ${newNamesCount} nuovi + ${reusedNamesCount} riutilizzati`);
+    console.log(`Nomi mai usati disponibili: ${neverUsedNames.length}`);
+    console.log(`Nomi riutilizzabili: ${reusableNames.length}`);
+    
+    const result = [];
+    const sources = {
+        pool: 0,
+        otherSeasons: 0
+    };
+    
+    // Prendi prima i nomi nuovi
+    const shuffledNew = shuffleArray(neverUsedNames);
+    const selectedNew = shuffledNew.slice(0, Math.min(newNamesCount, shuffledNew.length));
+    selectedNew.forEach(name => {
+        result.push({
+            id: Date.now() + Math.random(),
             name: name,
             source: 'pool'
         });
-        usedNames.add(name.toLowerCase());
-        addedFromPool++;
-    }
+        sources.pool++;
+    });
     
-    // Prendi nomi da altre stagioni
-    let addedFromSeasons = 0;
-    for (const name of shuffledReused) {
-        if (generatedNames.length >= count) break;
-        if (addedFromSeasons >= reusedNamesTarget) break;
-        
-        generatedNames.push({
-            id: Date.now() + generatedNames.length,
-            name: name,
-            source: 'other-seasons'
-        });
-        usedNames.add(name.toLowerCase());
-        addedFromSeasons++;
-    }
+    // Se non ci sono abbastanza nomi nuovi, compensa con i riutilizzabili
+    const remainingSlots = count - result.length;
     
-    // Se servono ancora nomi, prendi dal pool rimanente
-    if (generatedNames.length < count) {
-        // Combina tutti i nomi rimanenti
-        const allRemaining = [
-            ...shuffledPool.slice(addedFromPool),
-            ...shuffledReused.slice(addedFromSeasons)
-        ].filter(name => !usedNames.has(name.toLowerCase()));
-        
-        // Mescola e prendi quelli che servono
-        const shuffledRemaining = allRemaining.sort(() => Math.random() - 0.5);
-        
-        for (const name of shuffledRemaining) {
-            if (generatedNames.length >= count) break;
-            
-            generatedNames.push({
-                id: Date.now() + generatedNames.length,
+    if (remainingSlots > 0 && reusableNames.length > 0) {
+        const shuffledReused = shuffleArray(reusableNames);
+        const selectedReused = shuffledReused.slice(0, Math.min(remainingSlots, shuffledReused.length));
+        selectedReused.forEach(name => {
+            result.push({
+                id: Date.now() + Math.random(),
                 name: name,
-                source: allRemaining.indexOf(name) < shuffledPool.length - addedFromPool ? 'pool' : 'other-seasons'
+                source: 'other-seasons'
             });
-        }
+            sources.otherSeasons++;
+        });
     }
     
-    // Mescola il risultato finale per un mix omogeneo
-    return generatedNames.sort(() => Math.random() - 0.5);
+    // Se ancora non bastano, usa qualsiasi nome disponibile non in stagione corrente
+    const stillRemaining = count - result.length;
+    if (stillRemaining > 0) {
+        const anyAvailable = availableNames.filter(name => 
+            !currentSeasonNames.includes(name) && 
+            !result.find(item => item.name === name)
+        );
+        const shuffledAny = shuffleArray(anyAvailable);
+        const selectedAny = shuffledAny.slice(0, Math.min(stillRemaining, shuffledAny.length));
+        selectedAny.forEach(name => {
+            result.push({
+                id: Date.now() + Math.random(),
+                name: name,
+                source: existingNamesAllSeasons.includes(name) ? 'other-seasons' : 'pool'
+            });
+            if (existingNamesAllSeasons.includes(name)) {
+                sources.otherSeasons++;
+            } else {
+                sources.pool++;
+            }
+        });
+    }
+    
+    // Mescola il risultato finale per mixare nuovi e riutilizzati
+    return {
+        names: shuffleArray(result),
+        sources: sources
+    };
 }
 
-// Routes
-app.get('/', (req, res) => {
-    res.json({
-        status: 'online',
-        service: 'LOFT.73 Name Generator API',
-        version: '5.0.0',
-        shopify_connected: true,
-        features: [
-            'intelligent-mixing',
-            'prompt-based-filtering',
-            'real-names-only',
-            'season-reuse',
-            '5000+ names pool'
-        ],
-        total_names_available: getAllPoolNames().length
-    });
-});
-
-app.get('/api/health', (req, res) => {
-    res.json({
-        status: 'healthy',
-        timestamp: new Date().toISOString(),
-        shopify: {
-            configured: true,
-            store: SHOPIFY_STORE_URL,
-            api_version: SHOPIFY_API_VERSION
-        },
-        pool_size: getAllPoolNames().length
-    });
-});
-
-// Endpoint per recuperare prodotti esistenti
-app.post('/api/shopify/products', async (req, res) => {
-    const { season } = req.body;
+// Endpoint per generare nomi
+app.post('/api/generate-names', async (req, res) => {
+    const { prompt, count = 20, season, existingNames = [] } = req.body;
     
     if (!season) {
         return res.status(400).json({ 
             success: false, 
-            error: 'Season parameter required' 
-        });
-    }
-    
-    const shopifyTag = SEASON_MAPPING[season];
-    if (!shopifyTag) {
-        return res.status(400).json({ 
-            success: false, 
-            error: 'Invalid season' 
+            error: 'Season parameter is required' 
         });
     }
     
     try {
-        const products = await fetchAllShopifyProducts(shopifyTag);
+        // Ottieni tutti i nomi disponibili
+        let availableNames = getAllNames();
         
-        const names = new Set();
-        const brandCount = {};
-        const debugExamples = [];
+        // Estrai regole dal prompt
+        const rules = extractPromptRules(prompt || '');
         
-        products.forEach(product => {
-            const extractedName = extractProductName(product);
-            if (extractedName && extractedName.length > 1) {
-                names.add(extractedName);
-                
-                if (debugExamples.length < 50) {
-                    debugExamples.push({
-                        title: product.title,
-                        extracted: extractedName,
-                        brand: product.vendor
-                    });
-                }
-                
-                const brand = product.vendor || 'Unknown';
-                brandCount[brand] = (brandCount[brand] || 0) + 1;
-            }
+        // Applica filtri basati sul prompt
+        availableNames = filterNamesByRules(availableNames, rules);
+        
+        console.log(`Nomi dopo filtri: ${availableNames.length}`);
+        
+        // Raccogli tutti i nomi esistenti da tutte le stagioni nella cache
+        const allExistingNames = [];
+        Object.values(seasonNamesCache).forEach(names => {
+            allExistingNames.push(...names);
         });
         
-        const uniqueNames = Array.from(names).sort();
-        
-        console.log(`\n📊 REPORT ESTRAZIONE NOMI:`);
-        console.log(`   Totale prodotti analizzati: ${products.length}`);
-        console.log(`   Nomi unici estratti: ${uniqueNames.length}`);
-        console.log(`   Prodotti per brand:`, brandCount);
+        // Genera mix intelligente
+        const result = intelligentNameMixer(
+            availableNames,
+            allExistingNames,
+            existingNames,
+            count
+        );
         
         res.json({
             success: true,
-            names: uniqueNames,
-            count: uniqueNames.length,
-            totalProducts: products.length,
-            shopify_tag: shopifyTag,
-            brandBreakdown: brandCount
-        });
-        
-    } catch (error) {
-        console.error('❌ Errore recupero prodotti:', error);
-        res.status(500).json({
-            success: false,
-            error: 'Errore durante il recupero dei prodotti: ' + error.message
-        });
-    }
-});
-
-// Endpoint per generare nomi - VERSIONE INTELLIGENTE CON FILTRO PROMPT
-app.post('/api/generate-names', async (req, res) => {
-    const { prompt, count, season, existingNames = [] } = req.body;
-    
-    if (!count || count < 1) {
-        return res.status(400).json({ 
-            success: false, 
-            error: 'Count must be greater than 0' 
-        });
-    }
-    
-    console.log(`\n🎯 Richiesta generazione: ${count} nomi per stagione ${season}`);
-    console.log(`📝 Prompt: ${prompt.substring(0, 200)}...`);
-    console.log(`🚫 Nomi esistenti da escludere: ${existingNames.length}`);
-    
-    try {
-        const existingLower = existingNames.map(n => n.toLowerCase().trim());
-        
-        // Recupera nomi da altre stagioni
-        const otherSeasonsNames = await fetchNamesFromOtherSeasons(season);
-        
-        // Genera mix intelligente CON FILTRO PROMPT
-        const generatedNames = intelligentNameMixer(count, existingLower, otherSeasonsNames, prompt);
-        
-        console.log(`\n📊 RIEPILOGO GENERAZIONE:`);
-        console.log(`   Richiesti: ${count}`);
-        console.log(`   Generati: ${generatedNames.length}`);
-        console.log(`   - Dal pool nuovo: ${generatedNames.filter(n => n.source === 'pool').length}`);
-        console.log(`   - Da altre stagioni: ${generatedNames.filter(n => n.source === 'other-seasons').length}`);
-        
-        res.json({
-            success: true,
-            names: generatedNames,
-            total: generatedNames.length,
-            sources: {
-                pool: generatedNames.filter(n => n.source === 'pool').length,
-                otherSeasons: generatedNames.filter(n => n.source === 'other-seasons').length
+            names: result.names,
+            total: result.names.length,
+            sources: result.sources,
+            debug: {
+                totalAvailable: availableNames.length,
+                rules: rules,
+                cachedSeasons: Object.keys(seasonNamesCache).length
             }
         });
         
     } catch (error) {
-        console.error('❌ Errore generazione:', error);
+        console.error('Generation Error:', error);
         res.status(500).json({
             success: false,
-            error: 'Errore durante la generazione dei nomi'
+            error: error.message
         });
     }
 });
 
-// Endpoint di test per verificare estrazione
-app.get('/api/test-extraction', async (req, res) => {
-    try {
-        const testTitles = [
-            'LOFT.73 - COMPLETO VENERE',
-            'PANTALONE RAGUSA',
-            'ABITO ETNA LOFT73',
-            'BORSA FARFALLA',
-            'MAGLIA LEONE',
-            'GONNA PALERMO',
-            'GIACCA MILANO',
-            'VESTITO AQUILA',
-            'CAPPOTTO ROSA',
-            'SCIARPA VIOLA'
-        ];
-        
-        const results = testTitles.map(title => {
-            const mockProduct = { title };
-            const extracted = extractProductName(mockProduct);
-            return {
-                title,
-                extracted,
-                success: extracted !== null
-            };
-        });
-        
-        res.json({
-            test: 'Extraction Test',
-            totalTested: results.length,
-            successful: results.filter(r => r.success).length,
-            failed: results.filter(r => !r.success).length,
-            results: results
-        });
-        
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Endpoint per vedere le categorie di nomi disponibili
+// Endpoint per vedere le categorie disponibili
 app.get('/api/name-categories', (req, res) => {
     const categories = {};
     
-    Object.entries(namePool).forEach(([category, names]) => {
+    for (const [category, names] of Object.entries(namePool)) {
         categories[category] = {
             count: names.length,
-            examples: names.slice(0, 20)
+            examples: names.slice(0, 10)
         };
-    });
+    }
     
     res.json({
-        totalNames: getAllPoolNames().length,
+        totalNames: getAllNames().length,
         categories: categories
     });
 });
@@ -1387,47 +1213,57 @@ app.post('/api/test-prompt-filter', (req, res) => {
     if (!prompt) {
         return res.status(400).json({ 
             success: false, 
-            error: 'Prompt required' 
+            error: 'Prompt parameter is required' 
         });
     }
     
-    // Analizza il prompt
-    const rules = parsePromptRules(prompt);
+    const rules = extractPromptRules(prompt);
+    const allNames = getAllNames();
+    const filteredNames = filterNamesByRules(allNames, rules);
     
-    // Prendi un campione di nomi
-    const allNames = getAllPoolNames();
-    const sample = allNames.slice(0, 100);
+    // Trova quali categorie sono state escluse
+    const categoriesExcluded = [];
+    const categoriesIncluded = [];
     
-    // Applica i filtri
-    const filtered = filterNamesByRules(sample, rules, namePool);
+    rules.exclude.forEach(cat => {
+        if (namePool[cat]) {
+            categoriesExcluded.push(cat);
+        }
+    });
+    
+    rules.include.forEach(cat => {
+        if (namePool[cat]) {
+            categoriesIncluded.push(cat);
+        }
+    });
     
     res.json({
         prompt: prompt,
         rules: rules,
-        sample_size: sample.length,
-        filtered_size: filtered.length,
-        filtered_names: filtered.slice(0, 20),
-        categories_excluded: rules.exclude,
-        categories_included: rules.include,
-        words_excluded: rules.excludeWords,
-        preferences: rules.preferences
+        sample_size: 100,
+        filtered_size: filteredNames.length,
+        filtered_names: filteredNames.slice(0, 100),
+        categories_excluded: categoriesExcluded,
+        categories_included: categoriesIncluded,
+        words_excluded: rules.excludeWords
     });
 });
 
-// Avvia server
+// Avvia il server
 app.listen(PORT, () => {
-    console.log(`
-🚀 LOFT.73 Name Generator API v5.0
-📍 Running on port ${PORT}
-🔗 Shopify Store: ${SHOPIFY_STORE_URL}
-📅 ${new Date().toLocaleString()}
-✨ Features: 
-   - Mix intelligente 60/40
-   - Filtro basato su prompt
-   - ${getAllPoolNames().length}+ nomi con significato
-   - Categorie: Città, Animali, Natura, Pietre, Fiori, 
-     Concetti, Mitologia, Astronomia, Musica, Spezie,
-     Tessuti, Colori, Nomi Femminili
-   - Supporto stagioni fino al 2028
-    `);
+    console.log(`✅ LOFT.73 Name Generator API v5.0`);
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📊 Total names in pool: ${getAllNames().length}`);
+    console.log(`🏪 Shopify Store: ${SHOPIFY_STORE_URL}`);
+    console.log(`🔑 Access Token: ${SHOPIFY_ACCESS_TOKEN ? '✓ Configured' : '✗ Missing'}`);
+});
+
+// Gestione errori non catturati
+process.on('unhandledRejection', (error) => {
+    console.error('Unhandled Promise Rejection:', error);
+});
+
+process.on('uncaughtException', (error) => {
+    console.error('Uncaught Exception:', error);
+    process.exit(1);
 });
