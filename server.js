@@ -62,7 +62,7 @@ const SEASON_MAPPING = {
     'AI 26': '26I'
 };
 
-// Funzione CORRETTA per estrarre il nome dal titolo prodotto
+// Funzione UNIVERSALE per estrarre il nome dal titolo prodotto
 function extractProductName(product) {
     if (!product.title) return null;
     
@@ -70,61 +70,126 @@ function extractProductName(product) {
     let title = product.title.toUpperCase().trim();
     
     // Log per debug su alcuni prodotti
-    const debugTitles = ['RUGIADA', 'CAMILLA', 'MARTA', 'RUBINO'];
+    const debugTitles = ['RUGIADA', 'CAMILLA', 'MARTA', 'RUBINO', 'MARINA'];
     const shouldDebug = debugTitles.some(name => title.includes(name));
     
-    // Pattern SPECIFICO per LOFT.73 - il più importante!
-    // Matcha: "LOFT.73 - TIPO NOME" dove TIPO è PANTALONE, BORSA, etc.
-    const loft73Pattern = /LOFT\.?73\s*[-–]\s*(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO|BORSA|ZAINO|POCHETTE|TRACOLLA|SHOPPING|CLUTCH|BORSETTA|PORTAFOGLIO|CINTURA|SCIARPA|CAPPELLO|GUANTI)\s+([A-Z]+)(?:\s|$|-|,)/;
+    // Lista completa di tutti i tipi di prodotto
+    const productTypes = [
+        'PANTALONE', 'MAGLIA', 'CAMICIA', 'GIACCA', 'GONNA', 'VESTITO', 'ABITO', 
+        'TOP', 'BLUSA', 'CARDIGAN', 'CAPPOTTO', 'GIUBBOTTO', 'JEANS', 'SHIRT', 
+        'DRESS', 'PULLOVER', 'MAGLIONE', 'FELPA', 'SHORTS', 'BERMUDA', 'CANOTTA', 
+        'POLO', 'GILET', 'PIUMINO', 'TRENCH', 'BLAZER', 'TUTA', 'LEGGINGS', 
+        'JEGGINGS', 'CULOTTE', 'PALAZZO', 'BORSA', 'ZAINO', 'POCHETTE', 'TRACOLLA', 
+        'SHOPPING', 'CLUTCH', 'BORSETTA', 'PORTAFOGLIO', 'CINTURA', 'SCIARPA', 
+        'CAPPELLO', 'GUANTI', 'FOULARD', 'STOLA', 'PONCHO', 'MANTELLA', 'KIMONO',
+        'SALOPETTE', 'JUMPSUIT', 'OVERALL', 'TUTINA', 'BODY', 'CORSETTO', 'BUSTINO',
+        'T-SHIRT', 'MAGLIETTA', 'TANK', 'CROP', 'HOODIE', 'SWEATSHIRT', 'GIUBBINO',
+        'PARKA', 'BOMBER', 'CHIODO', 'MONTGOMERY', 'PEACOAT', 'SPOLVERINO', 'IMPERMEABILE',
+        'K-WAY', 'WINDBREAKER', 'SOFTSHELL', 'PILE', 'FLEECE', 'MAXI', 'MINI', 'MIDI'
+    ];
     
-    const loft73Match = title.match(loft73Pattern);
-    if (loft73Match && loft73Match[1]) {
-        const name = loft73Match[1];
-        const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-        
-        if (shouldDebug) {
-            console.log(`🔍 LOFT73 Pattern: "${originalTitle}" → "${properName}"`);
-        }
-        
-        return properName;
-    }
+    // Pattern UNIVERSALE: "QUALSIASI_BRAND - TIPO NOME"
+    // Funziona per LOFT.73, ANGELA DAVIS, ANTONY MORATO, etc.
+    const universalPattern = new RegExp(
+        `^[^-–]+[-–]\\s*(?:${productTypes.join('|')})\\s+([A-Z]+)(?:\\s|$|-|,|\\.|;)`, 
+        'i'
+    );
     
-    // Pattern generico: cerca l'ultima parola significativa dopo tipo capo
-    const genericPattern = /(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO|BORSA|ZAINO|POCHETTE|TRACOLLA|SHOPPING|CLUTCH|BORSETTA|PORTAFOGLIO|CINTURA|SCIARPA|CAPPELLO|GUANTI)\s+([A-Z][A-Z]+)(?:\s|$|-|,)/;
-    
-    const genericMatch = title.match(genericPattern);
-    if (genericMatch && genericMatch[1]) {
-        const name = genericMatch[1];
-        // Verifica che non sia un codice
+    const universalMatch = title.match(universalPattern);
+    if (universalMatch && universalMatch[1]) {
+        const name = universalMatch[1];
+        // Verifica che non sia un codice o una parola comune
         if (name.length >= 3 && name.length <= 20 && !/\d/.test(name)) {
             const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
             
             if (shouldDebug) {
-                console.log(`🔍 Generic Pattern: "${originalTitle}" → "${properName}"`);
+                console.log(`🎯 Universal Pattern: "${originalTitle}" → "${properName}"`);
+            // Log esempi raggruppati per brand
+        const brandExamples = {};
+        debugExamples.forEach(ex => {
+            const brand = ex.brand || 'Unknown';
+            if (!brandExamples[brand]) brandExamples[brand] = [];
+            if (brandExamples[brand].length < 3) { // Max 3 esempi per brand
+                brandExamples[brand].push(ex);
+            }
+        });
+        
+        console.log(`\n📦 ESEMPI DI ESTRAZIONE PER BRAND:`);
+        Object.entries(brandExamples).forEach(([brand, examples]) => {
+            console.log(`\n   ${brand}:`);
+            examples.forEach(ex => {
+                console.log(`      "${ex.title}" → "${ex.extracted}"`);
+            });
+        });
+            
+            return properName;
+        }
+    }
+    
+    // Pattern secondario: cerca tipo prodotto seguito da nome OVUNQUE nel titolo
+    const secondaryPattern = new RegExp(
+        `(?:${productTypes.join('|')})\\s+([A-Z]{3,20})(?:\\s|$|-|,|\\.|;)`, 
+        'i'
+    );
+    
+    const secondaryMatch = title.match(secondaryPattern);
+    if (secondaryMatch && secondaryMatch[1]) {
+        const name = secondaryMatch[1];
+        if (!/\d/.test(name) && !['CON', 'THE', 'AND', 'FOR', 'WITH', 'NEW', 'OLD'].includes(name)) {
+            const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+            
+            if (shouldDebug) {
+                console.log(`🎯 Secondary Pattern: "${originalTitle}" → "${properName}"`);
             }
             
             return properName;
         }
     }
     
-    // Ultimo tentativo: cerca dopo l'ultimo trattino
+    // Pattern per formati alternativi: "TIPO NOME - BRAND" o simili
     const parts = title.split(/[-–]/);
-    if (parts.length >= 2) {
-        const lastPart = parts[parts.length - 1].trim();
-        const words = lastPart.split(/\s+/);
-        
-        // Prendi l'ultima parola significativa
-        for (let i = words.length - 1; i >= 0; i--) {
-            const word = words[i];
-            if (word.length >= 3 && word.length <= 20 && /^[A-Z]+$/.test(word) && !/\d/.test(word)) {
-                const properName = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    for (const part of parts) {
+        const trimmedPart = part.trim();
+        // Cerca in ogni parte del titolo
+        const partMatch = trimmedPart.match(new RegExp(`(?:${productTypes.join('|')})\\s+([A-Z]{3,20})(?:\\s|$)`, 'i'));
+        if (partMatch && partMatch[1]) {
+            const name = partMatch[1];
+            if (!/\d/.test(name)) {
+                const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
                 
                 if (shouldDebug) {
-                    console.log(`🔍 Last Word Pattern: "${originalTitle}" → "${properName}"`);
+                    console.log(`🎯 Part Pattern: "${originalTitle}" → "${properName}" (from part: "${trimmedPart}")`);
                 }
                 
                 return properName;
             }
+        }
+    }
+    
+    // Ultimo tentativo: se il titolo contiene una parola che sappiamo essere un nome
+    const knownNames = [
+        'RUBINO', 'MARINA', 'AURORA', 'LUNA', 'STELLA', 'ALBA', 'CHIARA', 'SERENA',
+        'ELENA', 'SOFIA', 'GIULIA', 'MARTINA', 'GIORGIA', 'SARA', 'EMMA', 'GRETA',
+        'MARTA', 'ANNA', 'FRANCESCA', 'VALENTINA', 'ALESSIA', 'VIOLA', 'BIANCA',
+        'GINEVRA', 'BEATRICE', 'REBECCA', 'GAIA', 'ARIANNA', 'CAMILLA', 'ELISA',
+        'ALICE', 'CARLOTTA', 'MATILDE', 'VITTORIA', 'NOEMI', 'NICOLE', 'ROSA',
+        'IRIS', 'DALIA', 'ORCHIDEA', 'MIMOSA', 'GARDENIA', 'CAMELIA', 'AZALEA',
+        'MAGNOLIA', 'PEONIA', 'LAVANDA', 'PERLA', 'AMBRA', 'GIADA', 'OPALE',
+        'ZAFFIRO', 'CORALLO', 'CRISTALLO', 'DIAMANTE', 'SMERALDO', 'TURCHESE',
+        'RUGIADA', 'NEBBIA', 'PIOGGIA', 'NEVE', 'BRINA', 'TEMPESTA', 'ONDA',
+        'MAREA', 'SCHIUMA', 'CONCHIGLIA', 'SABBIA', 'ARIA', 'BREZZA', 'CIELO'
+    ];
+    
+    // Cerca nomi conosciuti nel titolo
+    for (const knownName of knownNames) {
+        if (title.includes(knownName)) {
+            const properName = knownName.charAt(0).toUpperCase() + knownName.slice(1).toLowerCase();
+            
+            if (shouldDebug) {
+                console.log(`🎯 Known Name Found: "${originalTitle}" → "${properName}"`);
+            }
+            
+            return properName;
         }
     }
     
@@ -259,8 +324,9 @@ app.post('/api/shopify/products', async (req, res) => {
             if (extractedName && extractedName.length > 1) {
                 names.add(extractedName);
                 
-                // Salva esempi per debug (specialmente RUBINO)
-                if (debugExamples.length < 50 || extractedName.toUpperCase() === 'RUBINO') {
+                // Salva esempi per debug (specialmente RUBINO, RUGIADA, CAMILLA, MARTA)
+                const criticalNames = ['Rubino', 'Rugiada', 'Camilla', 'Marta', 'Marina'];
+                if (debugExamples.length < 50 || criticalNames.includes(extractedName)) {
                     debugExamples.push({
                         title: product.title,
                         extracted: extractedName,
@@ -438,17 +504,36 @@ app.get('/api/test-names/:season', async (req, res) => {
 // Endpoint di test migliorato con più dettagli
 app.get('/api/test-extraction', async (req, res) => {
     try {
-        // Esempi di titoli reali da testare
+        // Esempi di titoli reali da testare - MULTI BRAND
         const testTitles = [
+            // LOFT.73
             'LOFT.73 - PANTALONE RUGIADA',
             'LOFT.73 - ABITO CAMILLA',
             'LOFT.73 - BORSA CAMILLA',
             'LOFT.73 - BORSA MARTA',
             'LOFT.73 - PANTALONE MARINA',
             'LOFT.73 - MAGLIA RUBINO',
+            
+            // ALTRI BRAND - stesso formato
             'ANGELA DAVIS - ABITO STELLA',
-            'PANTALONE AURORA LOFT73',
-            'BORSA LUNA - LOFT.73'
+            'ANGELA DAVIS - BORSA RUGIADA',
+            'ANGELA DAVIS - PANTALONE SOFIA',
+            'ANTONY MORATO - MAGLIA MARCO',
+            'ANTONY MORATO - GIACCA ALESSANDRO',
+            'GUESS - VESTITO AURORA',
+            'FRACOMINA - GONNA LUNA',
+            'ONLY - JEANS SARA',
+            'DIXIE - TOP VIOLA',
+            'PLEASE - PANTALONE GIADA',
+            'IMPERIAL - CAMICIA PERLA',
+            'SURKANA - CARDIGAN AMBRA',
+            'MOTEL - ABITO IRIS',
+            'WHITE WISE - BLUSA ROSA',
+            
+            // Formati alternativi
+            'PANTALONE AURORA - LOFT73',
+            'BORSA LUNA ANGELA DAVIS',
+            'MAGLIA STELLA ANTONY MORATO'
         ];
         
         const results = testTitles.map(title => {
@@ -461,14 +546,21 @@ app.get('/api/test-extraction', async (req, res) => {
             };
         });
         
+        // Raggruppa per brand
+        const byBrand = {};
+        results.forEach(r => {
+            const brand = r.title.split(/[-–]/)[0].trim();
+            if (!byBrand[brand]) byBrand[brand] = [];
+            byBrand[brand].push(r);
+        });
+        
         res.json({
-            test: 'Extraction Test',
-            results,
-            summary: {
-                total: results.length,
-                successful: results.filter(r => r.success).length,
-                failed: results.filter(r => !r.success).length
-            }
+            test: 'Multi-Brand Extraction Test',
+            totalTested: results.length,
+            successful: results.filter(r => r.success).length,
+            failed: results.filter(r => !r.success).length,
+            byBrand,
+            allResults: results
         });
         
     } catch (error) {
