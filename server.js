@@ -1,20 +1,20 @@
 const express = require('express');
-const cors = require('cors');
-const fetch = require('node-fetch');
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Configurazione CORS per permettere richieste da Claude.ai e altri domini
-app.use(cors({
-  origin: '*', // Permette tutte le origini
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
-
-// Middleware per gestire preflight OPTIONS
-app.options('*', cors());
+// CORS - PRIMA DI TUTTO!
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
 // Middleware
 app.use(express.json());
@@ -38,59 +38,61 @@ const SEASON_MAPPING = {
 function extractProductName(product) {
   const names = new Set();
   
-  // 1. Estrai dal titolo
+  // PRIORITÀ 1: Estrai dal titolo
   if (product.title) {
-    const patterns = [
-      /LOFT\.?73\s*[-–]\s*(?:PANTALONE|MAGLIA|GIACCA|GONNA|ABITO|CAMICIA|TOP|BLUSA)\s+(\w+)/i,
-      /(?:PANTALONE|MAGLIA|GIACCA|GONNA|ABITO|CAMICIA|TOP|BLUSA)\s+(\w+)/i,
-      /LOFT\.?73\s*[-–]\s*(\w+)$/i,
-      /^(\w+)\s*[-–]/i
+    // Pulisci il titolo
+    let title = product.title
+      .replace(/LOFT\.?73\s*[-–]\s*/gi, '')
+      .replace(/[-–]\s*$/, '')
+      .trim();
+    
+    // Lista di tipi di capo da rimuovere
+    const tipiCapo = [
+      'PANTALONE', 'PANTALONI', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 
+      'CAMICIA', 'TOP', 'BLUSA', 'CAPPOTTO', 'GIUBBOTTO', 'CARDIGAN', 
+      'PULLOVER', 'JEANS', 'SHORT', 'BERMUDA', 'VESTITO', 'FELPA',
+      'T-SHIRT', 'POLO', 'CANOTTA', 'GILET', 'BLAZER', 'KIMONO'
     ];
     
-    for (const pattern of patterns) {
-      const match = product.title.match(pattern);
-      if (match && match[1]) {
-        const name = match[1].trim();
-        if (name.length > 2 && !isCommonWord(name)) {
-          names.add(capitalizeFirst(name));
-        }
+    // Rimuovi il tipo di capo dal titolo
+    tipiCapo.forEach(tipo => {
+      title = title.replace(new RegExp(`^${tipo}\\s+`, 'i'), '');
+      title = title.replace(new RegExp(`\\s+${tipo}$`, 'i'), '');
+    });
+    
+    // Prendi la prima parola rimanente (dovrebbe essere il nome)
+    const words = title.split(/\s+/);
+    if (words.length > 0) {
+      const potentialName = words[0];
+      
+      // Verifica che sia un nome valido
+      if (potentialName.length > 2 && 
+          potentialName.length < 20 &&
+          /^[A-Za-zÀ-ÿ]+$/.test(potentialName) && // Solo lettere
+          !potentialName.match(/^[A-Z0-9]+$/) && // Non tutto maiuscolo
+          !isCommonWord(potentialName)) {
+        names.add(capitalizeFirst(potentialName));
       }
     }
   }
   
-  // 2. Estrai dallo SKU
-  if (product.variants && product.variants.length > 0) {
-    product.variants.forEach(variant => {
-      if (variant.sku) {
-        const skuParts = variant.sku
-          .replace(/LOFT\.?73[-_]?/gi, '')
-          .replace(/HFD\d+[A-Z]*[-_]?/gi, '')
-          .split(/[-_]/);
-        
-        skuParts.forEach(part => {
-          if (part.length > 2 && 
-              isNaN(part) && 
-              !isCommonWord(part) &&
-              !/^\d+[A-Z]+$/.test(part)) {
-            names.add(capitalizeFirst(part));
-          }
-        });
+  // PRIORITÀ 2: Se non trovato, cerca nei tag
+  if (names.size === 0 && product.tags) {
+    const tagArray = product.tags.split(',').map(tag => tag.trim());
+    
+    // Cerca tag che sembrano nomi propri
+    for (const tag of tagArray) {
+      if (tag.length > 2 && 
+          tag.length < 20 &&
+          /^[A-Z][a-z]+$/.test(tag) && // Inizia con maiuscola
+          !isSeasonTag(tag) && 
+          !isCommonWord(tag)) {
+        names.add(tag);
       }
-    });
+    }
   }
   
-  // 3. Estrai dai tag
-  if (product.tags) {
-    const tagArray = product.tags.split(',').map(tag => tag.trim());
-    tagArray.forEach(tag => {
-      if (tag.length > 2 && 
-          !isSeasonTag(tag) && 
-          !isCommonWord(tag) &&
-          isNaN(tag)) {
-        names.add(capitalizeFirst(tag));
-      }
-    });
-  }
+  // NON estrarre da SKU!
   
   return Array.from(names);
 }
@@ -98,9 +100,16 @@ function extractProductName(product) {
 // Helper functions
 function isCommonWord(word) {
   const commonWords = [
+    // Capi
     'PANTALONE', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 'CAMICIA', 'TOP', 'BLUSA',
+    'CAPPOTTO', 'GIUBBOTTO', 'CARDIGAN', 'PULLOVER', 'JEANS', 'SHORT', 'BERMUDA',
+    // Attributi
     'LOFT', 'DONNA', 'UOMO', 'NERO', 'BIANCO', 'ROSSO', 'BLU', 'VERDE',
-    'FANGO', 'GRIGIO', 'BEIGE', 'MARRONE', 'TU', 'XS', 'S', 'M', 'L', 'XL', 'XXL'
+    'FANGO', 'GRIGIO', 'BEIGE', 'MARRONE', 
+    // Taglie
+    'TU', 'XS', 'S', 'M', 'L', 'XL', 'XXL',
+    // Altri
+    'COLLEZIONE', 'STAGIONE', 'NUOVO', 'ARRIVO'
   ];
   return commonWords.includes(word.toUpperCase());
 }
@@ -169,28 +178,29 @@ app.post('/api/shopify/products', async (req, res) => {
     let productCount = 0;
     
     if (data.products) {
+      // Log di debug per i primi 3 prodotti
+      console.log('\n📦 Esempi di prodotti trovati:');
+      data.products.slice(0, 3).forEach((product, index) => {
+        console.log(`\nProdotto ${index + 1}:`, {
+          title: product.title,
+          tags: product.tags?.substring(0, 100) + '...',
+          sku: product.variants?.[0]?.sku
+        });
+      });
+      
       data.products.forEach(product => {
         if (product.tags && product.tags.includes(shopifyTag)) {
           productCount++;
           const extractedNames = extractProductName(product);
           extractedNames.forEach(name => allNames.add(name));
-          
-          if (extractedNames.includes('Marina')) {
-            console.log(`✓ Trovato "Marina" in prodotto:`, {
-              title: product.title,
-              sku: product.variants?.[0]?.sku,
-              tags: product.tags,
-              extracted: extractedNames
-            });
-          }
         }
       });
     }
     
     const namesArray = Array.from(allNames).sort();
     
-    console.log(`✅ Trovati ${productCount} prodotti con tag "${shopifyTag}"`);
-    console.log(`✅ Estratti ${namesArray.length} nomi unici:`, namesArray);
+    console.log(`\n✅ Trovati ${productCount} prodotti con tag "${shopifyTag}"`);
+    console.log(`✅ Estratti ${namesArray.length} nomi unici:`, namesArray.slice(0, 20), '...');
     
     res.json({ 
       success: true, 
@@ -210,6 +220,9 @@ app.post('/api/shopify/products', async (req, res) => {
 
 app.post('/api/generate-names', async (req, res) => {
   const { count = 20, existingNames = [] } = req.body;
+  
+  console.log(`\n🎯 Generazione ${count} nomi...`);
+  console.log(`📋 Nomi esistenti da escludere: ${existingNames.length}`);
   
   // Pool di nomi italiani
   const namePool = [
@@ -234,10 +247,12 @@ app.post('/api/generate-names', async (req, res) => {
     'Margherita', 'Gelsomino', 'Lavanda', 'Mimosa', 'Narciso', 'Papavero', 'Tulipano', 'Zinnia'
   ];
   
-  // Filtra nomi già esistenti e genera lista unica
+  // Filtra nomi già esistenti
   const availableNames = namePool.filter(name => 
     !existingNames.some(existing => existing.toLowerCase() === name.toLowerCase())
   );
+  
+  console.log(`✅ Nomi disponibili dopo filtro: ${availableNames.length}`);
   
   // Genera nomi unici
   const generatedNames = [];
@@ -262,6 +277,8 @@ app.post('/api/generate-names', async (req, res) => {
     }
   }
   
+  console.log(`✅ Generati ${generatedNames.length} nomi unici`);
+  
   res.json({
     success: true,
     names: generatedNames,
@@ -278,6 +295,53 @@ app.post('/api/check-name', async (req, res) => {
     exists: false,
     message: 'Funzionalità in sviluppo'
   });
+});
+
+// Endpoint di test per debug
+app.get('/api/test-names/:season', async (req, res) => {
+  const season = req.params.season;
+  const shopifyTag = SEASON_MAPPING[season] || season;
+  
+  try {
+    const response = await fetch(
+      `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250`,
+      {
+        headers: {
+          'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+        }
+      }
+    );
+    
+    const data = await response.json();
+    const allNames = new Set();
+    let productExamples = [];
+    
+    if (data.products) {
+      data.products.forEach(product => {
+        if (product.tags && product.tags.includes(shopifyTag)) {
+          const names = extractProductName(product);
+          names.forEach(name => allNames.add(name));
+          
+          if (productExamples.length < 5) {
+            productExamples.push({
+              title: product.title,
+              extractedNames: names,
+              tags: product.tags.substring(0, 100) + '...'
+            });
+          }
+        }
+      });
+    }
+    
+    res.json({
+      totalNames: allNames.size,
+      names: Array.from(allNames).sort(),
+      productExamples: productExamples
+    });
+    
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Start server
