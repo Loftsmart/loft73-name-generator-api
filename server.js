@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 
@@ -121,6 +122,24 @@ function extractProductName(product) {
                 console.log(`      "${ex.title}" → "${ex.extracted}"`);
             });
         });
+        
+        res.json({
+            success: true,
+            names: uniqueNames,
+            count: uniqueNames.length,
+            totalProducts: products.length,
+            shopify_tag: shopifyTag,
+            brandBreakdown: brandCount
+        });
+        
+    } catch (error) {
+        console.error('❌ Errore recupero prodotti:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Errore durante il recupero dei prodotti: ' + error.message
+        });
+    }
+});
             
             return properName;
         }
