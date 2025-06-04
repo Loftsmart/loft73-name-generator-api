@@ -62,108 +62,74 @@ const SEASON_MAPPING = {
     'AI 26': '26I'
 };
 
-// Funzione MIGLIORATA per estrarre il nome dal titolo prodotto
+// Funzione CORRETTA per estrarre il nome dal titolo prodotto
 function extractProductName(product) {
     if (!product.title) return null;
     
-    let title = product.title.toUpperCase(); // Lavora in uppercase per semplicità
+    const originalTitle = product.title;
+    let title = product.title.toUpperCase().trim();
     
-    // Lista di parole da escludere (aggettivi, articoli, preposizioni)
-    const excludeWords = [
-        'CON', 'THE', 'AND', 'FOR', 'WITH', 'DI', 'DA', 'IN', 'SU', 'PER', 'TRA', 'FRA',
-        'IL', 'LA', 'LO', 'I', 'LE', 'GLI', 'UN', 'UNA', 'UNO', 'DEGLI', 'DELLE',
-        'AL', 'ALLA', 'ALLO', 'AI', 'ALLE', 'DAL', 'DALLA', 'DALLO', 'DAI', 'DALLE',
-        'NEL', 'NELLA', 'NELLO', 'NEI', 'NELLE', 'SUL', 'SULLA', 'SULLO', 'SUI', 'SULLE'
-    ];
+    // Log per debug su alcuni prodotti
+    const debugTitles = ['RUGIADA', 'CAMILLA', 'MARTA', 'RUBINO'];
+    const shouldDebug = debugTitles.some(name => title.includes(name));
     
-    // Rimuovi codici prodotto comuni (numeri, SKU)
-    title = title.replace(/\b[A-Z0-9]{5,}\b/g, ''); // Codici alfanumerici lunghi
-    title = title.replace(/\b\d{3,}\b/g, ''); // Numeri lunghi
-    title = title.replace(/\bART\.?\s*\d+/g, ''); // ART.123
-    title = title.replace(/\bREF\.?\s*[A-Z0-9]+/g, ''); // REF.ABC123
+    // Pattern SPECIFICO per LOFT.73 - il più importante!
+    // Matcha: "LOFT.73 - TIPO NOME" dove TIPO è PANTALONE, BORSA, etc.
+    const loft73Pattern = /LOFT\.?73\s*[-–]\s*(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO|BORSA|ZAINO|POCHETTE|TRACOLLA|SHOPPING|CLUTCH|BORSETTA|PORTAFOGLIO|CINTURA|SCIARPA|CAPPELLO|GUANTI)\s+([A-Z]+)(?:\s|$|-|,)/;
     
-    // Pattern specifici per LOFT.73 e altri brand
-    const brandPatterns = [
-        // LOFT.73 patterns
-        /LOFT\.?73\s*[-–]\s*(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO)\s+([A-Z]+)(?:\s|$)/,
-        /LOFT\.?73\s*[-–]\s*([A-Z]+)(?:\s|$)/,
+    const loft73Match = title.match(loft73Pattern);
+    if (loft73Match && loft73Match[1]) {
+        const name = loft73Match[1];
+        const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
         
-        // Pattern generico per tutti i brand
-        /(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO)\s+([A-Z]+)(?:\s|$)/,
+        if (shouldDebug) {
+            console.log(`🔍 LOFT73 Pattern: "${originalTitle}" → "${properName}"`);
+        }
         
-        // Dopo trattino
-        /[-–]\s*([A-Z]+)(?:\s|$)/,
-        
-        // Nome isolato (una sola parola maiuscola significativa)
-        /\b([A-Z]{3,20})\b/
-    ];
+        return properName;
+    }
     
-    // Prova tutti i pattern
-    for (const pattern of brandPatterns) {
-        const matches = title.matchAll(new RegExp(pattern, 'g'));
+    // Pattern generico: cerca l'ultima parola significativa dopo tipo capo
+    const genericPattern = /(?:PANTALONE|MAGLIA|CAMICIA|GIACCA|GONNA|VESTITO|ABITO|TOP|BLUSA|CARDIGAN|CAPPOTTO|GIUBBOTTO|JEANS|SHIRT|DRESS|PULLOVER|MAGLIONE|FELPA|SHORTS|BERMUDA|CANOTTA|POLO|GILET|PIUMINO|TRENCH|BLAZER|TUTA|LEGGINGS|JEGGINGS|CULOTTE|PALAZZO|BORSA|ZAINO|POCHETTE|TRACOLLA|SHOPPING|CLUTCH|BORSETTA|PORTAFOGLIO|CINTURA|SCIARPA|CAPPELLO|GUANTI)\s+([A-Z][A-Z]+)(?:\s|$|-|,)/;
+    
+    const genericMatch = title.match(genericPattern);
+    if (genericMatch && genericMatch[1]) {
+        const name = genericMatch[1];
+        // Verifica che non sia un codice
+        if (name.length >= 3 && name.length <= 20 && !/\d/.test(name)) {
+            const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+            
+            if (shouldDebug) {
+                console.log(`🔍 Generic Pattern: "${originalTitle}" → "${properName}"`);
+            }
+            
+            return properName;
+        }
+    }
+    
+    // Ultimo tentativo: cerca dopo l'ultimo trattino
+    const parts = title.split(/[-–]/);
+    if (parts.length >= 2) {
+        const lastPart = parts[parts.length - 1].trim();
+        const words = lastPart.split(/\s+/);
         
-        for (const match of matches) {
-            if (match && match[1]) {
-                const name = match[1];
+        // Prendi l'ultima parola significativa
+        for (let i = words.length - 1; i >= 0; i--) {
+            const word = words[i];
+            if (word.length >= 3 && word.length <= 20 && /^[A-Z]+$/.test(word) && !/\d/.test(word)) {
+                const properName = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
                 
-                // Verifica che sia un nome valido
-                if (name.length >= 3 && 
-                    name.length <= 20 &&
-                    !/^\d+$/.test(name) && // Non solo numeri
-                    !excludeWords.includes(name) && // Non parole escluse
-                    !/^[A-Z]{1,2}\d+/.test(name) && // Non codici tipo A1, BB2
-                    !/\d{2,}/.test(name)) { // Non contiene molti numeri
-                    
-                    // Se sembra un nome proprio italiano, capitalizza correttamente
-                    // Altrimenti mantieni come nome proprio
-                    const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-                    
-                    // Lista di nomi che sappiamo esistere per validazione
-                    const knownNames = ['RUBINO', 'MARINA', 'AURORA', 'LUNA', 'STELLA', 'ALBA', 'CHIARA', 
-                                       'SERENA', 'ELENA', 'SOFIA', 'GIULIA', 'ROSA', 'IRIS', 'VIOLA',
-                                       'PERLA', 'AMBRA', 'GIADA', 'ZAFFIRO', 'CORALLO', 'DIAMANTE'];
-                    
-                    // Se è un nome conosciuto, restituiscilo
-                    if (knownNames.includes(name)) {
-                        return properName;
-                    }
-                    
-                    // Altrimenti valida che sembri un nome italiano
-                    if (/^[A-Z][A-Z]*$/.test(name) && name.length >= 4) {
-                        return properName;
-                    }
+                if (shouldDebug) {
+                    console.log(`🔍 Last Word Pattern: "${originalTitle}" → "${properName}"`);
                 }
+                
+                return properName;
             }
         }
     }
     
-    // Ultima risorsa: cerca parole che sembrano nomi propri nel titolo originale
-    const words = product.title.split(/[\s\-–,\.]+/);
-    for (const word of words) {
-        const cleanWord = word.trim().toUpperCase();
-        // Se è una parola tutta maiuscola di lunghezza giusta e non è un codice
-        if (cleanWord.length >= 4 && 
-            cleanWord.length <= 15 && 
-            /^[A-Z]+$/.test(cleanWord) &&
-            !excludeWords.includes(cleanWord) &&
-            !/\d/.test(cleanWord)) {
-            
-            // Lista estesa di nomi possibili
-            const possibleNames = ['RUBINO', 'MARINA', 'AURORA', 'LUNA', 'STELLA', 'ALBA', 
-                                  'CHIARA', 'SERENA', 'ELENA', 'SOFIA', 'GIULIA', 'MARTINA',
-                                  'GIORGIA', 'SARA', 'EMMA', 'GRETA', 'MARTA', 'ANNA',
-                                  'FRANCESCA', 'VALENTINA', 'ALESSIA', 'VIOLA', 'BIANCA',
-                                  'GINEVRA', 'BEATRICE', 'REBECCA', 'GAIA', 'ARIANNA',
-                                  'CAMILLA', 'ELISA', 'ALICE', 'CARLOTTA', 'MATILDE',
-                                  'VITTORIA', 'NOEMI', 'NICOLE', 'ROSA', 'IRIS', 'DALIA',
-                                  'ORCHIDEA', 'MIMOSA', 'GARDENIA', 'CAMELIA', 'AZALEA',
-                                  'MAGNOLIA', 'PEONIA', 'LAVANDA', 'PERLA', 'AMBRA', 'GIADA',
-                                  'OPALE', 'ZAFFIRO', 'CORALLO', 'CRISTALLO', 'DIAMANTE'];
-            
-            if (possibleNames.includes(cleanWord)) {
-                return cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase();
-            }
-        }
+    if (shouldDebug) {
+        console.log(`❌ No match for: "${originalTitle}"`);
     }
     
     return null;
@@ -462,6 +428,47 @@ app.get('/api/test-names/:season', async (req, res) => {
             brandBreakdown: brandBreakdown,
             names: Array.from(names).sort(),
             productExamples: examples
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Endpoint di test migliorato con più dettagli
+app.get('/api/test-extraction', async (req, res) => {
+    try {
+        // Esempi di titoli reali da testare
+        const testTitles = [
+            'LOFT.73 - PANTALONE RUGIADA',
+            'LOFT.73 - ABITO CAMILLA',
+            'LOFT.73 - BORSA CAMILLA',
+            'LOFT.73 - BORSA MARTA',
+            'LOFT.73 - PANTALONE MARINA',
+            'LOFT.73 - MAGLIA RUBINO',
+            'ANGELA DAVIS - ABITO STELLA',
+            'PANTALONE AURORA LOFT73',
+            'BORSA LUNA - LOFT.73'
+        ];
+        
+        const results = testTitles.map(title => {
+            const mockProduct = { title };
+            const extracted = extractProductName(mockProduct);
+            return {
+                title,
+                extracted,
+                success: extracted !== null
+            };
+        });
+        
+        res.json({
+            test: 'Extraction Test',
+            results,
+            summary: {
+                total: results.length,
+                successful: results.filter(r => r.success).length,
+                failed: results.filter(r => !r.success).length
+            }
         });
         
     } catch (error) {
