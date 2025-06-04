@@ -34,44 +34,63 @@ const SEASON_MAPPING = {
   'AI 26': '26I'
 };
 
-// Funzione per estrarre il nome dal prodotto
+// Funzione CORRETTA per estrarre il nome dal prodotto (gestisce nomi composti)
 function extractProductName(product) {
   const names = new Set();
   
   // PRIORITÀ 1: Estrai dal titolo
   if (product.title) {
-    // Pulisci il titolo
+    // Pulisci il titolo base
     let title = product.title
       .replace(/LOFT\.?73\s*[-–]\s*/gi, '')
-      .replace(/[-–]\s*$/, '')
       .trim();
     
-    // Lista di tipi di capo da rimuovere
-    const tipiCapo = [
-      'PANTALONE', 'PANTALONI', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 
-      'CAMICIA', 'TOP', 'BLUSA', 'CAPPOTTO', 'GIUBBOTTO', 'CARDIGAN', 
-      'PULLOVER', 'JEANS', 'SHORT', 'BERMUDA', 'VESTITO', 'FELPA',
-      'T-SHIRT', 'POLO', 'CANOTTA', 'GILET', 'BLAZER', 'KIMONO'
-    ];
-    
-    // Rimuovi il tipo di capo dal titolo
-    tipiCapo.forEach(tipo => {
-      title = title.replace(new RegExp(`^${tipo}\\s+`, 'i'), '');
-      title = title.replace(new RegExp(`\\s+${tipo}$`, 'i'), '');
-    });
-    
-    // Prendi la prima parola rimanente (dovrebbe essere il nome)
-    const words = title.split(/\s+/);
-    if (words.length > 0) {
-      const potentialName = words[0];
+    // Pattern 1: Nome PRIMA del trattino (es. "ANGELA DAVIS - ABITO")
+    const beforeDashMatch = title.match(/^([^-–]+?)(?:\s*[-–]|$)/);
+    if (beforeDashMatch) {
+      let potentialName = beforeDashMatch[1].trim();
       
-      // Verifica che sia un nome valido
-      if (potentialName.length > 2 && 
-          potentialName.length < 20 &&
-          /^[A-Za-zÀ-ÿ]+$/.test(potentialName) && // Solo lettere
-          !potentialName.match(/^[A-Z0-9]+$/) && // Non tutto maiuscolo
-          !isCommonWord(potentialName)) {
-        names.add(capitalizeFirst(potentialName));
+      // Rimuovi il tipo di capo se è all'inizio
+      const tipiCapo = [
+        'PANTALONE', 'PANTALONI', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 
+        'CAMICIA', 'TOP', 'BLUSA', 'CAPPOTTO', 'GIUBBOTTO', 'CARDIGAN',
+        'PULLOVER', 'JEANS', 'SHORT', 'BERMUDA', 'VESTITO', 'FELPA',
+        'T-SHIRT', 'POLO', 'CANOTTA', 'GILET', 'BLAZER', 'KIMONO'
+      ];
+      
+      // Controlla se inizia con un tipo di capo
+      let startsWithType = false;
+      for (const tipo of tipiCapo) {
+        if (potentialName.toUpperCase().startsWith(tipo)) {
+          startsWithType = true;
+          break;
+        }
+      }
+      
+      // Se non inizia con un tipo di capo, è probabilmente il nome
+      if (!startsWithType && potentialName.length > 2 && potentialName.length < 50) {
+        names.add(potentialName);
+      }
+    }
+    
+    // Pattern 2: Nome DOPO il tipo di capo (es. "ABITO ANGELA DAVIS")
+    const afterTypePattern = /(?:PANTALONE|PANTALONI|MAGLIA|GIACCA|GONNA|ABITO|CAMICIA|TOP|BLUSA|CAPPOTTO|GIUBBOTTO|CARDIGAN|PULLOVER|JEANS|SHORT|BERMUDA|VESTITO|FELPA)\s+([^,.-]+)/i;
+    const afterTypeMatch = title.match(afterTypePattern);
+    if (afterTypeMatch && names.size === 0) {
+      const name = afterTypeMatch[1].trim();
+      if (name && name.length > 2 && name.length < 50) {
+        names.add(name);
+      }
+    }
+    
+    // Pattern 3: Se ancora vuoto, prova a prendere tutto prima della virgola o punto
+    if (names.size === 0) {
+      const simpleMatch = title.match(/^([^,.-]+)/);
+      if (simpleMatch) {
+        const name = simpleMatch[1].trim();
+        if (name && name.length > 2 && name.length < 50 && !isCommonWord(name)) {
+          names.add(name);
+        }
       }
     }
   }
@@ -80,19 +99,18 @@ function extractProductName(product) {
   if (names.size === 0 && product.tags) {
     const tagArray = product.tags.split(',').map(tag => tag.trim());
     
-    // Cerca tag che sembrano nomi propri
     for (const tag of tagArray) {
+      // Accetta anche nomi composti nei tag
       if (tag.length > 2 && 
-          tag.length < 20 &&
-          /^[A-Z][a-z]+$/.test(tag) && // Inizia con maiuscola
+          tag.length < 50 &&
+          /^[A-Za-zÀ-ÿ\s]+$/.test(tag) && // Permetti spazi per nomi composti
           !isSeasonTag(tag) && 
-          !isCommonWord(tag)) {
+          !isCommonWord(tag) &&
+          !tag.match(/^\d/)) { // Non deve iniziare con numeri
         names.add(tag);
       }
     }
   }
-  
-  // NON estrarre da SKU!
   
   return Array.from(names);
 }
@@ -101,7 +119,7 @@ function extractProductName(product) {
 function isCommonWord(word) {
   const commonWords = [
     // Capi
-    'PANTALONE', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 'CAMICIA', 'TOP', 'BLUSA',
+    'PANTALONE', 'PANTALONI', 'MAGLIA', 'GIACCA', 'GONNA', 'ABITO', 'CAMICIA', 'TOP', 'BLUSA',
     'CAPPOTTO', 'GIUBBOTTO', 'CARDIGAN', 'PULLOVER', 'JEANS', 'SHORT', 'BERMUDA',
     // Attributi
     'LOFT', 'DONNA', 'UOMO', 'NERO', 'BIANCO', 'ROSSO', 'BLU', 'VERDE',
@@ -109,7 +127,7 @@ function isCommonWord(word) {
     // Taglie
     'TU', 'XS', 'S', 'M', 'L', 'XL', 'XXL',
     // Altri
-    'COLLEZIONE', 'STAGIONE', 'NUOVO', 'ARRIVO'
+    'COLLEZIONE', 'STAGIONE', 'NUOVO', 'ARRIVO', 'NON-IN-SALDO', 'ABBIGLIAMENTO'
   ];
   return commonWords.includes(word.toUpperCase());
 }
@@ -178,14 +196,14 @@ app.post('/api/shopify/products', async (req, res) => {
     let productCount = 0;
     
     if (data.products) {
-      // Log di debug per i primi 3 prodotti
+      // Log di debug per i primi 5 prodotti
       console.log('\n📦 Esempi di prodotti trovati:');
-      data.products.slice(0, 3).forEach((product, index) => {
-        console.log(`\nProdotto ${index + 1}:`, {
-          title: product.title,
-          tags: product.tags?.substring(0, 100) + '...',
-          sku: product.variants?.[0]?.sku
-        });
+      data.products.slice(0, 5).forEach((product, index) => {
+        if (product.tags && product.tags.includes(shopifyTag)) {
+          const extractedNames = extractProductName(product);
+          console.log(`\nProdotto ${index + 1}: "${product.title}"`);
+          console.log(`   → Nomi estratti:`, extractedNames);
+        }
       });
       
       data.products.forEach(product => {
@@ -200,7 +218,7 @@ app.post('/api/shopify/products', async (req, res) => {
     const namesArray = Array.from(allNames).sort();
     
     console.log(`\n✅ Trovati ${productCount} prodotti con tag "${shopifyTag}"`);
-    console.log(`✅ Estratti ${namesArray.length} nomi unici:`, namesArray.slice(0, 20), '...');
+    console.log(`✅ Estratti ${namesArray.length} nomi unici:`, namesArray.slice(0, 20), namesArray.length > 20 ? '...' : '');
     
     res.json({ 
       success: true, 
@@ -223,6 +241,7 @@ app.post('/api/generate-names', async (req, res) => {
   
   console.log(`\n🎯 Generazione ${count} nomi...`);
   console.log(`📋 Nomi esistenti da escludere: ${existingNames.length}`);
+  console.log(`📋 Alcuni esempi di nomi esistenti:`, existingNames.slice(0, 10));
   
   // Pool di nomi italiani
   const namePool = [
@@ -247,12 +266,14 @@ app.post('/api/generate-names', async (req, res) => {
     'Margherita', 'Gelsomino', 'Lavanda', 'Mimosa', 'Narciso', 'Papavero', 'Tulipano', 'Zinnia'
   ];
   
-  // Filtra nomi già esistenti
+  // Filtra nomi già esistenti (controllo case-insensitive)
+  const existingNamesLower = existingNames.map(name => name.toLowerCase());
   const availableNames = namePool.filter(name => 
-    !existingNames.some(existing => existing.toLowerCase() === name.toLowerCase())
+    !existingNamesLower.includes(name.toLowerCase())
   );
   
   console.log(`✅ Nomi disponibili dopo filtro: ${availableNames.length}`);
+  console.log(`🚫 Nomi esclusi dal pool:`, namePool.filter(name => existingNamesLower.includes(name.toLowerCase())));
   
   // Genera nomi unici
   const generatedNames = [];
@@ -299,7 +320,7 @@ app.post('/api/check-name', async (req, res) => {
 
 // Endpoint di test per debug
 app.get('/api/test-names/:season', async (req, res) => {
-  const season = req.params.season;
+  const season = req.params.season.replace('%20', ' ');
   const shopifyTag = SEASON_MAPPING[season] || season;
   
   try {
@@ -322,7 +343,7 @@ app.get('/api/test-names/:season', async (req, res) => {
           const names = extractProductName(product);
           names.forEach(name => allNames.add(name));
           
-          if (productExamples.length < 5) {
+          if (productExamples.length < 10) {
             productExamples.push({
               title: product.title,
               extractedNames: names,
