@@ -28,18 +28,21 @@ app.use(express.json());
 
 // Pool di nomi predefiniti (100+)
 const namePool = [
+    // Pool di nomi predefiniti (100+) - AGGIORNATO
+    // NOTA: Rimossi i colori (Viola, Rosa, Turchese) e nomi probabilmente già usati
+    
     // Nomi femminili italiani
     'Aurora', 'Luna', 'Stella', 'Alba', 'Chiara', 'Serena', 'Marina', 'Elena',
     'Sofia', 'Giulia', 'Martina', 'Giorgia', 'Sara', 'Emma', 'Greta', 'Marta',
-    'Anna', 'Francesca', 'Valentina', 'Alessia', 'Viola', 'Bianca', 'Ginevra', 'Beatrice',
+    'Anna', 'Francesca', 'Valentina', 'Alessia', 'Bianca', 'Ginevra', 'Beatrice',
     'Rebecca', 'Gaia', 'Arianna', 'Camilla', 'Elisa', 'Alice', 'Carlotta', 'Matilde',
     'Vittoria', 'Noemi', 'Nicole', 'Ludovica', 'Margherita', 'Agnese', 'Caterina', 'Ilaria',
     
-    // Nomi natura
-    'Rosa', 'Iris', 'Dalia', 'Orchidea', 'Mimosa', 'Gardenia', 'Camelia', 'Azalea',
+    // Nomi natura (SENZA COLORI)
+    'Iris', 'Dalia', 'Orchidea', 'Mimosa', 'Gardenia', 'Camelia', 'Azalea',
     'Magnolia', 'Peonia', 'Lavanda', 'Ginestra', 'Edera', 'Felce', 'Betulla', 'Quercia',
     'Perla', 'Ambra', 'Giada', 'Opale', 'Rubino', 'Zaffiro', 'Corallo', 'Cristallo',
-    'Diamante', 'Smeraldo', 'Turchese', 'Agata', 'Ametista', 'Topazio', 'Acquamarina', 'Onice',
+    'Diamante', 'Smeraldo', 'Agata', 'Ametista', 'Topazio', 'Acquamarina', 'Onice',
     
     // Nomi evocativi
     'Aria', 'Brezza', 'Rugiada', 'Nebbia', 'Pioggia', 'Neve', 'Brina', 'Tempesta',
@@ -47,9 +50,13 @@ const namePool = [
     'Nuvola', 'Cielo', 'Cometa', 'Galassia', 'Eclissi', 'Zenith', 'Orizzonte', 'Tramonto',
     'Armonia', 'Melodia', 'Sinfonia', 'Cadenza', 'Accordo', 'Ritmo', 'Eco', 'Silenzio',
     
-    // Altri nomi
+    // Nomi mitologici e classici
     'Dafne', 'Penelope', 'Cassandra', 'Elettra', 'Pandora', 'Andromeda', 'Calliope', 'Atena',
-    'Diana', 'Venere', 'Minerva', 'Flora', 'Fauna', 'Terra', 'Giunone', 'Vesta'
+    'Diana', 'Venere', 'Minerva', 'Flora', 'Fauna', 'Terra', 'Giunone', 'Vesta',
+    
+    // Aggiunti nomi alternativi per compensare quelli rimossi
+    'Celeste', 'Serena', 'Viviana', 'Silvana', 'Miriam', 'Simona', 'Patrizia', 'Luciana',
+    'Loretta', 'Marilena', 'Elisabetta', 'Antonella', 'Rossella', 'Gabriella', 'Raffaella'
 ];
 
 // Mapping stagioni UI -> Shopify tags
@@ -62,122 +69,51 @@ const SEASON_MAPPING = {
     'AI 26': '26I'
 };
 
-// Funzione UNIVERSALE per estrarre il nome dal titolo prodotto
+// Funzione SEMPLIFICATA per estrarre il nome - cerca SOLO le parole chiave
 function extractProductName(product) {
     if (!product.title) return null;
     
     const originalTitle = product.title;
-    let title = product.title.toUpperCase().trim();
+    const titleUpper = product.title.toUpperCase();
     
-    // Log per debug su alcuni prodotti
-    const debugTitles = ['RUGIADA', 'CAMILLA', 'MARTA', 'RUBINO', 'MARINA'];
-    const shouldDebug = debugTitles.some(name => title.includes(name));
-    
-    // Lista completa di tutti i tipi di prodotto
-    const productTypes = [
-        'PANTALONE', 'MAGLIA', 'CAMICIA', 'GIACCA', 'GONNA', 'VESTITO', 'ABITO', 
-        'TOP', 'BLUSA', 'CARDIGAN', 'CAPPOTTO', 'GIUBBOTTO', 'JEANS', 'SHIRT', 
-        'DRESS', 'PULLOVER', 'MAGLIONE', 'FELPA', 'SHORTS', 'BERMUDA', 'CANOTTA', 
-        'POLO', 'GILET', 'PIUMINO', 'TRENCH', 'BLAZER', 'TUTA', 'LEGGINGS', 
-        'JEGGINGS', 'CULOTTE', 'PALAZZO', 'BORSA', 'ZAINO', 'POCHETTE', 'TRACOLLA', 
-        'SHOPPING', 'CLUTCH', 'BORSETTA', 'PORTAFOGLIO', 'CINTURA', 'SCIARPA', 
-        'CAPPELLO', 'GUANTI', 'FOULARD', 'STOLA', 'PONCHO', 'MANTELLA', 'KIMONO',
-        'SALOPETTE', 'JUMPSUIT', 'OVERALL', 'TUTINA', 'BODY', 'CORSETTO', 'BUSTINO',
-        'T-SHIRT', 'MAGLIETTA', 'TANK', 'CROP', 'HOODIE', 'SWEATSHIRT', 'GIUBBINO',
-        'PARKA', 'BOMBER', 'CHIODO', 'MONTGOMERY', 'PEACOAT', 'SPOLVERINO', 'IMPERMEABILE',
-        'K-WAY', 'WINDBREAKER', 'SOFTSHELL', 'PILE', 'FLEECE', 'MAXI', 'MINI', 'MIDI'
+    // Lista COMPLETA di TUTTI i nomi possibili da cercare
+    const allPossibleNames = [
+        'AURORA', 'LUNA', 'STELLA', 'ALBA', 'CHIARA', 'SERENA', 'MARINA', 'ELENA',
+        'SOFIA', 'GIULIA', 'MARTINA', 'GIORGIA', 'SARA', 'EMMA', 'GRETA', 'MARTA',
+        'ANNA', 'FRANCESCA', 'VALENTINA', 'ALESSIA', 'BIANCA', 'GINEVRA', 'BEATRICE',
+        'REBECCA', 'GAIA', 'ARIANNA', 'CAMILLA', 'ELISA', 'ALICE', 'CARLOTTA', 'MATILDE',
+        'VITTORIA', 'NOEMI', 'NICOLE', 'LUDOVICA', 'MARGHERITA', 'AGNESE', 'CATERINA',
+        'ILARIA', 'IRIS', 'DALIA', 'ORCHIDEA', 'MIMOSA', 'GARDENIA', 'CAMELIA', 'AZALEA',
+        'MAGNOLIA', 'PEONIA', 'LAVANDA', 'GINESTRA', 'EDERA', 'FELCE', 'BETULLA', 'QUERCIA',
+        'PERLA', 'AMBRA', 'GIADA', 'OPALE', 'RUBINO', 'ZAFFIRO', 'CORALLO', 'CRISTALLO',
+        'DIAMANTE', 'SMERALDO', 'AGATA', 'AMETISTA', 'TOPAZIO', 'ACQUAMARINA', 'ONICE',
+        'ARIA', 'BREZZA', 'RUGIADA', 'NEBBIA', 'PIOGGIA', 'NEVE', 'BRINA', 'TEMPESTA',
+        'ONDA', 'MAREA', 'SCHIUMA', 'CONCHIGLIA', 'SABBIA', 'SCOGLIERA', 'LAGUNA', 'BAIA',
+        'NUVOLA', 'CIELO', 'COMETA', 'GALASSIA', 'ECLISSI', 'ZENITH', 'ORIZZONTE', 'TRAMONTO',
+        'ARMONIA', 'MELODIA', 'SINFONIA', 'CADENZA', 'ACCORDO', 'RITMO', 'ECO', 'SILENZIO',
+        'DAFNE', 'PENELOPE', 'CASSANDRA', 'ELETTRA', 'PANDORA', 'ANDROMEDA', 'CALLIOPE', 'ATENA',
+        'DIANA', 'VENERE', 'MINERVA', 'FLORA', 'FAUNA', 'TERRA', 'GIUNONE', 'VESTA'
     ];
     
-    // Pattern UNIVERSALE: "QUALSIASI_BRAND - TIPO NOME"
-    const universalPattern = new RegExp(
-        `^[^-–]+[-–]\\s*(?:${productTypes.join('|')})\\s+([A-Z]+)(?:\\s|$|-|,|\\.|;)`, 
-        'i'
-    );
-    
-    const universalMatch = title.match(universalPattern);
-    if (universalMatch && universalMatch[1]) {
-        const name = universalMatch[1];
-        if (name.length >= 3 && name.length <= 20 && !/\d/.test(name)) {
-            const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    // STRATEGIA SEMPLICE: Cerca ogni nome possibile nel titolo
+    // Non importa cosa c'è prima o dopo, se trova VENERE estrae Venere
+    for (const possibleName of allPossibleNames) {
+        // Usa word boundary per evitare match parziali (es. VENERE in VENEREOLOGIA)
+        const regex = new RegExp(`\\b${possibleName}\\b`, 'i');
+        if (regex.test(titleUpper)) {
+            const properName = possibleName.charAt(0).toUpperCase() + possibleName.slice(1).toLowerCase();
             
-            if (shouldDebug) {
-                console.log(`🎯 Universal Pattern: "${originalTitle}" → "${properName}"`);
+            // Log per debug
+            if (['VENERE', 'DIANA', 'FLORA', 'RUGIADA', 'CAMILLA', 'MARTA'].includes(possibleName)) {
+                console.log(`✅ Trovato "${properName}" in: "${originalTitle}"`);
             }
             
             return properName;
         }
     }
     
-    // Pattern secondario: cerca tipo prodotto seguito da nome OVUNQUE nel titolo
-    const secondaryPattern = new RegExp(
-        `(?:${productTypes.join('|')})\\s+([A-Z]{3,20})(?:\\s|$|-|,|\\.|;)`, 
-        'i'
-    );
-    
-    const secondaryMatch = title.match(secondaryPattern);
-    if (secondaryMatch && secondaryMatch[1]) {
-        const name = secondaryMatch[1];
-        if (!/\d/.test(name) && !['CON', 'THE', 'AND', 'FOR', 'WITH', 'NEW', 'OLD'].includes(name)) {
-            const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-            
-            if (shouldDebug) {
-                console.log(`🎯 Secondary Pattern: "${originalTitle}" → "${properName}"`);
-            }
-            
-            return properName;
-        }
-    }
-    
-    // Pattern per formati alternativi: "TIPO NOME - BRAND" o simili
-    const parts = title.split(/[-–]/);
-    for (const part of parts) {
-        const trimmedPart = part.trim();
-        const partMatch = trimmedPart.match(new RegExp(`(?:${productTypes.join('|')})\\s+([A-Z]{3,20})(?:\\s|$)`, 'i'));
-        if (partMatch && partMatch[1]) {
-            const name = partMatch[1];
-            if (!/\d/.test(name)) {
-                const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-                
-                if (shouldDebug) {
-                    console.log(`🎯 Part Pattern: "${originalTitle}" → "${properName}" (from part: "${trimmedPart}")`);
-                }
-                
-                return properName;
-            }
-        }
-    }
-    
-    // Ultimo tentativo: se il titolo contiene una parola che sappiamo essere un nome
-    const knownNames = [
-        'RUBINO', 'MARINA', 'AURORA', 'LUNA', 'STELLA', 'ALBA', 'CHIARA', 'SERENA',
-        'ELENA', 'SOFIA', 'GIULIA', 'MARTINA', 'GIORGIA', 'SARA', 'EMMA', 'GRETA',
-        'MARTA', 'ANNA', 'FRANCESCA', 'VALENTINA', 'ALESSIA', 'VIOLA', 'BIANCA',
-        'GINEVRA', 'BEATRICE', 'REBECCA', 'GAIA', 'ARIANNA', 'CAMILLA', 'ELISA',
-        'ALICE', 'CARLOTTA', 'MATILDE', 'VITTORIA', 'NOEMI', 'NICOLE', 'ROSA',
-        'IRIS', 'DALIA', 'ORCHIDEA', 'MIMOSA', 'GARDENIA', 'CAMELIA', 'AZALEA',
-        'MAGNOLIA', 'PEONIA', 'LAVANDA', 'PERLA', 'AMBRA', 'GIADA', 'OPALE',
-        'ZAFFIRO', 'CORALLO', 'CRISTALLO', 'DIAMANTE', 'SMERALDO', 'TURCHESE',
-        'RUGIADA', 'NEBBIA', 'PIOGGIA', 'NEVE', 'BRINA', 'TEMPESTA', 'ONDA',
-        'MAREA', 'SCHIUMA', 'CONCHIGLIA', 'SABBIA', 'ARIA', 'BREZZA', 'CIELO'
-    ];
-    
-    // Cerca nomi conosciuti nel titolo
-    for (const knownName of knownNames) {
-        if (title.includes(knownName)) {
-            const properName = knownName.charAt(0).toUpperCase() + knownName.slice(1).toLowerCase();
-            
-            if (shouldDebug) {
-                console.log(`🎯 Known Name Found: "${originalTitle}" → "${properName}"`);
-            }
-            
-            return properName;
-        }
-    }
-    
-    if (shouldDebug) {
-        console.log(`❌ No match for: "${originalTitle}"`);
-    }
-    
+    // Se non trova nessun nome conosciuto
+    console.log(`❌ Nessun nome trovato in: "${originalTitle}"`);
     return null;
 }
 
@@ -323,24 +259,32 @@ app.post('/api/shopify/products', async (req, res) => {
         
         const uniqueNames = Array.from(names).sort();
         
-        // Log dettagliati per debug
+        // Log dettagliati con focus su VENERE
         console.log(`\n📊 REPORT ESTRAZIONE NOMI:`);
         console.log(`   Totale prodotti analizzati: ${products.length}`);
         console.log(`   Nomi unici estratti: ${uniqueNames.length}`);
         console.log(`   Prodotti per brand:`, brandCount);
         
-        // Verifica nomi specifici
-        const checkNames = ['Rubino', 'Rugiada', 'Camilla', 'Marta', 'Marina'];
+        // Verifica nomi specifici (FOCUS SU VENERE)
+        const checkNames = ['Rubino', 'Rugiada', 'Camilla', 'Marta', 'Marina', 'Venere', 'Diana', 'Flora', 'Minerva', 'Terra'];
         console.log(`\n🔍 VERIFICA NOMI CRITICI:`);
         checkNames.forEach(name => {
             if (uniqueNames.includes(name)) {
                 console.log(`   ✅ ${name} TROVATO nei prodotti`);
-                const example = debugExamples.find(ex => ex.extracted === name);
-                if (example) {
-                    console.log(`      Esempio: "${example.title}"`);
-                }
+                const examples = debugExamples.filter(ex => ex.extracted === name);
+                examples.slice(0, 3).forEach(ex => {
+                    console.log(`      → "${ex.title}"`);
+                });
             } else {
                 console.log(`   ❌ ${name} NON TROVATO`);
+                // Cerca se esiste nel titolo ma non è stato estratto
+                const notExtracted = products.filter(p => p.title.toUpperCase().includes(name.toUpperCase()));
+                if (notExtracted.length > 0) {
+                    console.log(`      ⚠️ ERRORE ESTRAZIONE! Trovato in ${notExtracted.length} prodotti:`);
+                    notExtracted.slice(0, 3).forEach(p => {
+                        console.log(`         - "${p.title}"`);
+                    });
+                }
             }
         });
         
@@ -467,9 +411,15 @@ app.post('/api/generate-names', async (req, res) => {
 // Endpoint di test per verificare estrazione
 app.get('/api/test-extraction', async (req, res) => {
     try {
-        // Esempi di titoli reali da testare - MULTI BRAND
+        // Esempi di titoli reali da testare - INCLUSO COMPLETO VENERE
         const testTitles = [
-            // LOFT.73
+            // Test specifico per VENERE
+            'LOFT.73 - COMPLETO VENERE',
+            'COMPLETO VENERE',
+            'VENERE COMPLETO',
+            'ABITO VENERE LOFT73',
+            
+            // LOFT.73 standard
             'LOFT.73 - PANTALONE RUGIADA',
             'LOFT.73 - ABITO CAMILLA',
             'LOFT.73 - BORSA CAMILLA',
@@ -477,26 +427,17 @@ app.get('/api/test-extraction', async (req, res) => {
             'LOFT.73 - PANTALONE MARINA',
             'LOFT.73 - MAGLIA RUBINO',
             
-            // ALTRI BRAND - stesso formato
+            // Altri formati
             'ANGELA DAVIS - ABITO STELLA',
             'ANGELA DAVIS - BORSA RUGIADA',
-            'ANGELA DAVIS - PANTALONE SOFIA',
-            'ANTONY MORATO - MAGLIA MARCO',
-            'ANTONY MORATO - GIACCA ALESSANDRO',
-            'GUESS - VESTITO AURORA',
-            'FRACOMINA - GONNA LUNA',
-            'ONLY - JEANS SARA',
-            'DIXIE - TOP VIOLA',
-            'PLEASE - PANTALONE GIADA',
-            'IMPERIAL - CAMICIA PERLA',
-            'SURKANA - CARDIGAN AMBRA',
-            'MOTEL - ABITO IRIS',
-            'WHITE WISE - BLUSA ROSA',
-            
-            // Formati alternativi
             'PANTALONE AURORA - LOFT73',
             'BORSA LUNA ANGELA DAVIS',
-            'MAGLIA STELLA ANTONY MORATO'
+            
+            // Test estremi
+            'VENERE',
+            'xxxVENERExxx',
+            'PRODOTTO VENERE SPECIALE',
+            'SUPER VENERE DELUXE'
         ];
         
         const results = testTitles.map(title => {
@@ -509,21 +450,12 @@ app.get('/api/test-extraction', async (req, res) => {
             };
         });
         
-        // Raggruppa per brand
-        const byBrand = {};
-        results.forEach(r => {
-            const brand = r.title.split(/[-–]/)[0].trim();
-            if (!byBrand[brand]) byBrand[brand] = [];
-            byBrand[brand].push(r);
-        });
-        
         res.json({
-            test: 'Multi-Brand Extraction Test',
+            test: 'Extraction Test - Focus VENERE',
             totalTested: results.length,
             successful: results.filter(r => r.success).length,
             failed: results.filter(r => !r.success).length,
-            byBrand,
-            allResults: results
+            results: results
         });
         
     } catch (error) {
@@ -571,6 +503,48 @@ app.get('/api/test-names/:season', async (req, res) => {
             brandBreakdown: brandBreakdown,
             names: Array.from(names).sort(),
             productExamples: examples
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Endpoint per verificare nomi specifici
+app.get('/api/check-name/:name', async (req, res) => {
+    const { name } = req.params;
+    const searchName = name.toUpperCase();
+    
+    try {
+        console.log(`🔍 Cerco prodotti con nome: ${name}`);
+        
+        // Cerca in tutti i prodotti (senza filtro stagione)
+        const url = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250`;
+        const response = await fetch(url, {
+            headers: {
+                'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        const data = await response.json();
+        const found = [];
+        
+        data.products.forEach(product => {
+            if (product.title.toUpperCase().includes(searchName)) {
+                found.push({
+                    title: product.title,
+                    vendor: product.vendor,
+                    tags: product.tags
+                });
+            }
+        });
+        
+        res.json({
+            searchedName: name,
+            found: found.length > 0,
+            count: found.length,
+            examples: found.slice(0, 5)
         });
         
     } catch (error) {
