@@ -1,6 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 
+// Polyfill per fetch se necessario (Node < 18)
+if (!global.fetch) {
+    global.fetch = require('node-fetch');
+}
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -1073,6 +1078,121 @@ const namePool = {
 // Cache per memorizzare i nomi già usati (per sessione)
 let usedNamesCache = new Set();
 let allUsedNames = []; // Array per tenere traccia storica
+let historicalNamesCache = {}; // Cache per nomi storici per stagione
+
+// Funzione per ottenere TUTTI i prodotti da Shopify con paginazione
+async function fetchAllShopifyProducts(seasonTag = null) {
+    if (!SHOPIFY_ACCESS_TOKEN) {
+        return [];
+    }
+    
+    let allProducts = [];
+    let page_info = null;
+    let hasNextPage = true;
+    
+    while (hasNextPage) {
+        let url;
+        if (page_info) {
+            url = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?page_info=${page_info}&limit=250&fields=id,title,tags`;
+        } else {
+            url = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250&fields=id,title,tags`;
+        }
+        
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                console.error(`Errore Shopify API: ${response.status}`);
+                break;
+            }
+            
+            const data = await response.json();
+            
+            // Filtra per stagione se specificata
+            if (seasonTag) {
+                const filtered = data.products.filter(product => 
+                    product.tags && product.tags.includes(seasonTag)
+                );
+                allProducts = allProducts.concat(filtered);
+            } else {
+                allProducts = allProducts.concat(data.products);
+            }
+            
+            // Controlla se c'è una pagina successiva
+            const linkHeader = response.headers.get('Link');
+            if (linkHeader && linkHeader.includes('rel="next"')) {
+                const matches = linkHeader.match(/page_info=([^&>]+).*?rel="next"/);
+                if (matches && matches[1]) {
+                    page_info = matches[1];
+                } else {
+                    hasNextPage = false;
+                }
+            } else {
+                hasNextPage = false;
+            }
+        } catch (error) {
+            console.error('Errore durante il recupero prodotti:', error);
+            hasNextPage = false;
+        }
+    }
+    
+    return allProducts;
+}
+
+// Funzione aggiornata per ottenere nomi storici da Shopify per tutte le stagioni
+async function fetchHistoricalNames() {
+    const seasons = ['24E', '24I', '25E', '25I', '26E', '26I'];
+    const allHistoricalNames = new Set();
+    
+    if (!SHOPIFY_ACCESS_TOKEN) {
+        console.log('Shopify non configurato - modalità demo');
+        return allHistoricalNames;
+    }
+    
+    try {
+        // Recupera TUTTI i prodotti in una sola chiamata
+        const allProducts = await fetchAllShopifyProducts();
+        console.log(`Recuperati ${allProducts.length} prodotti totali da Shopify`);
+        
+        // Organizza i prodotti per stagione
+        for (const product of allProducts) {
+            if (product.tags) {
+                const name = product.title.trim();
+                
+                // Aggiungi a set generale
+                allHistoricalNames.add(name);
+                
+                // Aggiungi a cache per stagione
+                for (const seasonTag of seasons) {
+                    if (product.tags.includes(seasonTag)) {
+                        if (!historicalNamesCache[seasonTag]) {
+                            historicalNamesCache[seasonTag] = new Set();
+                        }
+                        historicalNamesCache[seasonTag].add(name);
+                    }
+                }
+            }
+        }
+        
+        // Log risultati per stagione
+        for (const seasonTag of seasons) {
+            const count = historicalNamesCache[seasonTag] ? historicalNamesCache[seasonTag].size : 0;
+            if (count > 0) {
+                console.log(`   - Stagione ${seasonTag}: ${count} nomi unici`);
+            }
+        }
+        
+    } catch (error) {
+        console.error('Errore caricamento nomi storici:', error);
+    }
+    
+    return allHistoricalNames;
+}
 
 // Funzione per ottenere tutti i nomi dal pool
 function getAllPoolNames() {
@@ -1090,7 +1210,7 @@ function getRandomNameFromCategory(category) {
 }
 
 // Funzione per ottenere nomi casuali dal pool
-function getRandomNames(count, existingNames = [], mode = 'mixed', category = null) {
+async function getRandomNames(count, existingNames = [], mode = 'mixed', category = null, currentSeason = null) {
     let availablePool = [];
     
     // Se è specificata una categoria, usa solo quella
@@ -1103,21 +1223,25 @@ function getRandomNames(count, existingNames = [], mode = 'mixed', category = nu
     
     const existingNamesLower = existingNames.map(n => n.toLowerCase().trim());
     
-    // Filtra i nomi già usati
+    // Ottieni i nomi storici da Shopify se non già caricati
+    let historicalNames = await fetchHistoricalNames();
+    const historicalNamesArray = Array.from(historicalNames);
+    
+    // Filtra i nomi già usati nella stagione corrente
     const availableNewNames = availablePool.filter(name => 
         !existingNamesLower.includes(name.toLowerCase().trim()) &&
-        !allUsedNames.some(item => item.name.toLowerCase() === name.toLowerCase())
+        !historicalNamesArray.some(histName => histName.toLowerCase() === name.toLowerCase())
     );
     
-    // Nomi da altre stagioni (già usati ma non in questa stagione)
-    const namesFromOtherSeasons = allUsedNames
-        .filter(item => !existingNamesLower.includes(item.name.toLowerCase().trim()))
-        .map(item => item.name);
+    // Nomi da altre stagioni (già usati in passato ma NON in questa stagione)
+    let namesFromOtherSeasons = historicalNamesArray.filter(name => 
+        !existingNamesLower.includes(name.toLowerCase().trim())
+    );
     
-    // Se è specificata una categoria, filtra anche i nomi riutilizzati
+    // Se è specificata una categoria, filtra anche i nomi riutilizzati per quella categoria
     if (category && namePool[category]) {
         const categoryNamesLower = namePool[category].map(n => n.toLowerCase());
-        namesFromOtherSeasons.filter(name => 
+        namesFromOtherSeasons = namesFromOtherSeasons.filter(name => 
             categoryNamesLower.includes(name.toLowerCase())
         );
     }
@@ -1138,8 +1262,21 @@ function getRandomNames(count, existingNames = [], mode = 'mixed', category = nu
                 id: Math.random().toString(36).substring(7)
             }));
         sources.pool = selectedNames.length;
+        
+        if (selectedNames.length === 0) {
+            console.warn('Nessun nome nuovo disponibile nel pool selezionato');
+        }
     } else if (mode === 'reused') {
         // Solo nomi già usati in altre stagioni
+        if (namesFromOtherSeasons.length === 0) {
+            console.warn('Nessun nome riutilizzabile trovato. Verifica la connessione Shopify.');
+            return { 
+                names: [], 
+                sources: { pool: 0, otherSeasons: 0 },
+                warning: 'Nessun nome riutilizzabile trovato. I nomi riutilizzati devono provenire da prodotti esistenti su Shopify.'
+            };
+        }
+        
         const shuffled = [...namesFromOtherSeasons].sort(() => 0.5 - Math.random());
         selectedNames = shuffled.slice(0, Math.min(count, shuffled.length))
             .map(name => ({
@@ -1162,37 +1299,33 @@ function getRandomNames(count, existingNames = [], mode = 'mixed', category = nu
                 id: Math.random().toString(36).substring(7)
             }));
         
-        // Prendi nomi riutilizzati
-        const shuffledReused = [...namesFromOtherSeasons].sort(() => 0.5 - Math.random());
-        const reusedNames = shuffledReused.slice(0, Math.min(reusedCount, shuffledReused.length))
-            .map(name => ({
-                name,
-                source: 'other-seasons',
-                id: Math.random().toString(36).substring(7)
-            }));
+        // Prendi nomi riutilizzati (solo se esistono)
+        let reusedNames = [];
+        if (namesFromOtherSeasons.length > 0) {
+            const shuffledReused = [...namesFromOtherSeasons].sort(() => 0.5 - Math.random());
+            reusedNames = shuffledReused.slice(0, Math.min(reusedCount, shuffledReused.length))
+                .map(name => ({
+                    name,
+                    source: 'other-seasons',
+                    id: Math.random().toString(36).substring(7)
+                }));
+        }
         
         selectedNames = [...newNames, ...reusedNames].sort(() => 0.5 - Math.random());
         sources.pool = newNames.length;
         sources.otherSeasons = reusedNames.length;
     }
     
-    // Aggiorna la cache
-    selectedNames.forEach(item => {
-        if (!allUsedNames.some(used => used.name.toLowerCase() === item.name.toLowerCase())) {
-            allUsedNames.push({
-                name: item.name,
-                season: 'current',
-                timestamp: new Date().toISOString()
-            });
-        }
-    });
-    
     // Se non abbiamo abbastanza nomi, aggiungi un avviso
     if (selectedNames.length < count) {
         console.warn(`Richiesti ${count} nomi, ma solo ${selectedNames.length} disponibili con modalità ${mode}`);
     }
     
-    return { names: selectedNames, sources };
+    return { 
+        names: selectedNames, 
+        sources,
+        totalHistoricalNames: historicalNames.size
+    };
 }
 
 // ENDPOINTS
@@ -1215,7 +1348,7 @@ app.get('/', (req, res) => {
 });
 
 // Endpoint per generare nomi
-app.post('/api/generate-names', (req, res) => {
+app.post('/api/generate-names', async (req, res) => {
     try {
         const { count = 20, existingNames = [], season, mode = 'mixed', category = null } = req.body;
         
@@ -1236,9 +1369,24 @@ app.post('/api/generate-names', (req, res) => {
         }
         
         // Genera i nomi
-        const result = getRandomNames(count, existingNames, mode, category);
+        const result = await getRandomNames(count, existingNames, mode, category, season);
+        
+        // Se modalità reused e nessun nome trovato, restituisci errore chiaro
+        if (mode === 'reused' && result.names.length === 0) {
+            return res.json({
+                success: false,
+                names: [],
+                sources: result.sources,
+                warning: result.warning || 'Nessun nome riutilizzabile trovato. Assicurati che Shopify sia configurato correttamente e che esistano prodotti nelle stagioni precedenti.',
+                totalRequested: count,
+                totalGenerated: 0
+            });
+        }
         
         console.log(`Generati ${result.names.length} nomi per stagione ${season} (modalità: ${mode}, categoria: ${category || 'tutte'})`);
+        if (result.totalHistoricalNames) {
+            console.log(`Totale nomi storici disponibili: ${result.totalHistoricalNames}`);
+        }
         
         res.json({
             success: true,
@@ -1248,7 +1396,8 @@ app.post('/api/generate-names', (req, res) => {
             mode: mode,
             category: category,
             totalRequested: count,
-            totalGenerated: result.names.length
+            totalGenerated: result.names.length,
+            warning: result.warning
         });
         
     } catch (error) {
@@ -1291,44 +1440,45 @@ app.post('/api/shopify/products', async (req, res) => {
             });
         }
         
-        // Chiamata a Shopify API
-        const shopifyUrl = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250&fields=id,title,tags,vendor`;
-        
-        const response = await fetch(shopifyUrl, {
-            headers: {
-                'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
-                'Content-Type': 'application/json'
-            }
-        });
-        
-        if (!response.ok) {
-            throw new Error(`Shopify API error: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        // Filtra prodotti per stagione e estrai nomi
-        const seasonProducts = data.products.filter(product => 
-            product.tags && product.tags.includes(seasonTag)
-        );
+        // Recupera TUTTI i prodotti per la stagione con paginazione
+        const allSeasonProducts = await fetchAllShopifyProducts(seasonTag);
         
         // Estrai nomi unici
-        const uniqueNames = [...new Set(seasonProducts.map(p => p.title.trim()))];
+        const uniqueNames = [...new Set(allSeasonProducts.map(p => p.title.trim()))];
         
-        // Conta prodotti per brand
+        // Salva i nomi nella cache storica per la stagione
+        if (!historicalNamesCache[seasonTag]) {
+            historicalNamesCache[seasonTag] = new Set();
+        }
+        uniqueNames.forEach(name => {
+            historicalNamesCache[seasonTag].add(name);
+        });
+        
+        // Conta prodotti per brand (solo sui primi 250 per performance)
         const brandBreakdown = {};
-        seasonProducts.forEach(product => {
+        allSeasonProducts.slice(0, 250).forEach(product => {
             const brand = product.vendor || 'Unknown';
             brandBreakdown[brand] = (brandBreakdown[brand] || 0) + 1;
         });
+        
+        // Carica anche i nomi storici se non già fatto
+        if (Object.keys(historicalNamesCache).length <= 1) {
+            console.log('Caricamento nomi storici in background...');
+            fetchHistoricalNames().then(names => {
+                console.log(`Caricati ${names.size} nomi storici totali`);
+            });
+        }
         
         res.json({
             success: true,
             names: uniqueNames,
             count: uniqueNames.length,
-            totalProducts: seasonProducts.length,
+            totalProducts: allSeasonProducts.length,
             seasonTag: seasonTag,
-            brandBreakdown: brandBreakdown
+            brandBreakdown: brandBreakdown,
+            message: allSeasonProducts.length > 250 ? 
+                `Caricati tutti i ${allSeasonProducts.length} prodotti (paginazione attiva)` : 
+                null
         });
         
     } catch (error) {
@@ -1362,16 +1512,18 @@ app.get('/api/stats/pool', (req, res) => {
 });
 
 // Endpoint per statistiche di utilizzo
-app.get('/api/stats/usage', (req, res) => {
+app.get('/api/stats/usage', async (req, res) => {
+    const historicalNames = await fetchHistoricalNames();
+    
     res.json({
         success: true,
-        totalUsed: allUsedNames.length,
-        uniqueUsed: new Set(allUsedNames.map(item => item.name.toLowerCase())).size,
-        bySource: {
-            pool: allUsedNames.filter(item => !item.reused).length,
-            otherSeasons: allUsedNames.filter(item => item.reused).length
-        },
-        lastGenerated: allUsedNames.slice(-10).map(item => item.name)
+        totalHistoricalNames: historicalNames.size,
+        historicalBySeasonCount: Object.fromEntries(
+            Object.entries(historicalNamesCache).map(([season, names]) => [season, names.size])
+        ),
+        message: historicalNames.size === 0 ? 
+            'Nessun nome storico caricato. Verifica la configurazione Shopify.' : 
+            `${historicalNames.size} nomi storici disponibili per il riutilizzo`
     });
 });
 
@@ -1390,8 +1542,33 @@ app.get('/api/categories', (req, res) => {
     });
 });
 
+// Endpoint per ottenere nomi storici disponibili
+app.get('/api/historical-names', async (req, res) => {
+    try {
+        const historicalNames = await fetchHistoricalNames();
+        const bySeasonCount = {};
+        
+        for (const [season, names] of Object.entries(historicalNamesCache)) {
+            bySeasonCount[season] = names.size;
+        }
+        
+        res.json({
+            success: true,
+            totalHistoricalNames: historicalNames.size,
+            bySeasonCount: bySeasonCount,
+            sample: Array.from(historicalNames).slice(0, 20)
+        });
+    } catch (error) {
+        console.error('Errore recupero nomi storici:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Errore durante il recupero dei nomi storici'
+        });
+    }
+});
+
 // Avvio server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`
     🚀 Loft.73 Name Generator API
     ✅ Server attivo su porta ${PORT}
@@ -1404,5 +1581,14 @@ app.listen(PORT, () => {
     console.log('\n📋 Categorie e conteggi:');
     for (const category in namePool) {
         console.log(`   - ${category}: ${namePool[category].length} nomi`);
+    }
+    
+    // Precarica i nomi storici se Shopify è configurato
+    if (SHOPIFY_ACCESS_TOKEN) {
+        console.log('\n⏳ Caricamento nomi storici da Shopify...');
+        const historicalNames = await fetchHistoricalNames();
+        console.log(`✅ Caricati ${historicalNames.size} nomi storici totali`);
+    } else {
+        console.log('\n⚠️  Shopify non configurato - modalità demo attiva');
     }
 });
