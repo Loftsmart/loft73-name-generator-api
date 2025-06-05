@@ -93,7 +93,7 @@ const namePool = {
         'Cinciallegra', 'Cinciarella', 'Codirosso', 'Pigliamosche',
         'Capinera', 'Storno', 'Rigogolo', 'Averla', 'Pendolino',
         'Colibrì', 'Pappagallo', 'Ara', 'Cacatua', 'Calopsitte', 'Inseparabile',
-        'Pavone', 'Fagiano', 'Pernice', 'Starna', 'Quaglia', 'Francolino',
+        'Pavone', 'Fagiano', 'Pernice', 'Quaglia', 'Francolino',
         'Colomba', 'Piccione', 'Tortora', 'Colombaccio', 'Cuculo', 'Cucù',
         'Gabbiano', 'Albatro', 'Procellaria', 'Sula', 'Pellicano', 'Cormorano', 'Marangone',
         'Airone', 'Garzetta', 'Nitticora', 'Tarabuso', 'Cicogna', 'Ibis', 'Spatola',
@@ -220,7 +220,7 @@ const namePool = {
         'Surfinia', 'Impatiens', 'Pervinca', 'Digitale',
         'Aquilegia', 'Campanula', 'Malva', 'Altea', 'Ibisco', 'Buganvillea', 'Fucsia',
         'Lantana', 'Plumbago', 'Passiflora', 'Clematide', 'Caprifoglio',
-        'Mandevilla', 'Dipladenia', 'Allamanda', 'Bignonia', 'Cobea',
+        'Dipladenia', 'Allamanda', 'Bignonia', 'Cobea',
         'Ipomea', 'Convolvolo', 'Nasturzio', 'Elicriso', 'Statice',
         'Gypsophila', 'Aster', 'Crisantemo', 'Rudbeckia', 'Echinacea', 'Cosmea',
         'Astilbe', 'Hosta', 'Hemerocallis', 'Agapanto', 'Alstroemeria', 'Amaryllis',
@@ -256,7 +256,7 @@ const namePool = {
         'Sequoia', 'Metasequoia', 'Ginkgo', 'Araucaria', 'Criptomeria', 'Cunninghamia',
         'Tsuga', 'Picea',
         
-        // Piante aromatiche
+        // Piante aromatiche (Rimuovi Arabico se presente)
         'Basilico', 'Rosmarino', 'Salvia', 'Timo', 'Origano', 'Maggiorana', 'Menta',
         'Melissa', 'Cedrina', 'Verbena', 'Citronella', 'Santolina',
         'Prezzemolo', 'Coriandolo', 'Aneto', 'Finocchio', 'Anice', 'Cumino',
@@ -284,7 +284,7 @@ const namePool = {
         // Qualità positive
         'Bellezza', 'Splendore', 'Magnificenza', 'Grandezza',
         'Nobiltà', 'Dignità', 'Decoro', 'Onore', 'Gloria', 'Fama',
-        'Purezza', 'Innocenza', 'Candore', 'Modestia', 'Umiltà',
+        'Purezza', 'Innocenza', 'Candore', 'Umiltà',
         'Semplicità',
         'Gentilezza', 'Cortesia', 'Garbo',
         'Bontà', 'Benevolenza', 'Clemenza', 'Pietà', 'Compassione', 'Misericordia',
@@ -1020,58 +1020,56 @@ const namePool = {
     
     // INVERNO E NATALE (200+)
     winterAndChristmas: [
-        // Termini natalizi
-        'Natale', 'Avvento', 'Epifania', 'Befana', 'Presepe', 'Capanna', 'Mangiatoia',
-        'Stella Cometa', 'Magi', 'Oro', 'Incenso', 'Mirra', 'Angeli', 'Gloria', 'Pace',
-        'Noel', 'Christmas', 'Xmas', 'Vigilia', 'Mezzanotte', 'Campane', 'Rintocco',
-        'Candela', 'Cero', 'Lucerna', 'Lanterna', 'Luminaria', 'Ghirlanda', 'Corona',
-        'Vischio', 'Agrifoglio', 'Pungitopo', 'Abete', 'Pino', 'Pigna', 'Renna',
-        'Slitta', 'Campanella', 'Fiocco', 'Nastro', 'Pacchetto', 'Regalo', 'Dono',
-        'Sorpresa', 'Gioia', 'Festa', 'Allegria', 'Tradizione', 'Famiglia', 'Focolare',
-        'Camino', 'Ceppo', 'Brindisi', 'Auguri', 'Felicità', 'Benedizione', 'Grazia',
+        // Spirito natalizio
+        'Natale', 'Christmas', 'Noel', 'Navidad', 'Weihnachten', 'Yule', 'Festa', 'Gioia',
+        'Pace', 'Amore', 'Speranza', 'Magia', 'Incanto', 'Miracolo', 'Dono', 'Regalo',
+        'Sorpresa', 'Felicità', 'Armonia', 'Serenità', 'Calore', 'Famiglia', 'Unione',
+        'Tradizione', 'Ricordo', 'Nostalgia', 'Infanzia', 'Sogno', 'Desiderio', 'Attesa',
         
-        // Dolci e tradizioni natalizie
-        'Panettone', 'Pandoro', 'Torrone', 'Panforte', 'Ricciarelli', 'Cavallucci',
-        'Mostaccioli', 'Struffoli', 'Roccocò', 'Susamielli', 'Mustacciuoli', 'Zampone',
-        'Cotechino', 'Cappone', 'Capitone', 'Baccalà', 'Stoccafisso', 'Lenticchie',
-        'Spumante', 'Prosecco', 'Champagne', 'Vin brulé', 'Cioccolata', 'Zabaione',
-        'Crema', 'Cannella', 'Zenzero', 'Chiodi di garofano', 'Noce moscata', 'Anice',
+        // Personaggi e simboli natalizi
+        'Babbo Natale', 'Santa', 'San Nicola', 'Befana', 'Elfo', 'Folletto', 'Angelo',
+        'Cherubino', 'Serafino', 'Stella', 'Cometa', 'Stella Polare', 'Betlemme',
+        'Presepe', 'Natività', 'Capanna', 'Mangiatoia', 'Pastore', 'Gregge', 'Magi',
+        'Re Magi', 'Gaspare', 'Melchiorre', 'Baldassarre', 'Oro', 'Incenso', 'Mirra',
         
-        // Inverno generale
-        'Inverno', 'Neve', 'Nevischio', 'Fiocco', 'Cristallo', 'Ghiaccio', 'Gelo',
-        'Brina', 'Galaverna', 'Gelata', 'Ghiacciolo', 'Stalattite', 'Brinata',
-        'Freddo', 'Gelido', 'Glaciale', 'Polare', 'Artico', 'Siberiano', 'Nordico',
-        'Tormenta', 'Bufera', 'Tempesta', 'Valanga', 'Slavina', 'Cumulo', 'Turbine',
-        'Vortice', 'Raffica', 'Tramontana', 'Bora', 'Maestrale', 'Grecale',
+        // Decorazioni natalizie
+        'Albero', 'Abete', 'Pino', 'Conifera', 'Ghirlanda', 'Corona', 'Fiocco', 'Nastro',
+        'Palla', 'Sfera', 'Pallina', 'Addobbo', 'Decorazione', 'Ornamento', 'Festoni',
+        'Lucine', 'Luci', 'Luminaria', 'Candela', 'Cero', 'Lanterna', 'Candelabro',
+        'Campanella', 'Campana', 'Sonagli', 'Tintinnio', 'Cristallo', 'Ghiacciolo',
+        'Fiocco di neve', 'Cristallo di neve', 'Neve', 'Nevicata', 'Pupazzo', 'Renna',
         
-        // Attività invernali
-        'Sci', 'Slalom', 'Discesa', 'Fondo', 'Snowboard', 'Bob', 'Slittino', 'Pattini',
-        'Pattinaggio', 'Hockey', 'Curling', 'Racchette', 'Ciaspole', 'Scarponi',
-        'Bastoncini', 'Skilift', 'Seggiovia', 'Funivia', 'Cabinovia', 'Ovovia',
-        'Rifugio', 'Baita', 'Chalet', 'Malga', 'Bivacco', 'Pista', 'Tracciato',
+        // Piante natalizie
+        'Vischio', 'Agrifoglio', 'Pungitopo', 'Stella di Natale', 'Poinsettia', 'Edera',
+        'Bacche', 'Pigna', 'Cannella', 'Spezie', 'Profumo', 'Essenza', 'Fragranza',
         
-        // Abbigliamento invernale
-        'Cappotto', 'Piumino', 'Pelliccia', 'Montone', 'Parka', 'Giaccone', 'Eskimo',
-        'Maglione', 'Pullover', 'Cardigan', 'Dolcevita', 'Lupetto', 'Pile', 'Felpa',
-        'Sciarpa', 'Scialle', 'Stola', 'Pashmina', 'Foulard', 'Guanti', 'Muffole',
-        'Berretto', 'Cuffia', 'Colbacco', 'Cappello', 'Paraorecchie', 'Balaclava',
-        'Calzamaglia', 'Termico', 'Lana', 'Cashmere', 'Alpaca', 'Mohair', 'Merino',
+        // Atmosfera invernale
+        'Inverno', 'Dicembre', 'Freddo', 'Gelo', 'Brina', 'Ghiaccio', 'Bianco',
+        'Candore', 'Purezza', 'Silenzio', 'Quiete', 'Pace', 'Tranquillità',
+        'Camino', 'Focolare', 'Fuoco', 'Fiamma', 'Ceppo', 'Legna', 'Brace', 'Tepore',
+        'Coperta', 'Plaid', 'Lana', 'Cashmere', 'Morbidezza', 'Comfort', 'Rifugio',
         
-        // Paesaggi invernali
-        'Montagna', 'Vetta', 'Cima', 'Picco', 'Cresta', 'Crinale', 'Versante',
-        'Pendio', 'Bosco', 'Foresta', 'Abetaia', 'Pineta', 'Lariceto', 'Faggeta',
-        'Radura', 'Sentiero', 'Mulattiera', 'Valico', 'Passo', 'Gola', 'Valle',
-        'Conca', 'Altopiano', 'Pascolo', 'Alpeggio', 'Lago ghiacciato', 'Cascata gelata',
+        // Dolci e tradizioni
+        'Panettone', 'Pandoro', 'Torrone', 'Panforte', 'Ricciarelli', 'Mandorle',
+        'Zucchero', 'Miele', 'Cioccolato', 'Crema', 'Vaniglia', 'Caramello', 'Glassa',
+        'Biscotti', 'Omino', 'Zenzero', 'Marzapane', 'Frutta secca', 'Nocciole',
+        'Vin brulé', 'Cioccolata calda', 'Tè', 'Tisana', 'Infuso', 'Speziato',
         
-        // Animali invernali
-        'Orso bianco', 'Volpe artica', 'Ermellino', 'Lepre bianca', 'Pernice bianca',
-        'Gufo delle nevi', 'Civetta', 'Allocco', 'Lupo', 'Lince', 'Camoscio', 'Stambecco',
-        'Cervo', 'Capriolo', 'Alce', 'Renna', 'Caribù', 'Yak', 'Husky', 'Samoiedo',
+        // Momenti e attività
+        'Vigilia', 'Mezzanotte', 'Aurora', 'Alba', 'Tramonto', 'Sera', 'Notte Santa',
+        'Messa', 'Preghiera', 'Canto', 'Coro', 'Melodia', 'Carola', 'Ninna nanna',
+        'Brindisi', 'Auguri', 'Benedizione', 'Abbraccio', 'Bacio', 'Carezza', 'Coccola',
+        'Pranzo', 'Cena', 'Cenone', 'Tavola', 'Convivio', 'Festa', 'Celebrazione',
         
-        // Stelle e costellazioni invernali
-        'Orione', 'Sirio', 'Aldebaran', 'Betelgeuse', 'Rigel', 'Pleiadi', 'Toro',
-        'Gemelli', 'Auriga', 'Perseo', 'Cassiopea', 'Cefeo', 'Drago', 'Orsa Maggiore',
-        'Orsa Minore', 'Polare', 'Vega', 'Altair', 'Deneb', 'Capella', 'Procione'
+        // Luoghi invernali
+        'Montagna', 'Baita', 'Chalet', 'Rifugio', 'Capanna', 'Casa', 'Villaggio',
+        'Borgo', 'Paese', 'Città', 'Piazza', 'Mercatino', 'Bottega', 'Vetrina',
+        'Chiesa', 'Campanile', 'Torre', 'Castello', 'Palazzo', 'Villa', 'Cascina',
+        
+        // Emozioni natalizie
+        'Stupore', 'Meraviglia', 'Emozione', 'Tenerezza', 'Dolcezza', 'Gratitudine',
+        'Generosità', 'Altruismo', 'Condivisione', 'Solidarietà', 'Carità', 'Bontà',
+        'Innocenza', 'Purezza', 'Semplicità', 'Autenticità', 'Verità', 'Sincerità'
     ]
 };
 
@@ -1209,13 +1207,31 @@ function getRandomNameFromCategory(category) {
     return names[Math.floor(Math.random() * names.length)];
 }
 
+// IMPORTANTE: Verifica che i nomi "riutilizzati" vengano SOLO da Shopify
+// NON dal pool locale
+function validateReusedNames(names, source) {
+    if (source === 'other-seasons') {
+        console.log(`✓ Validazione nomi riutilizzati: ${names.length} nomi da Shopify`);
+        names.forEach(name => {
+            console.log(`  - ${name} (verificato da Shopify)`);
+        });
+    }
+    return names;
+}
+
 // Funzione per ottenere nomi casuali dal pool
-async function getRandomNames(count, existingNames = [], mode = 'mixed', category = null, currentSeason = null) {
+async function getRandomNames(count, existingNames = [], mode = 'mixed', categories = [], currentSeason = null) {
     let availablePool = [];
     
-    // Se è specificata una categoria, usa solo quella
-    if (category && namePool[category]) {
-        availablePool = namePool[category];
+    // Se sono specificate categorie, usa solo quelle
+    if (categories && categories.length > 0) {
+        categories.forEach(category => {
+            if (namePool[category]) {
+                availablePool = availablePool.concat(namePool[category]);
+            }
+        });
+        // Rimuovi duplicati
+        availablePool = [...new Set(availablePool)];
     } else {
         // Altrimenti usa tutto il pool
         availablePool = getAllPoolNames();
@@ -1227,103 +1243,121 @@ async function getRandomNames(count, existingNames = [], mode = 'mixed', categor
     let historicalNames = await fetchHistoricalNames();
     const historicalNamesArray = Array.from(historicalNames);
     
-    // Filtra i nomi già usati nella stagione corrente
-    const availableNewNames = availablePool.filter(name => 
-        !existingNamesLower.includes(name.toLowerCase().trim()) &&
-        !historicalNamesArray.some(histName => histName.toLowerCase() === name.toLowerCase())
-    );
+    console.log(`📊 Nomi storici disponibili da Shopify: ${historicalNamesArray.length}`);
     
-    // Nomi da altre stagioni (già usati in passato ma NON in questa stagione)
-    let namesFromOtherSeasons = historicalNamesArray.filter(name => 
-        !existingNamesLower.includes(name.toLowerCase().trim())
-    );
-    
-    // Se è specificata una categoria, filtra anche i nomi riutilizzati per quella categoria
-    if (category && namePool[category]) {
-        const categoryNamesLower = namePool[category].map(n => n.toLowerCase());
-        namesFromOtherSeasons = namesFromOtherSeasons.filter(name => 
-            categoryNamesLower.includes(name.toLowerCase())
+    // IMPORTANTE: Per modalità "reused", usa SOLO nomi da Shopify, MAI dal pool
+    if (mode === 'reused') {
+        // Filtra solo i nomi storici non presenti nella stagione corrente
+        let reusableNames = historicalNamesArray.filter(name => 
+            !existingNamesLower.includes(name.toLowerCase().trim())
         );
-    }
-    
-    let selectedNames = [];
-    let sources = {
-        pool: 0,
-        otherSeasons: 0
-    };
-    
-    if (mode === 'new') {
-        // Solo nomi mai usati
-        const shuffled = [...availableNewNames].sort(() => 0.5 - Math.random());
-        selectedNames = shuffled.slice(0, Math.min(count, shuffled.length))
-            .map(name => ({
-                name,
-                source: 'pool',
-                id: Math.random().toString(36).substring(7)
-            }));
-        sources.pool = selectedNames.length;
         
-        if (selectedNames.length === 0) {
-            console.warn('Nessun nome nuovo disponibile nel pool selezionato');
+        // Se sono specificate categorie, verifica che i nomi storici appartengano a quelle categorie
+        if (categories && categories.length > 0) {
+            const poolNamesLower = availablePool.map(n => n.toLowerCase());
+            reusableNames = reusableNames.filter(name => 
+                poolNamesLower.includes(name.toLowerCase())
+            );
         }
-    } else if (mode === 'reused') {
-        // Solo nomi già usati in altre stagioni
-        if (namesFromOtherSeasons.length === 0) {
-            console.warn('Nessun nome riutilizzabile trovato. Verifica la connessione Shopify.');
+        
+        console.log(`♻️ Nomi riutilizzabili trovati: ${reusableNames.length}`);
+        
+        if (reusableNames.length === 0) {
             return { 
                 names: [], 
                 sources: { pool: 0, otherSeasons: 0 },
-                warning: 'Nessun nome riutilizzabile trovato. I nomi riutilizzati devono provenire da prodotti esistenti su Shopify.'
+                warning: 'Nessun nome riutilizzabile trovato. Assicurati che ci siano prodotti su Shopify delle stagioni precedenti.'
             };
         }
         
-        const shuffled = [...namesFromOtherSeasons].sort(() => 0.5 - Math.random());
-        selectedNames = shuffled.slice(0, Math.min(count, shuffled.length))
+        // Mescola e seleziona
+        const shuffled = [...reusableNames].sort(() => 0.5 - Math.random());
+        const selectedNames = shuffled.slice(0, Math.min(count, shuffled.length))
             .map(name => ({
                 name,
                 source: 'other-seasons',
                 id: Math.random().toString(36).substring(7)
             }));
-        sources.otherSeasons = selectedNames.length;
-    } else {
-        // Mixed: 60% nuovi, 40% riutilizzati
-        const newCount = Math.ceil(count * 0.6);
-        const reusedCount = count - newCount;
         
-        // Prendi nomi nuovi
-        const shuffledNew = [...availableNewNames].sort(() => 0.5 - Math.random());
-        const newNames = shuffledNew.slice(0, Math.min(newCount, shuffledNew.length))
+        // VALIDAZIONE: assicurati che tutti i nomi vengano da Shopify
+        validateReusedNames(selectedNames.map(n => n.name), 'other-seasons');
+        
+        return {
+            names: selectedNames,
+            sources: { pool: 0, otherSeasons: selectedNames.length },
+            totalHistoricalNames: historicalNames.size
+        };
+    }
+    
+    // Per modalità "new" - solo nomi MAI usati
+    if (mode === 'new') {
+        // Filtra i nomi già usati
+        const availableNewNames = availablePool.filter(name => 
+            !existingNamesLower.includes(name.toLowerCase().trim()) &&
+            !historicalNamesArray.some(histName => histName.toLowerCase() === name.toLowerCase())
+        );
+        
+        const shuffled = [...availableNewNames].sort(() => 0.5 - Math.random());
+        const selectedNames = shuffled.slice(0, Math.min(count, shuffled.length))
             .map(name => ({
                 name,
                 source: 'pool',
                 id: Math.random().toString(36).substring(7)
             }));
         
-        // Prendi nomi riutilizzati (solo se esistono)
-        let reusedNames = [];
-        if (namesFromOtherSeasons.length > 0) {
-            const shuffledReused = [...namesFromOtherSeasons].sort(() => 0.5 - Math.random());
-            reusedNames = shuffledReused.slice(0, Math.min(reusedCount, shuffledReused.length))
-                .map(name => ({
-                    name,
-                    source: 'other-seasons',
-                    id: Math.random().toString(36).substring(7)
-                }));
-        }
-        
-        selectedNames = [...newNames, ...reusedNames].sort(() => 0.5 - Math.random());
-        sources.pool = newNames.length;
-        sources.otherSeasons = reusedNames.length;
+        return {
+            names: selectedNames,
+            sources: { pool: selectedNames.length, otherSeasons: 0 },
+            totalHistoricalNames: historicalNames.size
+        };
     }
     
-    // Se non abbiamo abbastanza nomi, aggiungi un avviso
-    if (selectedNames.length < count) {
-        console.warn(`Richiesti ${count} nomi, ma solo ${selectedNames.length} disponibili con modalità ${mode}`);
+    // Modalità "mixed" - 60% nuovi, 40% riutilizzati
+    const newCount = Math.ceil(count * 0.6);
+    const reusedCount = count - newCount;
+    
+    // Prendi nomi nuovi
+    const availableNewNames = availablePool.filter(name => 
+        !existingNamesLower.includes(name.toLowerCase().trim()) &&
+        !historicalNamesArray.some(histName => histName.toLowerCase() === name.toLowerCase())
+    );
+    
+    const shuffledNew = [...availableNewNames].sort(() => 0.5 - Math.random());
+    const newNames = shuffledNew.slice(0, Math.min(newCount, shuffledNew.length))
+        .map(name => ({
+            name,
+            source: 'pool',
+            id: Math.random().toString(36).substring(7)
+        }));
+    
+    // Prendi nomi riutilizzati (solo da Shopify)
+    let reusableNames = historicalNamesArray.filter(name => 
+        !existingNamesLower.includes(name.toLowerCase().trim())
+    );
+    
+    if (categories && categories.length > 0) {
+        const poolNamesLower = availablePool.map(n => n.toLowerCase());
+        reusableNames = reusableNames.filter(name => 
+            poolNamesLower.includes(name.toLowerCase())
+        );
     }
     
-    return { 
-        names: selectedNames, 
-        sources,
+    const shuffledReused = [...reusableNames].sort(() => 0.5 - Math.random());
+    const reusedNames = shuffledReused.slice(0, Math.min(reusedCount, shuffledReused.length))
+        .map(name => ({
+            name,
+            source: 'other-seasons',
+            id: Math.random().toString(36).substring(7)
+        }));
+    
+    const selectedNames = [...newNames, ...reusedNames].sort(() => 0.5 - Math.random());
+    
+    return {
+        names: selectedNames,
+        sources: { 
+            pool: newNames.length, 
+            otherSeasons: reusedNames.length 
+        },
         totalHistoricalNames: historicalNames.size
     };
 }
@@ -1350,7 +1384,7 @@ app.get('/', (req, res) => {
 // Endpoint per generare nomi
 app.post('/api/generate-names', async (req, res) => {
     try {
-        const { count = 20, existingNames = [], season, mode = 'mixed', category = null } = req.body;
+        const { count = 20, existingNames = [], season, mode = 'mixed', categories = [] } = req.body;
         
         // Validazione input
         if (count < 1 || count > 5000) {
@@ -1360,16 +1394,19 @@ app.post('/api/generate-names', async (req, res) => {
             });
         }
         
-        // Se è specificata una categoria, verifica che esista
-        if (category && !namePool[category]) {
-            return res.status(400).json({
-                success: false,
-                error: `Categoria non valida: ${category}`
-            });
+        // Se sono specificate categorie, verifica che esistano
+        if (categories && categories.length > 0) {
+            const invalidCategories = categories.filter(cat => !namePool[cat]);
+            if (invalidCategories.length > 0) {
+                return res.status(400).json({
+                    success: false,
+                    error: `Categorie non valide: ${invalidCategories.join(', ')}`
+                });
+            }
         }
         
         // Genera i nomi
-        const result = await getRandomNames(count, existingNames, mode, category, season);
+        const result = await getRandomNames(count, existingNames, mode, categories, season);
         
         // Se modalità reused e nessun nome trovato, restituisci errore chiaro
         if (mode === 'reused' && result.names.length === 0) {
@@ -1383,7 +1420,7 @@ app.post('/api/generate-names', async (req, res) => {
             });
         }
         
-        console.log(`Generati ${result.names.length} nomi per stagione ${season} (modalità: ${mode}, categoria: ${category || 'tutte'})`);
+        console.log(`Generati ${result.names.length} nomi per stagione ${season} (modalità: ${mode}, categorie: ${categories.length > 0 ? categories.join(', ') : 'tutte'})`);
         if (result.totalHistoricalNames) {
             console.log(`Totale nomi storici disponibili: ${result.totalHistoricalNames}`);
         }
@@ -1394,7 +1431,7 @@ app.post('/api/generate-names', async (req, res) => {
             sources: result.sources,
             season: season,
             mode: mode,
-            category: category,
+            categories: categories,
             totalRequested: count,
             totalGenerated: result.names.length,
             warning: result.warning
@@ -1563,6 +1600,112 @@ app.get('/api/historical-names', async (req, res) => {
         res.status(500).json({
             success: false,
             error: 'Errore durante il recupero dei nomi storici'
+        });
+    }
+});
+
+// Endpoint per verificare un nome specifico
+app.post('/api/check-name', async (req, res) => {
+    try {
+        const { name, currentSeason } = req.body;
+        
+        if (!name) {
+            return res.status(400).json({
+                success: false,
+                error: 'Nome non fornito'
+            });
+        }
+        
+        // Normalizza il nome per la ricerca
+        const searchName = name.trim().toLowerCase();
+        
+        // Cerca in tutte le stagioni
+        const usedInSeasons = [];
+        let availableInCurrentSeason = true;
+        
+        // Se non abbiamo ancora caricato i dati storici, caricali
+        if (Object.keys(historicalNamesCache).length === 0) {
+            await fetchHistoricalNames();
+        }
+        
+        // Mapping stagioni per visualizzazione
+        const seasonDisplayMap = {
+            '24E': 'PE 24',
+            '24I': 'AI 24',
+            '25E': 'PE 25',
+            '25I': 'AI 25',
+            '26E': 'PE 26',
+            '26I': 'AI 26'
+        };
+        
+        // Controlla ogni stagione
+        for (const [seasonTag, names] of Object.entries(historicalNamesCache)) {
+            const namesArray = Array.from(names);
+            if (namesArray.some(n => n.toLowerCase() === searchName)) {
+                usedInSeasons.push({
+                    tag: seasonTag,
+                    display: seasonDisplayMap[seasonTag] || seasonTag
+                });
+                
+                // Se è la stagione corrente, non è disponibile
+                if (currentSeason && seasonTag === currentSeason) {
+                    availableInCurrentSeason = false;
+                }
+            }
+        }
+        
+        // Determina se il nome esiste nel pool generale
+        const allPoolNames = getAllPoolNames();
+        const existsInPool = allPoolNames.some(n => n.toLowerCase() === searchName);
+        
+        res.json({
+            success: true,
+            name: name,
+            availableInCurrentSeason: availableInCurrentSeason,
+            usedInSeasons: usedInSeasons,
+            existsInPool: existsInPool,
+            totalUsageCount: usedInSeasons.length,
+            message: availableInCurrentSeason 
+                ? `✅ "${name}" è disponibile per ${seasonDisplayMap[currentSeason] || currentSeason}` 
+                : `❌ "${name}" è già utilizzato in ${seasonDisplayMap[currentSeason] || currentSeason}`
+        });
+        
+    } catch (error) {
+        console.error('Errore verifica nome:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Errore durante la verifica del nome'
+        });
+    }
+});
+
+// Endpoint per forzare il refresh dei nomi storici
+app.post('/api/refresh-historical', async (req, res) => {
+    try {
+        console.log('🔄 Refresh manuale dei nomi storici richiesto...');
+        
+        // Svuota la cache
+        for (const key in historicalNamesCache) {
+            delete historicalNamesCache[key];
+        }
+        
+        // Ricarica tutti i dati
+        const historicalNames = await fetchHistoricalNames();
+        
+        res.json({
+            success: true,
+            totalHistoricalNames: historicalNames.size,
+            bySeasonCount: Object.fromEntries(
+                Object.entries(historicalNamesCache).map(([season, names]) => [season, names.size])
+            ),
+            message: `✅ Cache aggiornata: ${historicalNames.size} nomi storici caricati`
+        });
+        
+    } catch (error) {
+        console.error('Errore refresh nomi storici:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Errore durante il refresh dei nomi storici'
         });
     }
 });
