@@ -99,183 +99,6 @@ const namePool = {
         'Cava', 'Battipaglia', 'Nocera', 'Sarno', 'Angri', 'Scafati', 'Castellammare'
     ],
     
-    // MARE E COSTE (200+)
-    seaAndCoasts: [
-        // Termini marini
-        'Onda', 'Ondata', 'Maretta', 'Mareggiata', 'Marea', 'Riflusso', 'Flusso',
-        'Risacca', 'Corrente', 'Gorgo', 'Mulinello', 'Vortice', 'Schiuma', 'Spuma',
-        'Sprazzo', 'Salsedine', 'Brezza', 'Libeccio', 'Maestrale', 'Scirocco',
-        'Tramontana', 'Grecale', 'Levante', 'Ponente', 'Bonaccia', 'Burrasca',
-        
-        // Elementi costieri
-        'Spiaggia', 'Arenile', 'Battigia', 'Riva', 'Lido', 'Scogliera', 'Falesia',
-        'Promontorio', 'Capo', 'Punta', 'Baia', 'Insenatura', 'Cala', 'Rada',
-        'Porto', 'Approdo', 'Molo', 'Banchina', 'Pontile', 'Faro', 'Fanale',
-        'Diga', 'Frangiflutti', 'Scalo', 'Darsena', 'Marina', 'Rimessaggio',
-        
-        // Vita marina
-        'Alga', 'Posidonia', 'Corallo', 'Madrepora', 'Anemone', 'Attinia', 'Riccio',
-        'Stella', 'Medusa', 'Polpo', 'Seppia', 'Calamaro', 'Totano', 'Moscardino',
-        'Aragosta', 'Astice', 'Gambero', 'Scampo', 'Granchio', 'Paguro', 'Mitilo',
-        'Cozza', 'Vongola', 'Tellina', 'Ostrica', 'Capasanta', 'Pettine', 'Fasolaro',
-        'Cannolicchio', 'Dattero', 'Patella', 'Lumachino', 'Murice', 'Buccino',
-        
-        // Imbarcazioni
-        'Barca', 'Nave', 'Vascello', 'Veliero', 'Brigantino', 'Goletta', 'Caravella',
-        'Galeone', 'Fregata', 'Corvetta', 'Vela', 'Albero', 'Sartiame', 'Timone',
-        'Prua', 'Poppa', 'Carena', 'Chiglia', 'Stiva', 'Ponte', 'Cabina', 'Cambusa',
-        'Ancora', 'Catena', 'Ormeggio', 'Cima', 'Nodo', 'Gassa', 'Parabordo',
-        'Salvagente', 'Zattera', 'Scialuppa', 'Canotto', 'Gommone', 'Kayak',
-        
-        // Spiagge italiane famose
-        'Rimini', 'Riccione', 'Cattolica', 'Cesenatico', 'Cervia', 'Viareggio',
-        'Forte dei Marmi', 'Marina di Pietrasanta', 'Lido di Camaiore', 'Castiglioncello',
-        'San Vincenzo', 'Follonica', 'Punta Ala', 'Castiglione', 'Orbetello',
-        'Ansedonia', 'Feniglia', 'Giannella', 'Argentario', 'Sperlonga', 'Gaeta',
-        'Formia', 'Terracina', 'Sabaudia', 'San Felice', 'Fregene', 'Ostia',
-        'Anzio', 'Nettuno', 'Circeo', 'Positano', 'Amalfi', 'Ravello', 'Maiori',
-        'Minori', 'Cetara', 'Vietri', 'Sorrento', 'Massa Lubrense', 'Nerano',
-        'Marina Grande', 'Marina Piccola', 'Palinuro', 'Marina di Camerota', 'Sapri',
-        'Maratea', 'Praia', 'Scalea', 'Diamante', 'Tropea', 'Pizzo', 'Scilla',
-        'Taormina', 'Giardini', 'Letojanni', 'Cefalù', 'Mondello', 'San Vito',
-        'Scopello', 'Castellammare', 'Favignana', 'Levanzo', 'Marettimo',
-        'Stintino', 'Pelosa', 'Alghero', 'Bosa', 'Cala Luna', 'Cala Goloritzè',
-        'Villasimius', 'Chia', 'Tuerredda', 'Porto Pino', 'Costa Rei', 'San Teodoro'
-    ],
-    
-    // TEATRO E CINEMA (200+)
-    theaterAndCinema: [
-        // Termini teatrali
-        'Scena', 'Palcoscenico', 'Ribalta', 'Quinta', 'Fondale', 'Sipario',
-        'Boccascena', 'Proscenio', 'Platea', 'Palco', 'Loggione', 'Galleria',
-        'Camerino', 'Foyer', 'Ridotto', 'Botteghino', 'Maschera', 'Programma',
-        'Locandina', 'Manifesto', 'Replica', 'Debutto', 'Prima', 'Anteprima',
-        'Tournée', 'Cartellone', 'Stagione', 'Repertorio', 'Copione', 'Battuta',
-        'Monologo', 'Dialogo', 'Tirata', 'Aparté', 'Didascalia', 'Prologo',
-        'Epilogo', 'Atto', 'Scena', 'Quadro', 'Intermezzo', 'Intervallo',
-        
-        // Generi teatrali
-        'Tragedia', 'Commedia', 'Dramma', 'Farsa', 'Pochade', 'Vaudeville',
-        'Musical', 'Operetta', 'Cabaret', 'Varietà', 'Rivista', 'Avanspettacolo',
-        'Mimo', 'Pantomima', 'Balletto', 'Danza', 'Performance', 'Happening',
-        
-        // Figure teatrali
-        'Attore', 'Attrice', 'Protagonista', 'Deuteragonista', 'Antagonista',
-        'Comparsa', 'Figurante', 'Corista', 'Ballerino', 'Mimo', 'Giullare',
-        'Menestrello', 'Cantastorie', 'Regista', 'Scenografo', 'Costumista',
-        'Truccatore', 'Parrucchiere', 'Direttore', 'Coreografo', 'Dramaturg',
-        'Suggeritore', 'Macchinista', 'Elettricista', 'Fonico', 'Trovarobe',
-        
-        // Termini cinematografici  
-        'Film', 'Pellicola', 'Cinema', 'Schermo', 'Proiezione', 'Inquadratura',
-        'Piano', 'Campo', 'Controcampo', 'Sequenza', 'Scena', 'Take', 'Ciak',
-        'Montaggio', 'Dissolvenza', 'Stacco', 'Flashback', 'Flashforward',
-        'Zoom', 'Carrellata', 'Panoramica', 'Steadicam', 'Dolly', 'Travelling',
-        'Primo piano', 'Piano americano', 'Campo lungo', 'Totale', 'Dettaglio',
-        'Soggettiva', 'Oggettiva', 'Fuori campo', 'Voice over', 'Colonna sonora',
-        'Doppiaggio', 'Sottotitoli', 'Titoli di testa', 'Titoli di coda', 'Credits',
-        
-        // Generi cinematografici
-        'Western', 'Noir', 'Thriller', 'Horror', 'Fantasy', 'Fantascienza',
-        'Avventura', 'Azione', 'Romantico', 'Drammatico', 'Biografico', 'Storico',
-        'Guerra', 'Documentario', 'Animazione', 'Cortometraggio', 'Lungometraggio',
-        
-        // Premi e festival
-        'Oscar', 'Cannes', 'Venezia', 'Berlino', 'Sundance', 'Toronto', 'Leone',
-        'Palma', 'Orso', 'Coppa', 'David', 'Nastro', 'Ciak', 'Globo', 'Bafta',
-        'César', 'Goya', 'Festival', 'Rassegna', 'Mostra', 'Concorso', 'Premio'
-    ],
-    
-    // LETTERATURA (200+)
-    literature: [
-        // Generi letterari
-        'Romanzo', 'Novella', 'Racconto', 'Fiaba', 'Favola', 'Leggenda', 'Mito',
-        'Saga', 'Epopea', 'Poema', 'Poesia', 'Lirica', 'Epica', 'Didascalica',
-        'Sonetto', 'Canzone', 'Ballata', 'Madrigale', 'Ode', 'Elegia', 'Idillio',
-        'Egloga', 'Satira', 'Epigramma', 'Haiku', 'Tanka', 'Ghazal', 'Rondeau',
-        
-        // Elementi narrativi
-        'Trama', 'Intreccio', 'Fabula', 'Intrigo', 'Climax', 'Epilogo', 'Prologo',
-        'Incipit', 'Explicit', 'Flashback', 'Analessi', 'Prolessi', 'Ellissi',
-        'Digressione', 'Suspense', 'Colpo di scena', 'Agnizione', 'Peripezia',
-        'Catarsi', 'Deus ex machina', 'In medias res', 'Crescendo', 'Anticlimax',
-        
-        // Figure retoriche
-        'Metafora', 'Similitudine', 'Allegoria', 'Simbolo', 'Metonimia', 'Sineddoche',
-        'Ossimoro', 'Paradosso', 'Iperbole', 'Litote', 'Ironia', 'Sarcasmo',
-        'Antitesi', 'Chiasmo', 'Anafora', 'Epifora', 'Allitterazione', 'Assonanza',
-        'Consonanza', 'Onomatopea', 'Sinestesia', 'Enjambement', 'Cesura', 'Rima',
-        
-        // Personaggi letterari famosi
-        'Beatrice', 'Laura', 'Fiammetta', 'Angelica', 'Bradamante', 'Clorinda',
-        'Erminia', 'Armida', 'Sofronia', 'Silvia', 'Amarilli', 'Filli', 'Clori',
-        'Giulietta', 'Desdemona', 'Ofelia', 'Cordelia', 'Miranda', 'Viola',
-        'Porzia', 'Rosalinda', 'Elena', 'Ermengarda', 'Adelchi', 'Gertrude',
-        'Lucia', 'Agnese', 'Perpetua', 'Pisana', 'Fosca', 'Lia', 'Silvia',
-        
-        // Autori classici
-        'Dante', 'Petrarca', 'Boccaccio', 'Ariosto', 'Tasso', 'Machiavelli',
-        'Guicciardini', 'Castiglione', 'Bembo', 'Poliziano', 'Boiardo', 'Pulci',
-        'Goldoni', 'Alfieri', 'Parini', 'Foscolo', 'Leopardi', 'Manzoni',
-        'Pellico', 'Grossi', 'Berchet', 'Porta', 'Belli', 'Giusti', 'Guerrazzi',
-        'Carducci', 'Pascoli', 'D\'Annunzio', 'Gozzano', 'Saba', 'Ungaretti',
-        'Montale', 'Quasimodo', 'Pavese', 'Vittorini', 'Moravia', 'Sciascia',
-        'Calvino', 'Eco', 'Tabucchi', 'Magris', 'Consolo', 'Camilleri',
-        
-        // Termini editoriali
-        'Libro', 'Volume', 'Tomo', 'Codice', 'Manoscritto', 'Incunabolo', 'Edizione',
-        'Stampa', 'Ristampa', 'Tiratura', 'Bozza', 'Revisione', 'Impaginazione',
-        'Copertina', 'Sovraccoperta', 'Frontespizio', 'Colophon', 'Indice', 'Capitolo',
-        'Paragrafo', 'Pagina', 'Foglio', 'Recto', 'Verso', 'Margine', 'Nota'
-    ],
-    
-    // TEMPO E STAGIONI (200+)
-    timeAndSeasons: [
-        // Stagioni
-        'Primavera', 'Estate', 'Autunno', 'Inverno', 'Primaverile', 'Estivo',
-        'Autunnale', 'Invernale', 'Equinozio', 'Solstizio', 'Mezza stagione',
-        
-        // Mesi
-        'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio',
-        'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre', 'Capodanno',
-        'Epifania', 'Carnevale', 'Quaresima', 'Pasqua', 'Pasquetta', 'Liberazione',
-        'Primo Maggio', 'Repubblica', 'Ferragosto', 'Ognissanti', 'Immacolata', 'Natale',
-        
-        // Momenti del giorno
-        'Alba', 'Aurora', 'Mattino', 'Mattina', 'Mattutino', 'Antimeridiano',
-        'Mezzogiorno', 'Mezzodì', 'Pomeriggio', 'Pomeridiano', 'Vespro', 'Sera',
-        'Serata', 'Tramonto', 'Crepuscolo', 'Imbrunire', 'Notte', 'Nottata',
-        'Mezzanotte', 'Notturno', 'Antelucano', 'Albeggiare', 'Spuntare', 'Sorgere',
-        
-        // Fasi lunari
-        'Luna nuova', 'Luna crescente', 'Primo quarto', 'Gibbosa crescente',
-        'Luna piena', 'Plenilunio', 'Gibbosa calante', 'Ultimo quarto',
-        'Luna calante', 'Novilunio', 'Eclissi lunare', 'Luna blu', 'Superluna',
-        
-        // Tempo atmosferico
-        'Sereno', 'Soleggiato', 'Nuvoloso', 'Coperto', 'Variabile', 'Instabile',
-        'Perturbato', 'Piovoso', 'Temporalesco', 'Nevoso', 'Ventoso', 'Afoso',
-        'Umido', 'Secco', 'Mite', 'Fresco', 'Freddo', 'Gelido', 'Caldo', 'Torrido',
-        
-        // Fenomeni stagionali
-        'Fioritura', 'Germoglio', 'Bocciolo', 'Polline', 'Rinascita', 'Risveglio',
-        'Rondine', 'Primula', 'Violetta', 'Margherita', 'Ciliegio', 'Pesco',
-        'Canicola', 'Solleone', 'Afa', 'Arsura', 'Siccità', 'Temporale estivo',
-        'Vendemmia', 'Raccolta', 'Foglie cadenti', 'Castagne', 'Funghi', 'Nebbia',
-        'Brina', 'Gelo', 'Ghiaccio', 'Neve', 'Bufera', 'Camino', 'Focolare',
-        
-        // Tempi della vita
-        'Nascita', 'Infanzia', 'Fanciullezza', 'Adolescenza', 'Giovinezza', 'Gioventù',
-        'Maturità', 'Età adulta', 'Vecchiaia', 'Anzianità', 'Senilità', 'Eternità',
-        'Momento', 'Istante', 'Attimo', 'Secondo', 'Minuto', 'Ora', 'Giorno',
-        'Settimana', 'Mese', 'Anno', 'Lustro', 'Decennio', 'Secolo', 'Millennio',
-        'Era', 'Epoca', 'Età', 'Periodo', 'Ciclo', 'Fase', 'Stagione della vita',
-        
-        // Ricorrenze
-        'Compleanno', 'Onomastico', 'Anniversario', 'Ricorrenza', 'Festa', 'Festività',
-        'Giubileo', 'Centenario', 'Bicentenario', 'Millenario', 'Commemorazione'
-    ],
-    
     // ANIMALI (250+)
     animals: [
         // Mammiferi terrestri
@@ -331,7 +154,7 @@ const namePool = {
         'Granchio', 'Aragosta', 'Gambero', 'Scampo', 'Astice'
     ],
     
-    // NATURA E GEOGRAFIA (320+) - Aggiunto 20 nomi
+    // NATURA E GEOGRAFIA (320+)
     nature: [
         // Monti e cime famose
         'Etna', 'Vesuvio', 'Stromboli', 'Vulcano', 'Monviso', 'Cervino', 'Rosa',
@@ -423,7 +246,7 @@ const namePool = {
         'Tufo', 'Pozzolana', 'Peperino'
     ],
     
-    // FIORI E PIANTE (365+) - Aggiunto 15 nomi
+    // FIORI E PIANTE (365+)
     flowers: [
         // Fiori comuni
         'Rosa', 'Giglio', 'Tulipano', 'Orchidea', 'Iris', 'Dalia', 'Peonia', 'Camelia',
@@ -485,7 +308,7 @@ const namePool = {
         'Sarracenia', 'Dionea', 'Nepenthes', 'Aldrovanda'
     ],
     
-    // CONCETTI POSITIVI (165+) - Aggiunto 15 nomi
+    // CONCETTI POSITIVI (165+)
     concepts: [
         // Emozioni positive
         'Gioia', 'Letizia', 'Allegria', 'Felicità',
@@ -724,203 +547,1063 @@ const namePool = {
         // Musei e gallerie (GENERICI)
         'Louvre', 'Orsay', 'Pompidou', 'Rodin', 'Picasso', 'Uffizi', 'Pitti',
         'Accademia', 'Bargello', 'Borghese', 'Vaticani', 'Sistina', 'Capitolini',
-        'Prado', 'Reina Sofia', 'Thyssen', 'Hermitage', 'Tretyakov', 'British',
-        'National', 'Tate', 'Victoria', 'Metropolitan', 'Guggenheim',
-        'Whitney', 'Getty', 'Smithsonian', 'Rijksmuseum', 'Mauritshuis',
-        'Kunsthistorisches', 'Belvedere', 'Albertina', 'Pergamon', 'Neue', 'Alte',
-        
-        // Tecniche artistiche
-        'Olio', 'Tempera', 'Acquerello', 'Gouache', 'Pastello', 'Carboncino',
-        'Sanguigna', 'Seppia', 'China', 'Matita', 'Gessetto', 'Encausto',
-        'Affresco', 'Mosaico', 'Intarsio', 'Tarsìa', 'Graffito', 'Stucco',
-        'Bassorilievo', 'Altorilievo', 'Tuttotondo', 'Fusione', 'Cesello',
-        'Sbalzo', 'Incisione', 'Acquaforte', 'Bulino', 'Puntasecca', 'Litografia',
-        'Serigrafia', 'Xilografia', 'Collage', 'Assemblage', 'Decoupage',
-        
-        // Termini artistici
-        'Chiaroscuro', 'Sfumato', 'Cangiante', 'Unione', 'Contrapposto', 'Scorco',
-        'Prospettiva', 'Anatomia', 'Proporzione', 'Simmetria', 'Equilibrio',
-        'Armonia', 'Ritmo', 'Movimento', 'Dinamismo', 'Tensione', 'Contrasto',
-        'Tonalità', 'Luminosità', 'Saturazione', 'Velatura', 'Impasto', 'Pennellata',
-        'Texture', 'Pattern', 'Composizione', 'Inquadratura', 'Punto di fuga',
-        'Orizzonte', 'Profondità', 'Volume', 'Spazio', 'Forma', 'Linea', 'Colore',
+        'Palazzo', 'Galleria', 'Pinacoteca', 'Museo', 'Collezione', 'Fondazione',
         
         // Architettura
-        'Colonna', 'Capitello', 'Architrave', 'Fregio', 'Cornice', 'Timpano',
-        'Arco', 'Volta', 'Cupola', 'Abside', 'Navata', 'Transetto', 'Cripta',
-        'Campanile', 'Guglia', 'Pinnacolo', 'Rosone', 'Loggia', 'Portico',
-        'Chiostro', 'Cortile', 'Facciata', 'Balaustra', 'Cornicione', 'Lesena',
-        'Parasta', 'Pilastro', 'Contrafforte', 'Arbotante', 'Merlatura', 'Bastione',
-        
-        // Letteratura e poesia
-        'Sonetto', 'Canzone', 'Ballata', 'Madrigale', 'Ode', 'Elegia', 'Idillio',
-        'Epigramma', 'Satira', 'Commedia', 'Tragedia', 'Dramma', 'Melodramma',
-        'Novella', 'Romanzo', 'Fiaba', 'Favola', 'Leggenda', 'Mito', 'Saga',
-        'Epopea', 'Cronaca', 'Memoria', 'Diario', 'Epistola', 'Trattato', 'Saggio'
+        'Duomo', 'Cattedrale', 'Basilica', 'Chiesa', 'Cappella', 'Battistero',
+        'Campanile', 'Torre', 'Cupola', 'Arco', 'Ponte', 'Castello', 'Fortezza',
+        'Palazzo', 'Villa', 'Giardino', 'Parco', 'Piazza', 'Fontana', 'Statua',
+        'Colonna', 'Obelisco', 'Tempio', 'Teatro', 'Arena', 'Anfiteatro', 'Foro',
+        'Terme', 'Acquedotto', 'Porta', 'Mura', 'Bastione', 'Rocca', 'Cittadella'
     ],
     
-    // MUSICA E DANZA (300+)
+    // MUSICA E DANZA (150+)
     musicDance: [
-        // Strumenti musicali
-        'Pianoforte', 'Clavicembalo', 'Organo', 'Celesta', 'Arpa', 'Lira', 'Cetra',
-        'Violino', 'Viola', 'Violoncello', 'Contrabbasso', 'Chitarra', 'Liuto',
-        'Mandolino', 'Banjo', 'Ukulele', 'Balalaika', 'Sitar', 'Bouzouki',
-        'Flauto', 'Ottavino', 'Oboe', 'Clarinetto', 'Fagotto', 'Sassofono',
-        'Tromba', 'Trombone', 'Corno', 'Tuba', 'Eufonio', 'Cornetta', 'Flicorno',
-        'Tamburo', 'Timpano', 'Grancassa', 'Rullante', 'Tom', 'Bongo', 'Conga',
-        'Djembe', 'Tabla', 'Darbuka', 'Cajon', 'Xilofono', 'Marimba', 'Vibrafono',
-        'Glockenspiel', 'Campane', 'Campanelli', 'Piatti', 'Gong', 'Triangolo',
-        'Nacchere', 'Maracas', 'Sonagli', 'Tamburello', 'Castagnette',
-        
         // Generi musicali
-        'Classica', 'Barocca', 'Romantica', 'Moderna', 'Contemporanea', 'Opera',
-        'Operetta', 'Musical', 'Jazz', 'Blues', 'Swing', 'Bebop', 'Cool', 'Fusion',
-        'Latin', 'Bossa Nova', 'Samba', 'Tango', 'Mambo', 'Salsa', 'Merengue',
-        'Bachata', 'Reggaeton', 'Rock', 'Pop', 'Soul', 'Funk', 'Disco', 'House',
-        'Techno', 'Trance', 'Ambient', 'Lounge', 'Chill', 'Folk', 'Country',
-        'Gospel', 'Spiritual', 'Reggae', 'Ska', 'Dub', 'Afrobeat', 'Flamenco',
+        'Opera', 'Sinfonia', 'Concerto', 'Sonata', 'Suite', 'Preludio', 'Fuga',
+        'Notturno', 'Ballata', 'Romanza', 'Serenata', 'Cantata', 'Oratorio', 'Messa',
+        'Requiem', 'Inno', 'Salmo', 'Corale', 'Madrigale', 'Mottetto', 'Canzone',
+        'Aria', 'Recitativo', 'Duetto', 'Terzetto', 'Quartetto', 'Coro', 'Ouverture',
+        'Intermezzo', 'Scherzo', 'Adagio', 'Allegro', 'Andante', 'Largo', 'Presto',
+        'Vivace', 'Moderato', 'Maestoso', 'Dolce', 'Forte', 'Piano', 'Crescendo',
+        'Diminuendo', 'Staccato', 'Legato', 'Pizzicato', 'Vibrato', 'Tremolo',
         
-        // Forme musicali
-        'Sinfonia', 'Concerto', 'Sonata', 'Suite', 'Partita', 'Toccata', 'Fuga',
-        'Preludio', 'Fantasia', 'Rapsodia', 'Scherzo', 'Notturno', 'Serenata',
-        'Divertimento', 'Cassazione', 'Variazione', 'Rondò', 'Minuetto', 'Gavotta',
-        'Sarabanda', 'Giga', 'Allemanda', 'Corrente', 'Bourrée', 'Rigaudon',
-        'Passacaglia', 'Ciaccona', 'Pavana', 'Gagliarda', 'Saltarello', 'Tarantella',
-        'Mazurka', 'Polka', 'Valzer', 'Ländler', 'Polonaise', 'Barcarola',
+        // Strumenti
+        'Violino', 'Viola', 'Violoncello', 'Contrabbasso', 'Arpa', 'Chitarra', 'Liuto',
+        'Mandolino', 'Banjo', 'Ukulele', 'Pianoforte', 'Clavicembalo', 'Organo',
+        'Fisarmonica', 'Flauto', 'Oboe', 'Clarinetto', 'Fagotto', 'Sassofono', 'Tromba',
+        'Trombone', 'Corno', 'Tuba', 'Timpani', 'Tamburo', 'Grancassa', 'Piatti',
+        'Triangolo', 'Xilofono', 'Marimba', 'Celesta', 'Campane', 'Castagnette',
         
-        // Danze classiche
-        'Ballet', 'Arabesque', 'Attitude', 'Plié', 'Relevé', 'Tendu', 'Dégagé',
-        'Rond de jambe', 'Fondu', 'Frappé', 'Adagio', 'Pirouette', 'Fouetté',
-        'Tour', 'Sauté', 'Échappé', 'Assemblé', 'Jeté', 'Sissonne', 'Cabriole',
-        'Entrechat', 'Pas de deux', 'Pas de trois', 'Pas de quatre', 'Grand jeté',
-        'Penché', 'Cambré', 'Port de bras', 'Épaulement', 'Croisé', 'Effacé',
-        
-        // Danze del mondo
-        'Flamenco', 'Sevillanas', 'Bulería', 'Soleá', 'Alegrías', 'Fandango',
-        'Paso doble', 'Jota', 'Sardana', 'Muñeira', 'Czardas', 'Krakowiak',
-        'Hopak', 'Kazachok', 'Troika', 'Kalinka', 'Sirtaki', 'Hasapiko',
-        'Hora', 'Dabke', 'Bellydance', 'Kathak', 'Bharatanatyam', 'Odissi',
-        'Kuchipudi', 'Mohiniyattam', 'Kabuki', 'Noh', 'Butoh', 'Capoeira',
-        'Forró', 'Frevo', 'Axé', 'Cumbia', 'Joropo', 'Marinera', 'Cueca',
-        'Candombe', 'Murga', 'Milonga', 'Chacarera', 'Zamba', 'Chamame',
-        
-        // Termini musicali
-        'Allegro', 'Andante', 'Adagio', 'Largo', 'Presto', 'Vivace', 'Moderato',
-        'Maestoso', 'Dolce', 'Cantabile', 'Espressivo', 'Agitato', 'Tranquillo',
-        'Crescendo', 'Diminuendo', 'Forte', 'Piano', 'Mezzo', 'Fortissimo',
-        'Pianissimo', 'Staccato', 'Legato', 'Rubato', 'Accelerando', 'Ritardando',
-        'Fermata', 'Corona', 'Segno', 'Coda', 'Fine', 'Ripresa', 'Volta'
+        // Danze
+        'Balletto', 'Valzer', 'Tango', 'Foxtrot', 'Quickstep', 'Rumba', 'Samba',
+        'Cha Cha', 'Jive', 'Paso Doble', 'Flamenco', 'Bolero', 'Mazurka', 'Polka',
+        'Tarantella', 'Saltarello', 'Gavotta', 'Minuetto', 'Sarabanda', 'Giga',
+        'Allemanda', 'Corrente', 'Bourrée', 'Rigaudon', 'Pavana', 'Gagliarda',
+        'Volta', 'Branle', 'Farandola', 'Carmagnola', 'Quadriglia', 'Contraddanza',
+        'Ballata', 'Carola', 'Estampie', 'Rondò', 'Danza', 'Ballo', 'Festa'
     ],
     
-    // ENOGASTRONOMIA (300+) - Rimossi brand e denominazioni protette
+    // ENOGASTRONOMIA (250+)
     enogastronomy: [
-        // Vini generici e termini del vino
-        'Rosso', 'Bianco', 'Rosato', 'Bollicine', 'Frizzante', 'Passito', 'Novello',
-        'Riserva', 'Superiore', 'Classico', 'Millesimato', 'Vendemmia', 'Barrique',
-        'Tonneau', 'Anfora', 'Appassimento', 'Affinamento', 'Blend', 'Cuvée', 'Brut',
-        'Extra Dry', 'Demi Sec', 'Dolce', 'Secco', 'Abboccato', 'Amabile', 'Liquoroso',
-        'Spumante', 'Metodo Classico', 'Charmat', 'Rifermentato', 'Ancestrale',
-        'Nebbiolo', 'Barbera', 'Dolcetto', 'Grignolino', 'Freisa', 'Arneis', 'Cortese',
-        'Moscato', 'Brachetto', 'Ruché', 'Erbaluce', 'Sangiovese', 'Trebbiano',
-        'Vermentino', 'Ansonica', 'Malvasia', 'Vernaccia', 'Cannonau', 'Monica',
-        'Nuragus', 'Carignano', 'Grillo', 'Catarratto', 'Inzolia', 'Zibibbo',
-        'Nero d\'Avola', 'Frappato', 'Perricone', 'Nerello', 'Carricante',
-        'Pinot Grigio', 'Gewürztraminer', 'Müller-Thurgau', 'Lagrein', 'Marzemino',
-        'Teroldego', 'Nosiola', 'Schiava', 'Refosco', 'Friulano', 'Ribolla',
-        'Vitovska', 'Picolit', 'Ramandolo', 'Verduzzo', 'Lambrusco', 'Montepulciano',
-        'Aglianico', 'Fiano', 'Falanghina', 'Greco', 'Coda di Volpe', 'Biancolella',
-        'Forastera', 'Piedirosso', 'Primitivo', 'Negroamaro', 'Nero di Troia',
-        'Bombino', 'Gaglioppo', 'Pecorello', 'Mantonico', 'Cerasuolo',
+        // Termini generici del vino
+        'Vendemmia', 'Vigna', 'Vigneto', 'Cantina', 'Barrique', 'Botte', 'Tonneau',
+        'Anfora', 'Torchio', 'Tino', 'Mosto', 'Vinaccia', 'Raspo', 'Grappolo',
+        'Acino', 'Buccia', 'Polpa', 'Tannino', 'Polifenoli', 'Antociani', 'Aromi',
+        'Bouquet', 'Profumo', 'Sentore', 'Retrogusto', 'Persistenza', 'Equilibrio',
+        'Struttura', 'Corpo', 'Rotondità', 'Morbidezza', 'Freschezza', 'Sapidità',
+        'Mineralità', 'Acidità', 'Alcolicità', 'Gradazione', 'Affinamento', 'Invecchiamento',
+        'Riserva', 'Millesimato', 'Cuvée', 'Blend', 'Assemblaggio', 'Uvaggio', 'Terroir',
+        'Cru', 'Vigneron', 'Sommelier', 'Degustazione', 'Assaggio', 'Calice', 'Decanter',
+        'Cavatappi', 'Tappo', 'Sughero', 'Etichetta', 'Annata', 'Vendemmia Tardiva',
+        'Passito', 'Appassimento', 'Eiswein', 'Botrytis', 'Spumante', 'Frizzante',
+        'Metodo Classico', 'Charmat', 'Brut', 'Extra Dry', 'Dry', 'Demi Sec', 'Dolce',
+        'Rosso', 'Bianco', 'Rosato', 'Cerasuolo', 'Chiaretto', 'Novello', 'Superiore',
+        'Classico', 'Biologico', 'Biodinamico', 'Naturale', 'Orange Wine', 'Macerato',
         
-        // Formaggi generici
-        'Formaggio', 'Cacio', 'Pecorino', 'Caprino', 'Vaccino', 'Bufala', 'Erborinato',
-        'Stagionato', 'Fresco', 'Semistagionato', 'Stracchino', 'Crescenza', 'Robiola',
-        'Quartirolo', 'Tomino', 'Toma', 'Casera', 'Latteria', 'Malga', 'Alpeggio',
-        'Primo Sale', 'Secondo Sale', 'Canestrato', 'Cacioricotta', 'Ricotta',
-        'Mascarpone', 'Burrata', 'Stracciatella', 'Mozzarella', 'Fior di Latte',
-        'Provola', 'Scamorza', 'Caciocavallo', 'Provolone', 'Ragusano', 'Bitto',
-        'Castelmagno', 'Raschera', 'Murazzano', 'Bra', 'Casciotta', 'Marzolino',
-        'Raviggiolo', 'Squacquerone', 'Casatella', 'Morlacco', 'Bastardo', 'Puzzone',
-        'Vezzena', 'Spressa', 'Burrino', 'Manteca', 'Giuncata', 'Seadas',
+        // Piatti tradizionali
+        'Antipasto', 'Aperitivo', 'Stuzzichino', 'Bruschetta', 'Crostino', 'Focaccia',
+        'Pizza', 'Calzone', 'Piadina', 'Crescentina', 'Gnocco', 'Tigella', 'Farinata',
+        'Panissa', 'Arancino', 'Supplì', 'Crocchetta', 'Frittata', 'Tortino', 'Sformato',
+        'Insalata', 'Caprese', 'Panzanella', 'Caponata', 'Peperonata', 'Giardiniera',
+        'Minestra', 'Zuppa', 'Vellutata', 'Passato', 'Brodetto', 'Cacciucco', 'Ribollita',
+        'Minestrone', 'Pasta', 'Risotto', 'Polenta', 'Lasagna', 'Cannelloni', 'Ravioli',
+        'Tortellini', 'Cappelletti', 'Agnolotti', 'Tagliatelle', 'Fettuccine', 'Pappardelle',
+        'Linguine', 'Spaghetti', 'Bucatini', 'Rigatoni', 'Penne', 'Fusilli', 'Farfalle',
+        'Orecchiette', 'Trofie', 'Strozzapreti', 'Malloreddus', 'Culurgiones', 'Pizzoccheri',
+        'Canederli', 'Spätzle', 'Passatelli', 'Pisarei', 'Corzetti', 'Mandilli',
         
-        // Salumi generici
-        'Prosciutto', 'Crudo', 'Cotto', 'Affumicato', 'Mortadella', 'Salame', 'Coppa',
-        'Pancetta', 'Guanciale', 'Lardo', 'Bresaola', 'Speck', 'Lonza', 'Finocchiona',
-        'Soppressata', 'Nduja', 'Capocollo', 'Porchetta', 'Cotechino', 'Zampone',
-        'Salama', 'Mariola', 'Violino', 'Mocetta', 'Salsiccia', 'Luganega',
-        'Musetto', 'Ossocollo', 'Ciabuscolo', 'Ciauscolo', 'Lonzino', 'Ventricina',
-        'Cacciatorino', 'Strolghino', 'Felino', 'Milano', 'Napoli', 'Ungherese',
-        'Nostrano', 'Contadino', 'Montanaro', 'Paesano', 'Artigianale',
+        // Carni e pesci
+        'Brasato', 'Stufato', 'Spezzatino', 'Arrosto', 'Scaloppina', 'Cotoletta', 'Braciola',
+        'Bistecca', 'Tagliata', 'Carpaccio', 'Bresaola', 'Vitello Tonnato', 'Bollito',
+        'Lesso', 'Fritto Misto', 'Baccalà', 'Stoccafisso', 'Brandacujun', 'Cacciucco',
+        'Brodetto', 'Zuppa di Pesce', 'Fritto di Paranza', 'Impepata', 'Guazzetto',
+        'Acqua Pazza', 'Cartoccio', 'Sale', 'Crosta', 'Griglia', 'Brace', 'Spiedo',
         
-        // Dolci tradizionali
-        'Tiramisù', 'Cannolo', 'Cassata', 'Sfogliatella', 'Babà', 'Pastiera',
-        'Zeppola', 'Struffoli', 'Panettone', 'Pandoro', 'Colomba', 'Maritozzo',
-        'Bignè', 'Profiterole', 'Millefoglie', 'Crostata', 'Sbrisolona', 'Torrone',
-        'Cantucci', 'Ricciarelli', 'Amaretti', 'Baci di dama', 'Krumiri', 'Savoiardi',
-        'Mostaccioli', 'Roccocò', 'Susamielli', 'Cartellate', 'Pignolata', 'Seadas',
-        'Pardulas', 'Papassini', 'Gueffus', 'Cubbaita', 'Pignoccata', 'Pasticciotto',
-        'Bocconotto', 'Fregolotta', 'Fugassa', 'Focaccia', 'Schiacciata', 'Pinza',
-        'Gubana', 'Putizza', 'Presnitz', 'Strudel', 'Zelten', 'Panforte', 'Cavallucci',
-        'Copate', 'Frustingo', 'Panpepato', 'Bensone', 'Spongata', 'Buccellato',
-        'Ciambella', 'Torcolo', 'Pandolce', 'Pangiallo', 'Mostarda', 'Cotognata',
+        // Formaggi e salumi (termini generici)
+        'Formaggio', 'Cacio', 'Pecorino', 'Caprino', 'Ricotta', 'Mascarpone', 'Stracchino',
+        'Crescenza', 'Robiola', 'Toma', 'Fontina', 'Montasio', 'Latteria', 'Puzzone',
+        'Salume', 'Prosciutto', 'Coppa', 'Lonza', 'Pancetta', 'Guanciale', 'Lardo',
+        'Salame', 'Salsiccia', 'Soppressa', 'Finocchiona', 'Nduja', 'Bresaola',
+        'Speck', 'Mortadella', 'Cotechino', 'Zampone', 'Culatello', 'Fiocchetto',
         
-        // Piatti tipici
-        'Carbonara', 'Amatriciana', 'Gricia', 'Cacio e pepe', 'Arrabbiata', 'Puttanesca',
-        'Aglio e olio', 'Vongole', 'Pescatore', 'Norma', 'Trapanese', 'Pesto',
-        'Ragù', 'Bolognese', 'Lasagne', 'Tortellini', 'Cappelletti', 'Passatelli',
-        'Tagliatelle', 'Pappardelle', 'Maltagliati', 'Garganelli', 'Strozzapreti',
-        'Orecchiette', 'Cavatelli', 'Trofie', 'Corzetti', 'Pansotti', 'Culurgiones',
-        'Malloreddus', 'Fregola', 'Pizzoccheri', 'Canederli', 'Spätzle', 'Risotto',
-        'Ossobuco', 'Cotoletta', 'Cassoeula', 'Trippa', 'Lampredotto', 'Peposo',
-        'Cacciucco', 'Baccalà', 'Stoccafisso', 'Brodetto', 'Frittura', 'Polenta',
-        'Farinata', 'Cecina', 'Panissa', 'Ribollita', 'Pappa', 'Acquacotta',
-        'Panzanella', 'Fettunta', 'Bruschetta', 'Crostino', 'Supplì', 'Arancino',
-        'Panzerotto', 'Calzone', 'Pizza', 'Focaccia', 'Piadina', 'Crescione',
-        'Gnocco', 'Tigelle', 'Borlengo', 'Erbazzone', 'Pasqualina', 'Farinata',
-        'Vitello tonnato', 'Bagna cauda', 'Finanziera', 'Bollito', 'Brasato',
-        'Abbacchio', 'Saltimbocca', 'Involtini', 'Parmigiana', 'Caponata', 'Peperonata'
+        // Dolci
+        'Tiramisù', 'Panna Cotta', 'Zabaione', 'Semifreddo', 'Gelato', 'Sorbetto',
+        'Granita', 'Cassata', 'Cannolo', 'Sfogliatella', 'Babà', 'Pastiera', 'Delizia',
+        'Zeppola', 'Struffoli', 'Crostata', 'Sbrisolona', 'Amor Polenta', 'Krumiri',
+        'Baci di Dama', 'Cantucci', 'Ricciarelli', 'Panforte', 'Cavallucci', 'Panpepato',
+        'Pandoro', 'Panettone', 'Colomba', 'Focaccia', 'Schiacciata', 'Maritozzo'
     ],
     
-    // ELEMENTI E FENOMENI (200+)
+    // ELEMENTI E FENOMENI (100+)
     elementsAndPhenomena: [
-        // Elementi naturali
-        'Acqua', 'Aria', 'Terra', 'Fuoco', 'Ghiaccio', 'Vapore', 'Nebbia', 'Foschia',
-        'Rugiada', 'Brina', 'Galaverna', 'Cristallo', 'Quarzo', 'Sale', 'Sabbia',
-        'Polvere', 'Cenere', 'Lava', 'Magma', 'Roccia', 'Pietra', 'Argilla', 'Fango',
-        'Torba', 'Humus', 'Linfa', 'Resina', 'Ambra', 'Cera', 'Miele', 'Nettare',
+        // Elementi classici
+        'Fuoco', 'Acqua', 'Terra', 'Aria', 'Etere', 'Luce', 'Ombra', 'Buio', 'Tenebra',
+        'Fiamma', 'Scintilla', 'Brace', 'Cenere', 'Fumo', 'Vapore', 'Ghiaccio', 'Cristallo',
+        'Neve', 'Grandine', 'Pioggia', 'Rugiada', 'Brina', 'Nebbia', 'Foschia', 'Nuvola',
+        'Vento', 'Brezza', 'Tempesta', 'Uragano', 'Tifone', 'Tornado', 'Ciclone', 'Tromba',
         
         // Fenomeni atmosferici
-        'Vento', 'Brezza', 'Refolo', 'Folata', 'Raffica', 'Bufera', 'Tormenta',
-        'Uragano', 'Tornado', 'Tromba', 'Ciclone', 'Monsone', 'Tempesta', 'Temporale',
-        'Pioggia', 'Pioviggine', 'Acquazzone', 'Rovescio', 'Nubifragio', 'Diluvio',
-        'Grandine', 'Neve', 'Nevischio', 'Slavina', 'Valanga', 'Gelo', 'Disgelo',
-        'Fulmine', 'Lampo', 'Tuono', 'Saetta', 'Folgore', 'Baleno', 'Bagliore',
+        'Fulmine', 'Tuono', 'Lampo', 'Saetta', 'Arcobaleno', 'Aurora', 'Miraggio', 'Fata Morgana',
+        'Alba', 'Tramonto', 'Crepuscolo', 'Eclissi', 'Cometa', 'Meteora', 'Stella Cadente',
+        'Via Lattea', 'Galassia', 'Nebulosa', 'Costellazione', 'Zenith', 'Nadir', 'Orizzonte',
         
-        // Fenomeni luminosi
-        'Luce', 'Ombra', 'Penombra', 'Chiarore', 'Bagliore', 'Riflesso', 'Riverbero',
-        'Luccichio', 'Scintillio', 'Barbaglio', 'Abbaglio', 'Raggio', 'Fascio',
-        'Alone', 'Aureola', 'Nimbo', 'Corona', 'Iride', 'Arcobaleno', 'Spettro',
-        'Prisma', 'Rifrazione', 'Diffrazione', 'Interferenza', 'Polarizzazione',
-        
-        // Fenomeni sonori
-        'Suono', 'Rumore', 'Silenzio', 'Eco', 'Risonanza', 'Vibrazione', 'Onda',
-        'Frequenza', 'Armonia', 'Melodia', 'Accordo', 'Dissonanza', 'Consonanza',
-        'Sussurro', 'Bisbiglio', 'Mormorio', 'Fruscio', 'Sibilo', 'Fischio', 'Urlo',
-        'Grido', 'Lamento', 'Gemito', 'Sospiro', 'Respiro', 'Soffio', 'Alito',
-        
-        // Fenomeni termici
-        'Calore', 'Freddo', 'Tiepido', 'Gelido', 'Bollente', 'Ardente', 'Rovente',
-        'Incandescente', 'Fiamma', 'Fiammella', 'Scintilla', 'Favilla', 'Brace',
-        'Carbone', 'Tizzone', 'Combustione', 'Incendio', 'Rogo', 'Falò', 'Focolare',
-        
-        // Fenomeni temporali
-        'Istante', 'Attimo', 'Momento', 'Secondo', 'Minuto', 'Ora', 'Giorno', 'Notte',
-        'Alba', 'Aurora', 'Mattino', 'Mezzogiorno', 'Pomeriggio', 'Tramonto',
-        'Crepuscolo', 'Imbrunire', 'Sera', 'Vespro', 'Notturno', 'Mezzanotte',
-        'Stagione', 'Ciclo', 'Periodo', 'Era', 'Epoca', 'Età', 'Evo', 'Eternità',
-        
-        // Fenomeni cosmici
-        'Cosmo', 'Universo', 'Galassia', 'Nebulosa', 'Stella', 'Pianeta', 'Satellite',
-        'Asteroide', 'Cometa', 'Meteora', 'Meteorite', 'Eclissi', 'Congiunzione',
-        'Opposizione', 'Solstizio', 'Equinozio', 'Zenith', 'Nadir', 'Orizzonte'
+        // Fenomeni naturali
+        'Marea', 'Onda', 'Corrente', 'Vortice', 'Mulinello', 'Cascata', 'Rapida', 'Sorgente',
+        'Geyser', 'Fumarola', 'Solfatara', 'Vulcano', 'Lava', 'Magma', 'Eruzione', 'Cenere',
+        'Terremoto', 'Scossa', 'Sisma', 'Maremoto', 'Tsunami', 'Valanga', 'Slavina', 'Frana',
+        'Smottamento', 'Erosione', 'Sedimento', 'Stratificazione', 'Cristallizzazione',
+        'Fossilizzazione', 'Metamorfosi', 'Sublimazione', 'Evaporazione', 'Condensazione',
+        'Precipitazione', 'Solidificazione', 'Fusione', 'Ebollizione', 'Combustione',
+        'Ossidazione', 'Corrosione', 'Fermentazione', 'Putrefazione', 'Decomposizione'
     ],
+    
+    // MARE E COSTE (150+)
+    seaAndCoasts: [
+        // Termini marini
+        'Mare', 'Oceano', 'Golfo', 'Baia', 'Rada', 'Insenatura', 'Cala', 'Caletta',
+        'Fiordo', 'Laguna', 'Stretto', 'Canale', 'Braccio', 'Bocca', 'Foce', 'Delta',
+        'Estuario', 'Porto', 'Marina', 'Darsena', 'Molo', 'Banchina', 'Pontile', 'Faro',
+        'Fanale', 'Boa', 'Gavitello', 'Ancora', 'Ormeggio', 'Approdo', 'Scalo', 'Arsenale',
+        
+        // Elementi costieri
+        'Costa', 'Litorale', 'Riva', 'Sponda', 'Spiaggia', 'Arenile', 'Battigia', 'Bagnasciuga',
+        'Scogliera', 'Falesia', 'Promontorio', 'Capo', 'Punta', 'Penisola', 'Istmo', 'Tombolo',
+        'Cordone', 'Duna', 'Pineta', 'Macchia', 'Salina', 'Palude', 'Stagno', 'Acquitrino',
+        
+        // Vita marina
+        'Onda', 'Cavallone', 'Maroso', 'Frangente', 'Risacca', 'Corrente', 'Gorgo', 'Mulinello',
+        'Fondale', 'Abisso', 'Fossa', 'Scoglio', 'Secca', 'Banco', 'Barriera', 'Atollo',
+        'Corallo', 'Madrepora', 'Posidonia', 'Alga', 'Conchiglia', 'Mollusco', 'Crostaceo',
+        'Medusa', 'Riccio', 'Stella', 'Spugna', 'Anemone', 'Granchio', 'Paguro', 'Polpo',
+        'Seppia', 'Calamaro', 'Murena', 'Cernia', 'Dentice', 'Orata', 'Branzino', 'Sarago',
+        'Salpa', 'Occhiata', 'Mormora', 'Corvina', 'Ombrina', 'Ricciola', 'Palamita',
+        'Tonno', 'Pesce Spada', 'Aguglia', 'Acciuga', 'Sardina', 'Sgombro', 'Tracina',
+        
+        // Navigazione
+        'Vela', 'Randa', 'Fiocco', 'Spinnaker', 'Gennaker', 'Albero', 'Boma', 'Tangone',
+        'Sartia', 'Drizza', 'Scotta', 'Cima', 'Gomena', 'Catena', 'Argano', 'Verricello',
+        'Timone', 'Barra', 'Ruota', 'Prua', 'Prora', 'Poppa', 'Fiancata', 'Murata',
+        'Carena', 'Chiglia', 'Deriva', 'Bulbo', 'Pinna', 'Skeg', 'Specchio', 'Opera Morta',
+        'Opera Viva', 'Linea di Galleggiamento', 'Bordo Libero', 'Gavone', 'Sentina',
+        'Pozzetto', 'Tuga', 'Tambucio', 'Oblò', 'Osteriggio', 'Boccaporto', 'Parabordo',
+        'Salvagente', 'Zattera', 'Tender', 'Gommone', 'Canotto', 'Scialuppa'
+    ],
+    
+    // TEATRO E CINEMA (200+)
+    theaterAndCinema: [
+        // Teatro
+        'Teatro', 'Palcoscenico', 'Scena', 'Ribalta', 'Quinta', 'Sipario', 'Fondale',
+        'Proscenio', 'Boccascena', 'Golfo Mistico', 'Platea', 'Palco', 'Galleria',
+        'Loggione', 'Piccionaia', 'Foyer', 'Ridotto', 'Camerino', 'Sartoria', 'Attrezzeria',
+        'Commedia', 'Tragedia', 'Dramma', 'Farsa', 'Melodramma', 'Opera', 'Operetta',
+        'Musical', 'Balletto', 'Pantomima', 'Mimo', 'Cabaret', 'Varietà', 'Avanspettacolo',
+        'Rivista', 'Sketch', 'Monologo', 'Dialogo', 'Battuta', 'Replica', 'Tirata',
+        'Soliloquio', 'Aside', 'Prologo', 'Epilogo', 'Atto', 'Scena', 'Quadro', 'Intermezzo',
+        'Entrata', 'Uscita', 'Colpo di Scena', 'Climax', 'Catarsi', 'Agnizione', 'Peripezia',
+        
+        // Ruoli teatrali
+        'Protagonista', 'Deuteragonista', 'Antagonista', 'Eroe', 'Eroina', 'Villain',
+        'Confidente', 'Spalla', 'Caratterista', 'Generico', 'Comparsa', 'Figurante',
+        'Prima Donna', 'Primo Attore', 'Soubrette', 'Brillante', 'Amoroso', 'Ingenua',
+        'Padre Nobile', 'Madre Nobile', 'Tiranno', 'Servo', 'Servetta', 'Innamorato',
+        
+        // Cinema
+        'Cinema', 'Film', 'Pellicola', 'Lungometraggio', 'Cortometraggio', 'Documentario',
+        'Fiction', 'Biopic', 'Remake', 'Sequel', 'Prequel', 'Spin-off', 'Saga', 'Trilogia',
+        'Schermo', 'Proiezione', 'Première', 'Anteprima', 'Rassegna', 'Festival', 'Mostra',
+        'Set', 'Location', 'Studio', 'Backstage', 'Ciak', 'Action', 'Stop', 'Cut', 'Print',
+        'Ripresa', 'Inquadratura', 'Piano', 'Campo', 'Controcampo', 'Primissimo Piano',
+        'Primo Piano', 'Mezzo Primo Piano', 'Piano Americano', 'Mezza Figura', 'Figura Intera',
+        'Campo Totale', 'Campo Lungo', 'Campo Medio', 'Dettaglio', 'Particolare', 'Inserto',
+        'Carrellata', 'Panoramica', 'Zoom', 'Dolly', 'Steadicam', 'Macchina a Mano',
+        'Piano Sequenza', 'Montaggio', 'Editing', 'Dissolvenza', 'Stacco', 'Tendina',
+        'Flashback', 'Flashforward', 'Ellissi', 'Ralenti', 'Accelerato', 'Fermo Immagine',
+        'Voice Over', 'Fuori Campo', 'Colonna Sonora', 'Soundtrack', 'Score', 'Tema',
+        'Effetti Speciali', 'CGI', 'Green Screen', 'Motion Capture', 'Post Produzione',
+        'Color Correction', 'Grading', 'Dubbing', 'Sottotitoli', 'Credits', 'Trailer'
+    ],
+    
+    // LETTERATURA (150+)
+    literature: [
+        // Generi letterari
+        'Romanzo', 'Racconto', 'Novella', 'Fiaba', 'Favola', 'Leggenda', 'Mito', 'Saga',
+        'Epica', 'Lirica', 'Elegia', 'Ode', 'Inno', 'Canzone', 'Sonetto', 'Ballata',
+        'Madrigale', 'Epigramma', 'Satira', 'Parodia', 'Pastiche', 'Pamphlet', 'Saggio',
+        'Trattato', 'Dialogo', 'Epistola', 'Cronaca', 'Memoria', 'Diario', 'Biografia',
+        'Autobiografia', 'Aforisma', 'Massima', 'Sentenza', 'Proverbio', 'Motto', 'Adagio',
+        
+        // Elementi narrativi
+        'Trama', 'Intreccio', 'Fabula', 'Storia', 'Racconto', 'Narrazione', 'Diegesi',
+        'Incipit', 'Explicit', 'Prologo', 'Epilogo', 'Capitolo', 'Paragrafo', 'Periodo',
+        'Frase', 'Parola', 'Verso', 'Strofa', 'Rima', 'Metrica', 'Ritmo', 'Accento',
+        'Cesura', 'Enjambement', 'Allitterazione', 'Assonanza', 'Consonanza', 'Onomatopea',
+        'Anafora', 'Epifora', 'Chiasmo', 'Ossimoro', 'Antitesi', 'Paradosso', 'Iperbole',
+        'Litote', 'Sineddoche', 'Metonimia', 'Metafora', 'Similitudine', 'Allegoria',
+        'Simbolo', 'Immagine', 'Figura', 'Topos', 'Leitmotiv', 'Climax', 'Anticlimax',
+        
+        // Figure letterarie
+        'Autore', 'Scrittore', 'Poeta', 'Narratore', 'Romanziere', 'Novelliere', 'Saggista',
+        'Drammaturgo', 'Commediografo', 'Librettista', 'Sceneggiatore', 'Giornalista',
+        'Critico', 'Recensore', 'Editore', 'Redattore', 'Correttore', 'Traduttore',
+        'Lettore', 'Bibliofilo', 'Erudito', 'Letterato', 'Umanista', 'Intellettuale',
+        
+        // Libro e pubblicazione
+        'Libro', 'Volume', 'Tomo', 'Codice', 'Manoscritto', 'Incunabolo', 'Edizione',
+        'Stampa', 'Pubblicazione', 'Tiratura', 'Ristampa', 'Copertina', 'Rilegatura',
+        'Dorso', 'Taglio', 'Frontespizio', 'Colophon', 'Indice', 'Sommario', 'Prefazione',
+        'Postfazione', 'Introduzione', 'Nota', 'Appendice', 'Bibliografia', 'Glossario',
+        'Errata Corrige', 'Ex Libris', 'Dedica', 'Epigrafe', 'Citazione', 'Motto'
+    ],
+    
+    // TEMPO E STAGIONI (100+)
+    timeAndSeasons: [
+        // Stagioni
+        'Primavera', 'Estate', 'Autunno', 'Inverno', 'Equinozio', 'Solstizio',
+        'Germoglio', 'Fioritura', 'Fruttificazione', 'Mietitura', 'Vendemmia', 'Raccolta',
+        'Semina', 'Aratura', 'Potatura', 'Innesto', 'Letargo', 'Risveglio', 'Rinascita',
+        
+        // Mesi
+        'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto',
+        'Settembre', 'Ottobre', 'Novembre', 'Dicembre', 'Capodanno', 'Epifania', 'Carnevale',
+        'Quaresima', 'Pasqua', 'Pentecoste', 'Ferragosto', 'Ognissanti', 'Avvento', 'Natale',
+        
+        // Momenti del giorno
+        'Alba', 'Aurora', 'Mattino', 'Mattinata', 'Mezzogiorno', 'Meriggio', 'Pomeriggio',
+        'Vespro', 'Sera', 'Serata', 'Imbrunire', 'Crepuscolo', 'Tramonto', 'Notte',
+        'Mezzanotte', 'Ore Piccole', 'Primo Canto', 'Luccichio', 'Chiarore', 'Penombra',
+        
+        // Tempo atmosferico
+        'Sereno', 'Nuvoloso', 'Coperto', 'Variabile', 'Perturbato', 'Tempestoso', 'Afoso',
+        'Umido', 'Secco', 'Ventoso', 'Calmo', 'Nebbioso', 'Piovoso', 'Nevoso', 'Gelido',
+        'Freddo', 'Fresco', 'Mite', 'Tiepido', 'Caldo', 'Torrido', 'Soffocante', 'Gradevole',
+        
+        // Concetti temporali
+        'Tempo', 'Ora', 'Istante', 'Momento', 'Attimo', 'Secondo', 'Minuto', 'Ora',
+        'Giorno', 'Settimana', 'Mese', 'Anno', 'Lustro', 'Decennio', 'Secolo', 'Millennio',
+        'Era', 'Epoca', 'Età', 'Periodo', 'Fase', 'Ciclo', 'Eternità', 'Infinito'
+    ],
+    
+    // ERBE E SPEZIE (200+)
+    herbsAndSpices: [
+        // Erbe aromatiche mediterranee
+        'Basilico', 'Rosmarino', 'Salvia', 'Timo', 'Origano', 'Maggiorana', 'Menta',
+        'Mentuccia', 'Prezzemolo', 'Alloro', 'Mirto', 'Lavanda', 'Santolina', 'Ruta',
+        'Nepeta', 'Issopo', 'Santoreggia', 'Serpillo', 'Melissa', 'Cedrina', 'Verbena',
+        'Citronella', 'Erba cipollina', 'Dragoncello', 'Cerfoglio', 'Aneto', 'Finocchio',
+        'Finocchietto', 'Coriandolo', 'Cumino', 'Carvi', 'Anice', 'Anice stellato',
+        
+        // Spezie orientali e tropicali
+        'Cannella', 'Cassia', 'Cardamomo', 'Chiodi di garofano', 'Noce moscata', 'Macis',
+        'Zenzero', 'Galanga', 'Curcuma', 'Zafferano', 'Vaniglia', 'Pepe nero', 'Pepe bianco',
+        'Pepe verde', 'Pepe rosa', 'Pepe lungo', 'Cubebe', 'Pepe di Sichuan', 'Pimento',
+        'Coriandolo', 'Senape', 'Mostarda', 'Rafano', 'Wasabi', 'Sesamo', 'Nigella',
+        'Papavero', 'Fieno greco', 'Tamarindo', 'Sommacco', 'Berbero', 'Harissa', 'Zaatar',
+        
+        // Erbe officinali
+        'Camomilla', 'Malva', 'Altea', 'Calendula', 'Achillea', 'Arnica', 'Iperico',
+        'Valeriana', 'Passiflora', 'Biancospino', 'Tiglio', 'Sambuco', 'Echinacea',
+        'Ginseng', 'Guaranà', 'Matè', 'Rooibos', 'Karkadè', 'Rosa canina', 'Ribes',
+        'Mirtillo', 'Lampone', 'Mora', 'Fragola', 'Ortica', 'Tarassaco', 'Carciofo',
+        'Cardo mariano', 'Fumaria', 'Gramigna', 'Equiseto', 'Betulla', 'Frassino',
+        'Salice', 'Eucalipto', 'Pino', 'Abete', 'Timo serpillo', 'Lichene islandico',
+        
+        // Mix di spezie
+        'Curry', 'Masala', 'RaselHanout', 'Baharat', 'Dukkah', 'Shichimi', 'Furikake',
+        'Herbes de Provence', 'Fines Herbes', 'Bouquet Garni', 'Soffritto', 'Mirepoix',
+        'Gremolata', 'Persillade', 'Chermoula', 'Chimichurri', 'Pesto', 'Salsa Verde',
+        
+        // Erbe selvatiche commestibili
+        'Asparago selvatico', 'Pungitopo', 'Luppolo', 'Barba di frate', 'Agretti',
+        'Portulaca', 'Crescione', 'Rucola selvatica', 'Cicoria', 'Catalogna', 'Puntarelle',
+        'Radicchio', 'Indivia', 'Scarola', 'Borragine', 'Bietola', 'Spinacio selvatico',
+        'Farinello', 'Amaranto', 'Piantaggine', 'Acetosa', 'Acetosella', 'Silene',
+        'Papavero', 'Senape selvatica', 'Rapa selvatica', 'Cavolo nero', 'Verza',
+        'Ravanello selvatico', 'Ramolaccio', 'Barba di becco', 'Scorzonera', 'Topinambur',
+        
+        // Radici e bulbi
+        'Zenzero', 'Curcuma', 'Galanga', 'Liquirizia', 'Genziana', 'Angelica', 'Levistico',
+        'Sedano rapa', 'Pastinaca', 'Scorzonera', 'Salsify', 'Topinambur', 'Manioca',
+        'Taro', 'Igname', 'Daikon', 'Ravanello', 'Ramolaccio', 'Barbabietola', 'Carota',
+        
+        // Cortecce e resine
+        'Cannella', 'Cassia', 'Sassafrasso', 'Chinino', 'Mastice', 'Mirra', 'Incenso',
+        'Benzoino', 'Storace', 'Sandalo', 'Agar', 'Canfora', 'Eucalipto'
+    ],
+    
+    // ISOLE DEL MONDO (200+)
+    worldIslands: [
+        // Isole del Mediterraneo
+        'Maiorca', 'Minorca', 'Ibiza', 'Formentera', 'Cabrera', 'Corsica', 'Sardegna',
+        'Sicilia', 'Malta', 'Gozo', 'Comino', 'Creta', 'Rodi', 'Kos', 'Mykonos',
+        'Santorini', 'Paros', 'Naxos', 'Ios', 'Milos', 'Sifnos', 'Serifos', 'Syros',
+        'Tinos', 'Andros', 'Folegandros', 'Amorgos', 'Karpathos', 'Kasos', 'Kastellorizo',
+        'Symi', 'Tilos', 'Nisyros', 'Patmos', 'Leros', 'Kalymnos', 'Astypalea',
+        'Lesvos', 'Chios', 'Samos', 'Ikaria', 'Fourni', 'Psara', 'Oinousses',
+        'Skiathos', 'Skopelos', 'Alonnisos', 'Skyros', 'Evia', 'Salamina', 'Aegina',
+        'Poros', 'Hydra', 'Spetses', 'Kythira', 'Antikythera', 'Corfu', 'Paxos',
+        'Lefkada', 'Kefalonia', 'Ithaca', 'Zakynthos', 'Kythira', 'Gavdos',
+        'Cipro', 'Djerba', 'Kerkennah', 'Lampedusa', 'Pantelleria', 'Pelagie',
+        
+        // Isole dei Caraibi
+        'Cuba', 'Giamaica', 'Hispaniola', 'Puerto Rico', 'Bahamas', 'Barbados',
+        'Trinidad', 'Tobago', 'Aruba', 'Curacao', 'Bonaire', 'Grenada', 'Dominica',
+        'Martinica', 'Guadalupa', 'Antigua', 'Barbuda', 'Saint Martin', 'Saint Barth',
+        'Anguilla', 'Montserrat', 'Nevis', 'Saint Kitts', 'Saint Lucia', 'Saint Vincent',
+        'Grenadine', 'Cayman', 'Turks', 'Caicos', 'Virgin Islands', 'Tortola',
+        
+        // Isole dell'Oceano Indiano
+        'Madagascar', 'Mauritius', 'Reunion', 'Seychelles', 'Comoros', 'Mayotte',
+        'Zanzibar', 'Pemba', 'Mafia', 'Socotra', 'Maldive', 'Laccadive', 'Andamane',
+        'Nicobare', 'Sri Lanka', 'Langkawi', 'Penang', 'Phuket', 'Koh Samui',
+        'Koh Phangan', 'Koh Tao', 'Koh Phi Phi', 'Koh Lanta', 'Koh Chang',
+        
+        // Isole del Pacifico
+        'Hawaii', 'Maui', 'Oahu', 'Kauai', 'Molokai', 'Lanai', 'Tahiti', 'Moorea',
+        'Bora Bora', 'Huahine', 'Raiatea', 'Tahaa', 'Marquesas', 'Tuamotu', 'Gambier',
+        'Cook Islands', 'Samoa', 'Tonga', 'Fiji', 'Vanuatu', 'Solomon', 'Kiribati',
+        'Tuvalu', 'Nauru', 'Palau', 'Guam', 'Saipan', 'Rota', 'Tinian', 'Marshall',
+        'Micronesia', 'Easter Island', 'Galapagos', 'Juan Fernandez', 'Chiloe',
+        
+        // Isole dell'Atlantico
+        'Azzorre', 'Madeira', 'Canarie', 'Tenerife', 'Gran Canaria', 'Lanzarote',
+        'Fuerteventura', 'La Palma', 'La Gomera', 'El Hierro', 'Capo Verde',
+        'Sao Vicente', 'Santo Antao', 'Sao Nicolau', 'Sal', 'Boa Vista', 'Maio',
+        'Santiago', 'Fogo', 'Brava', 'Bermuda', 'Bahamas', 'Islanda', 'Faroe',
+        'Shetland', 'Orcadi', 'Ebridi', 'Man', 'Wight', 'Scilly', 'Jersey', 'Guernsey',
+        'Sark', 'Alderney', 'Belle-Ile', 'Ile de Re', 'Ile d\'Oleron', 'Noirmoutier',
+        
+        // Isole dell'Asia
+        'Giappone', 'Honshu', 'Hokkaido', 'Kyushu', 'Shikoku', 'Okinawa', 'Taiwan',
+        'Hainan', 'Hong Kong', 'Macao', 'Singapore', 'Borneo', 'Sumatra', 'Java',
+        'Sulawesi', 'Molucche', 'Bali', 'Lombok', 'Sumbawa', 'Flores', 'Timor',
+        'Mindanao', 'Luzon', 'Visayas', 'Palawan', 'Jeju', 'Ulleungdo'
+    ],
+    
+    // PROFUMI NATURALI (200+)
+    naturalScents: [
+        // Fiori profumati
+        'Rosa', 'Gelsomino', 'Tuberosa', 'Gardenia', 'Frangipani', 'Ylang-ylang',
+        'Neroli', 'Zagara', 'Fiori d\'arancio', 'Magnolia', 'Mimosa', 'Violetta',
+        'Iris', 'Mughetto', 'Lavanda', 'Eliotropio', 'Fresia', 'Giacinto', 'Lillà',
+        'Caprifoglio', 'Tiglio', 'Gelsomino sambac', 'Osmanto', 'Boronia', 'Cassie',
+        
+        // Agrumi
+        'Bergamotto', 'Limone', 'Lime', 'Pompelmo', 'Arancia', 'Mandarino', 'Clementina',
+        'Cedro', 'Yuzu', 'Kumquat', 'Chinotto', 'Pomelo', 'Combava', 'Calamansi',
+        'Arancia amara', 'Petitgrain', 'Limetta', 'Citron', 'Buddha\'s hand',
+        
+        // Legni profumati
+        'Sandalo', 'Cedro', 'Patchouli', 'Vetiver', 'Oud', 'Agarwood', 'Palo santo',
+        'Guaiaco', 'Ebano', 'Teak', 'Bambù', 'Cipresso', 'Ginepro', 'Pino', 'Abete',
+        'Eucalipto', 'Tea tree', 'Cajeput', 'Niaouli', 'Canfora', 'Hinoki',
+        
+        // Resine e balsami
+        'Incenso', 'Mirra', 'Benzoino', 'Storace', 'Labdano', 'Elemi', 'Copaiba',
+        'Balsamo del Perù', 'Balsamo di Tolu', 'Opoponax', 'Galbano', 'Mastice',
+        'Ambra', 'Colofonia', 'Propoli', 'Cera d\'api', 'Gomma arabica', 'Tragacanto',
+        
+        // Spezie profumate
+        'Vaniglia', 'Cannella', 'Cardamomo', 'Chiodi di garofano', 'Noce moscata',
+        'Zenzero', 'Pepe nero', 'Pepe rosa', 'Coriandolo', 'Anice stellato', 'Fava tonka',
+        'Zafferano', 'Curcuma', 'Macis', 'Pimento', 'Ginepro', 'Fieno greco',
+        
+        // Erbe aromatiche
+        'Basilico', 'Menta', 'Rosmarino', 'Salvia', 'Timo', 'Origano', 'Maggiorana',
+        'Verbena', 'Citronella', 'Palmarosa', 'Geranio', 'Davana', 'Tagete', 'Estragon',
+        'Angelica', 'Camomilla', 'Artemisia', 'Achillea', 'Tanaceto', 'Santolina',
+        
+        // Frutti profumati
+        'Mela', 'Pera', 'Pesca', 'Albicocca', 'Prugna', 'Ciliegia', 'Fragola',
+        'Lampone', 'Mora', 'Mirtillo', 'Ribes', 'Uva', 'Melone', 'Anguria', 'Ananas',
+        'Mango', 'Papaya', 'Passion fruit', 'Litchi', 'Cocco', 'Banana', 'Guava',
+        'Fico', 'Melograno', 'Kiwi', 'Pitaya', 'Durian', 'Jackfruit', 'Tamarindo',
+        
+        // Note marine e minerali
+        'Salsedine', 'Alga', 'Ozono', 'Brezza marina', 'Corallo', 'Ambra grigia',
+        'Muschio di quercia', 'Muschio bianco', 'Fougère', 'Cipriato', 'Talco',
+        'Argilla', 'Gesso', 'Pietra', 'Minerale', 'Metallico', 'Terroso', 'Fumé'
+    ],
+    
+    // INVERNO E NATALE (200+)
+    winterAndChristmas: [
+        // Spirito natalizio
+        'Natale', 'Christmas', 'Noel', 'Navidad', 'Weihnachten', 'Yule', 'Festa', 'Gioia',
+        'Pace', 'Amore', 'Speranza', 'Magia', 'Incanto', 'Miracolo', 'Dono', 'Regalo',
+        'Sorpresa', 'Felicità', 'Armonia', 'Serenità', 'Calore', 'Famiglia', 'Unione',
+        'Tradizione', 'Ricordo', 'Nostalgia', 'Infanzia', 'Sogno', 'Desiderio', 'Attesa',
+        
+        // Personaggi e simboli natalizi
+        'Babbo Natale', 'Santa', 'San Nicola', 'Befana', 'Elfo', 'Folletto', 'Angelo',
+        'Cherubino', 'Serafino', 'Stella', 'Cometa', 'Stella Polare', 'Betlemme',
+        'Presepe', 'Natività', 'Capanna', 'Mangiatoia', 'Pastore', 'Gregge', 'Magi',
+        'Re Magi', 'Gaspare', 'Melchiorre', 'Baldassarre', 'Oro', 'Incenso', 'Mirra',
+        
+        // Decorazioni natalizie
+        'Albero', 'Abete', 'Pino', 'Conifera', 'Ghirlanda', 'Corona', 'Fiocco', 'Nastro',
+        'Palla', 'Sfera', 'Pallina', 'Addobbo', 'Decorazione', 'Ornamento', 'Festoni',
+        'Lucine', 'Luci', 'Luminaria', 'Candela', 'Cero', 'Lanterna', 'Candelabro',
+        'Campanella', 'Campana', 'Sonagli', 'Tintinnio', 'Cristallo', 'Ghiacciolo',
+        'Fiocco di neve', 'Cristallo di neve', 'Neve', 'Nevicata', 'Pupazzo', 'Renna',
+        
+        // Piante natalizie
+        'Vischio', 'Agrifoglio', 'Pungitopo', 'Stella di Natale', 'Poinsettia', 'Edera',
+        'Bacche', 'Pigna', 'Cannella', 'Spezie', 'Profumo', 'Essenza', 'Fragranza',
+        
+        // Atmosfera invernale
+        'Inverno', 'Dicembre', 'Freddo', 'Gelo', 'Brina', 'Ghiaccio', 'Bianco',
+        'Candore', 'Purezza', 'Silenzio', 'Quiete', 'Pace', 'Tranquillità',
+        'Camino', 'Focolare', 'Fuoco', 'Fiamma', 'Ceppo', 'Legna', 'Brace', 'Tepore',
+        'Coperta', 'Plaid', 'Lana', 'Cashmere', 'Morbidezza', 'Comfort', 'Rifugio',
+        
+        // Dolci e tradizioni
+        'Panettone', 'Pandoro', 'Torrone', 'Panforte', 'Ricciarelli', 'Mandorle',
+        'Zucchero', 'Miele', 'Cioccolato', 'Crema', 'Vaniglia', 'Caramello', 'Glassa',
+        'Biscotti', 'Omino', 'Zenzero', 'Marzapane', 'Frutta secca', 'Nocciole',
+        'Vin brulé', 'Cioccolata calda', 'Tè', 'Tisana', 'Infuso', 'Speziato',
+        
+        // Momenti e attività
+        'Vigilia', 'Mezzanotte', 'Aurora', 'Alba', 'Tramonto', 'Sera', 'Notte Santa',
+        'Messa', 'Preghiera', 'Canto', 'Coro', 'Melodia', 'Carola', 'Ninna nanna',
+        'Brindisi', 'Auguri', 'Benedizione', 'Abbraccio', 'Bacio', 'Carezza', 'Coccola',
+        'Pranzo', 'Cena', 'Cenone', 'Tavola', 'Convivio', 'Festa', 'Celebrazione',
+        
+        // Luoghi invernali
+        'Montagna', 'Baita', 'Chalet', 'Rifugio', 'Capanna', 'Casa', 'Villaggio',
+        'Borgo', 'Paese', 'Città', 'Piazza', 'Mercatino', 'Bottega', 'Vetrina',
+        'Chiesa', 'Campanile', 'Torre', 'Castello', 'Palazzo', 'Villa', 'Cascina',
+        
+        // Emozioni natalizie
+        'Stupore', 'Meraviglia', 'Emozione', 'Tenerezza', 'Dolcezza', 'Gratitudine',
+        'Generosità', 'Altruismo', 'Condivisione', 'Solidarietà', 'Carità', 'Bontà',
+        'Innocenza', 'Purezza', 'Semplicità', 'Autenticità', 'Verità', 'Sincerità'
+    ],
+    
+    // APERITIVO E LIQUORI (100)
+    aperitivoAndLiquori: [
+        // Aperitivi e cocktail classici (nomi generici)
+        'Spritz', 'Negroni', 'Americano', 'Sbagliato', 'Hugo', 'Mimosa', 'Bellini',
+        'Rossini', 'Tintoretto', 'Puccini', 'Kir', 'Kir Royale', 'Garibaldi', 'Bicicletta',
+        'Veneziano', 'Padovano', 'Trevigiano', 'Milano-Torino', 'Pirlo', 'Sour',
+        
+        // Cocktail internazionali classici
+        'Martini', 'Manhattan', 'Daiquiri', 'Margarita', 'Caipirinha', 'Mojito', 'Gimlet',
+        'Gibson', 'Cosmopolitan', 'Sidecar', 'Aviation', 'Boulevardier', 'Sazerac',
+        'Old Fashioned', 'Mint Julep', 'Rob Roy', 'Rusty Nail', 'Paper Plane',
+        'Brooklyn', 'Bronx', 'Clover Club', 'Ramos Fizz', 'Pisco Sour', 'Whiskey Sour',
+        
+        // Tiki e tropicali
+        'Mai Tai', 'Zombie', 'Painkiller', 'Hurricane', 'Piña Colada', 'Blue Hawaii',
+        'Planter\'s Punch', 'Rum Punch', 'Scorpion Bowl', 'Singapore Sling', 'Fog Cutter',
+        'Navy Grog', 'Pearl Diver', 'Bahama Mama', 'Tiki Punch',
+        
+        // Long drink e highball
+        'Gin Tonic', 'Vodka Tonic', 'Cuba Libre', 'Long Island', 'Moscow Mule', 'Paloma',
+        'Highball', 'Rickey', 'Buck', 'Fizz', 'Collins', 'Screwdriver', 'Greyhound',
+        'Salty Dog', 'Cape Cod', 'Madras', 'Sea Breeze', 'Bay Breeze', 'Tequila Sunrise',
+        'Mule', 'Julep', 'Cooler', 'Punch', 'Sangria', 'Tinto de Verano',
+        
+        // Digestivi e after dinner (termini generici)
+        'Amaro', 'Bitter', 'Vermouth', 'Grappa', 'Limoncello', 'Mirto', 'Nocino',
+        'Rosolio', 'Centerba', 'Genepi', 'Sambuca', 'Anisette', 'Ratafia',
+        
+        // Stili di birra
+        'Ipa', 'Stout', 'Porter', 'Lager', 'Pilsner', 'Weiss', 'Blanche', 'Saison',
+        'Tripel', 'Dubbel', 'Lambic', 'Gose', 'Sour', 'Radler', 'Shandy'
+    ]
+};
+
+// Mapping stagioni - come sull'HTML
+const SEASON_MAPPING = {
+    'PE 25': '25E',
+    'AI 25': '25I',
+    'PE 24': '24E',
+    'AI 24': '24I',
+    'PE 26': '26E',
+    'AI 26': '26I',
+    'PE 27': '27E',
+    'AI 27': '27I',
+    'PE 28': '28E',
+    'AI 28': '28I'
+};
+
+// Helper function per generare ID unico
+function generateId() {
+    return Math.random().toString(36).substr(2, 9);
+}
+
+// Helper function per ottenere tutti i nomi dal pool
+function getAllPoolNames() {
+    let allNames = [];
+    for (const category in namePool) {
+        allNames = allNames.concat(namePool[category]);
+    }
+    return allNames;
+}
+
+// Helper function per ottenere nomi da categorie specifiche
+function getNamesFromCategories(categories) {
+    let names = [];
+    categories.forEach(category => {
+        if (namePool[category]) {
+            names = names.concat(namePool[category]);
+        }
+    });
+    return names;
+}
+
+// Funzione per fetchare prodotti da Shopify
+async function fetchAllShopifyProducts(seasonTag = null) {
+    if (!SHOPIFY_ACCESS_TOKEN) {
+        console.log('⚠️  Shopify non configurato - modalità demo');
+        return [];
+    }
+    
+    // Check cache first
+    const cached = getCachedProducts(seasonTag);
+    if (cached) {
+        return cached;
+    }
+    
+    console.log(`📥 Recupero prodotti${seasonTag ? ` per stagione ${seasonTag}` : ''} da Shopify...`);
+    
+    let allProducts = [];
+    let page_info = null;
+    let hasNextPage = true;
+    let pageCount = 0;
+    
+    try {
+        while (hasNextPage) {
+            pageCount++;
+            let url;
+            
+            if (page_info) {
+                url = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?page_info=${page_info}&limit=250&fields=id,title,tags`;
+            } else {
+                url = `https://${SHOPIFY_STORE_URL}/admin/api/${SHOPIFY_API_VERSION}/products.json?limit=250&fields=id,title,tags`;
+            }
+            
+            const response = await fetch(url, {
+                headers: {
+                    'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                console.error(`❌ Errore Shopify API: ${response.status}`);
+                break;
+            }
+            
+            const data = await response.json();
+            
+            // Filtra per stagione se specificata
+            if (seasonTag) {
+                const filtered = data.products.filter(product => 
+                    product.tags && product.tags.split(', ').includes(seasonTag)
+                );
+                allProducts = allProducts.concat(filtered);
+            } else {
+                allProducts = allProducts.concat(data.products);
+            }
+            
+            // Controlla paginazione
+            const linkHeader = response.headers.get('Link');
+            if (linkHeader && linkHeader.includes('rel="next"')) {
+                const matches = linkHeader.match(/page_info=([^&>]+).*?rel="next"/);
+                if (matches && matches[1]) {
+                    page_info = matches[1];
+                } else {
+                    hasNextPage = false;
+                }
+            } else {
+                hasNextPage = false;
+            }
+        }
+        
+        console.log(`✅ Recuperati ${allProducts.length} prodotti in ${pageCount} pagine`);
+        
+        // Salva in cache
+        setCachedProducts(seasonTag, allProducts);
+        
+    } catch (error) {
+        console.error('❌ Errore durante il recupero prodotti:', error);
+    }
+    
+    return allProducts;
+}
+
+// Fetch historical names from all seasons
+async function fetchHistoricalNames() {
+    const historicalNames = new Map();
+    
+    // Se non c'è Shopify configurato, ritorna vuoto
+    if (!SHOPIFY_ACCESS_TOKEN) {
+        return historicalNames;
+    }
+    
+    try {
+        const allProducts = await fetchAllShopifyProducts(); // Fetch tutti i prodotti
+        
+        // Raggruppa per nome e stagioni
+        allProducts.forEach(product => {
+            const name = product.title.trim();
+            const tags = product.tags ? product.tags.split(', ') : [];
+            
+            // Trova tag stagione
+            const seasonTag = tags.find(tag => /^\d{2}[EI]$/.test(tag));
+            
+            if (seasonTag) {
+                if (!historicalNames.has(name)) {
+                    historicalNames.set(name, new Set());
+                }
+                historicalNames.get(name).add(seasonTag);
+            }
+        });
+        
+        console.log(`📊 Trovati ${historicalNames.size} nomi unici storici`);
+        
+        // Salva in cache
+        historicalNamesCache = {};
+        historicalNames.forEach((seasons, name) => {
+            historicalNamesCache[name] = Array.from(seasons);
+        });
+        
+    } catch (error) {
+        console.error('❌ Errore recupero nomi storici:', error);
+    }
+    
+    return historicalNames;
+}
+
+// ROOT ENDPOINT
+app.get('/', (req, res) => {
+    const totalNames = getAllPoolNames().length;
+    const categoriesCount = Object.keys(namePool).length;
+    
+    res.json({
+        name: 'Loft.73 Name Generator API',
+        version: '2.1',
+        status: 'active',
+        stats: {
+            totalNames: totalNames,
+            categories: categoriesCount,
+            averagePerCategory: Math.round(totalNames / categoriesCount)
+        },
+        endpoints: {
+            generate: '/api/generate-names',
+            shopifyProducts: '/api/shopify/products',
+            checkName: '/api/check-name',
+            refreshHistorical: '/api/refresh-historical',
+            stats: '/api/stats/usage'
+        },
+        shopify: {
+            configured: !!SHOPIFY_ACCESS_TOKEN,
+            store: SHOPIFY_STORE_URL
+        }
+    });
+});
+
+// ENDPOINT: Get Shopify products for a season
+app.post('/api/shopify/products', async (req, res) => {
+    const { season, forceRefresh = false } = req.body;
+    
+    if (!season) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Season parameter required' 
+        });
+    }
+    
+    const seasonTag = SEASON_MAPPING[season];
+    if (!seasonTag) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Invalid season' 
+        });
+    }
+    
+    try {
+        // Se forceRefresh, svuota prima la cache
+        if (forceRefresh) {
+            delete shopifyCache.data[seasonTag];
+            delete shopifyCache.timestamps[seasonTag];
+        }
+        
+        const products = await fetchAllShopifyProducts(seasonTag);
+        const names = [...new Set(products.map(p => p.title.trim()))];
+        
+        // Calcola età cache
+        const cacheAge = shopifyCache.timestamps[seasonTag] ? 
+            Math.round((Date.now() - shopifyCache.timestamps[seasonTag]) / 1000) : 0;
+        
+        res.json({
+            success: true,
+            season: season,
+            seasonTag: seasonTag,
+            totalProducts: products.length,
+            count: names.length,
+            names: names,
+            cached: !forceRefresh && cacheAge > 0,
+            cacheAge: cacheAge
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to fetch products' 
+        });
+    }
+});
+
+// ENDPOINT: Generate names
+app.post('/api/generate-names', async (req, res) => {
+    const { count, season, mode = 'mixed', categories = [], existingNames = [] } = req.body;
+    
+    if (!count || count < 1) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Invalid count parameter' 
+        });
+    }
+    
+    const seasonTag = SEASON_MAPPING[season];
+    if (!seasonTag) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Invalid season' 
+        });
+    }
+    
+    try {
+        // Ottieni i nomi dal pool in base alle categorie selezionate
+        let poolNames = categories.length > 0 
+            ? getNamesFromCategories(categories) 
+            : getAllPoolNames();
+        
+        // Rimuovi duplicati e converti a lowercase per confronto
+        poolNames = [...new Set(poolNames)];
+        const existingLower = existingNames.map(n => n.toLowerCase().trim());
+        
+        // Filtra i nomi disponibili (non usati nella stagione corrente)
+        const availableNames = poolNames.filter(name => 
+            !existingLower.includes(name.toLowerCase().trim())
+        );
+        
+        let selectedNames = [];
+        let sourceCounts = { pool: 0, otherSeasons: 0 };
+        
+        if (mode === 'new') {
+            // Solo nomi mai usati prima
+            const historicalNames = await fetchHistoricalNames();
+            const neverUsedNames = availableNames.filter(name => 
+                !historicalNames.has(name)
+            );
+            
+            if (neverUsedNames.length < count) {
+                return res.json({
+                    success: false,
+                    warning: `Solo ${neverUsedNames.length} nomi mai usati disponibili. Riduci la quantità o cambia modalità.`,
+                    names: [],
+                    sources: sourceCounts
+                });
+            }
+            
+            // Shuffle e seleziona
+            const shuffled = neverUsedNames.sort(() => 0.5 - Math.random());
+            selectedNames = shuffled.slice(0, count).map(name => ({
+                id: generateId(),
+                name: name,
+                source: 'pool'
+            }));
+            sourceCounts.pool = count;
+            
+        } else if (mode === 'reused') {
+            // Solo nomi già usati in altre stagioni
+            const historicalNames = await fetchHistoricalNames();
+            const reusableNames = availableNames.filter(name => {
+                const seasons = historicalNames.get(name);
+                return seasons && seasons.size > 0 && !seasons.has(seasonTag);
+            });
+            
+            if (reusableNames.length < count) {
+                return res.json({
+                    success: false,
+                    warning: `Solo ${reusableNames.length} nomi riutilizzabili disponibili. Assicurati che Shopify abbia prodotti di altre stagioni.`,
+                    names: [],
+                    sources: sourceCounts
+                });
+            }
+            
+            // Shuffle e seleziona
+            const shuffled = reusableNames.sort(() => 0.5 - Math.random());
+            selectedNames = shuffled.slice(0, count).map(name => ({
+                id: generateId(),
+                name: name,
+                source: 'other-seasons'
+            }));
+            sourceCounts.otherSeasons = count;
+            
+        } else {
+            // Mode 'mixed' - 60% nuovi, 40% riutilizzati
+            const newCount = Math.ceil(count * 0.6);
+            const reusedCount = count - newCount;
+            
+            // Fetch historical names
+            const historicalNames = await fetchHistoricalNames();
+            
+            // Separa nomi nuovi e riutilizzabili
+            const neverUsedNames = availableNames.filter(name => 
+                !historicalNames.has(name)
+            );
+            const reusableNames = availableNames.filter(name => {
+                const seasons = historicalNames.get(name);
+                return seasons && seasons.size > 0 && !seasons.has(seasonTag);
+            });
+            
+            // Genera nomi nuovi
+            let newNames = [];
+            if (neverUsedNames.length >= newCount) {
+                const shuffled = neverUsedNames.sort(() => 0.5 - Math.random());
+                newNames = shuffled.slice(0, newCount).map(name => ({
+                    id: generateId(),
+                    name: name,
+                    source: 'pool'
+                }));
+                sourceCounts.pool = newCount;
+            } else {
+                // Se non ci sono abbastanza nuovi, usa tutti quelli disponibili
+                newNames = neverUsedNames.map(name => ({
+                    id: generateId(),
+                    name: name,
+                    source: 'pool'
+                }));
+                sourceCounts.pool = newNames.length;
+            }
+            
+            // Genera nomi riutilizzati
+            let reusedNames = [];
+            const remainingCount = count - newNames.length;
+            if (reusableNames.length >= remainingCount) {
+                const shuffled = reusableNames.sort(() => 0.5 - Math.random());
+                reusedNames = shuffled.slice(0, remainingCount).map(name => ({
+                    id: generateId(),
+                    name: name,
+                    source: 'other-seasons'
+                }));
+                sourceCounts.otherSeasons = remainingCount;
+            } else {
+                // Se non ci sono abbastanza riutilizzabili, usa il resto dal pool nuovo
+                reusedNames = reusableNames.map(name => ({
+                    id: generateId(),
+                    name: name,
+                    source: 'other-seasons'
+                }));
+                sourceCounts.otherSeasons = reusedNames.length;
+                
+                // Completa con altri nomi nuovi se necessario
+                const stillNeeded = count - newNames.length - reusedNames.length;
+                if (stillNeeded > 0) {
+                    const remainingNew = neverUsedNames
+                        .filter(n => !newNames.find(nn => nn.name === n))
+                        .sort(() => 0.5 - Math.random())
+                        .slice(0, stillNeeded)
+                        .map(name => ({
+                            id: generateId(),
+                            name: name,
+                            source: 'pool'
+                        }));
+                    newNames = newNames.concat(remainingNew);
+                    sourceCounts.pool += remainingNew.length;
+                }
+            }
+            
+            selectedNames = [...newNames, ...reusedNames];
+        }
+        
+        // Mescola risultato finale
+        selectedNames = selectedNames.sort(() => 0.5 - Math.random());
+        
+        // Aggiungi ai nomi usati
+        selectedNames.forEach(item => {
+            usedNamesCache.add(item.name);
+            allUsedNames.push({
+                name: item.name,
+                season: seasonTag,
+                timestamp: new Date()
+            });
+        });
+        
+        res.json({
+            success: true,
+            count: selectedNames.length,
+            names: selectedNames,
+            sources: sourceCounts,
+            season: season,
+            seasonTag: seasonTag,
+            mode: mode,
+            categories: categories
+        });
+        
+    } catch (error) {
+        console.error('Error generating names:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to generate names' 
+        });
+    }
+});
+
+// ENDPOINT: Check name availability
+app.post('/api/check-name', async (req, res) => {
+    const { name, currentSeason } = req.body;
+    
+    if (!name) {
+        return res.status(400).json({ 
+            success: false, 
+            error: 'Name parameter required' 
+        });
+    }
+    
+    try {
+        // Verifica se il nome esiste nel pool
+        const allPoolNames = getAllPoolNames();
+        const existsInPool = allPoolNames.some(n => 
+            n.toLowerCase().trim() === name.toLowerCase().trim()
+        );
+        
+        // Fetch tutti i prodotti Shopify per verificare uso storico
+        const allProducts = await fetchAllShopifyProducts();
+        
+        // Trova tutte le stagioni dove è stato usato
+        const usedInSeasons = [];
+        allProducts.forEach(product => {
+            if (product.title.toLowerCase().trim() === name.toLowerCase().trim()) {
+                const tags = product.tags ? product.tags.split(', ') : [];
+                const seasonTag = tags.find(tag => /^\d{2}[EI]$/.test(tag));
+                if (seasonTag && !usedInSeasons.find(s => s.tag === seasonTag)) {
+                    // Converti tag in formato leggibile
+                    const year = '20' + seasonTag.substring(0, 2);
+                    const season = seasonTag.endsWith('E') ? 'PE' : 'AI';
+                    usedInSeasons.push({
+                        tag: seasonTag,
+                        display: `${season} ${year}`
+                    });
+                }
+            }
+        });
+        
+        // Verifica disponibilità per la stagione corrente
+        const availableInCurrentSeason = !usedInSeasons.some(s => s.tag === currentSeason);
+        
+        res.json({
+            success: true,
+            name: name,
+            existsInPool: existsInPool,
+            usedInSeasons: usedInSeasons,
+            availableInCurrentSeason: availableInCurrentSeason,
+            currentSeason: currentSeason
+        });
+        
+    } catch (error) {
+        console.error('Error checking name:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to check name' 
+        });
+    }
+});
+
+// ENDPOINT: Refresh historical names cache
+app.post('/api/refresh-historical', async (req, res) => {
+    try {
+        // Svuota tutte le cache
+        shopifyCache.data = {};
+        shopifyCache.timestamps = {};
+        
+        // Ricarica nomi storici
+        const historicalNames = await fetchHistoricalNames();
+        
+        res.json({
+            success: true,
+            totalHistoricalNames: historicalNames.size,
+            message: 'Cache refreshed successfully'
+        });
+    } catch (error) {
+        console.error('Error refreshing historical data:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to refresh historical data' 
+        });
+    }
+});
+
+// ENDPOINT: Get usage statistics
+app.get('/api/stats/usage', async (req, res) => {
+    try {
+        const historicalNames = await fetchHistoricalNames();
+        const totalPoolNames = getAllPoolNames().length;
+        
+        // Calcola statistiche
+        const neverUsedCount = totalPoolNames - historicalNames.size;
+        const usedOnceCount = Array.from(historicalNames.values()).filter(s => s.size === 1).length;
+        const usedMultipleCount = Array.from(historicalNames.values()).filter(s => s.size > 1).length;
+        
+        res.json({
+            success: true,
+            totalPoolNames: totalPoolNames,
+            totalHistoricalNames: historicalNames.size,
+            neverUsedNames: neverUsedCount,
+            usedOnceNames: usedOnceCount,
+            usedMultipleTimesNames: usedMultipleCount,
+            categoriesCount: Object.keys(namePool).length,
+            shopifyConfigured: !!SHOPIFY_ACCESS_TOKEN
+        });
+    } catch (error) {
+        console.error('Error getting usage stats:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to get usage statistics' 
+        });
+    }
+});
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        memory: process.memoryUsage(),
+        shopify: {
+            configured: !!SHOPIFY_ACCESS_TOKEN,
+            cacheSize: Object.keys(shopifyCache.data).length
+        }
+    });
+});
+
+// Avvio server
+app.listen(PORT, async () => {
+    console.log(`
+    🚀 Loft.73 Name Generator API v2.1
+    ✅ Server attivo su porta ${PORT}
+    📊 Totale nomi nel pool: ${getAllPoolNames().length}
+    📁 Categorie disponibili: ${Object.keys(namePool).length}
+    🔗 Endpoint principale: http://localhost:${PORT}
+    `);
+    
+    // Log delle categorie
+    console.log('\n📋 Categorie e conteggi:');
+    for (const category in namePool) {
+        console.log(`   - ${category}: ${namePool[category].length} nomi`);
+    }
+    
+    // Precarica i nomi storici se Shopify è configurato
+    if (SHOPIFY_ACCESS_TOKEN) {
+        console.log('\n⏳ Caricamento nomi storici da Shopify...');
+        const historicalNames = await fetchHistoricalNames();
+        console.log(`✅ Caricati ${historicalNames.size} nomi storici totali`);
+    } else {
+        console.log('\n⚠️  Shopify non configurato - modalità demo attiva');
+    }
+});
